@@ -10,8 +10,14 @@ import type {
 } from '../types/index.js';
 import type { EquidistantStation } from './EquidistantFinder.js';
 
-// Google Places API Key
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || 'AIzaSyD6lXFL-byo5SDT2FAl0aHuRsfxExO1ZJw';
+// Helper function to get API key lazily (after dotenv is loaded)
+function getApiKey(): string {
+  const key = process.env.GOOGLE_PLACES_API_KEY;
+  if (!key) {
+    throw new Error('GOOGLE_PLACES_API_KEY environment variable is required');
+  }
+  return key;
+}
 
 const THEME_CONFIG = {
   bars: {
@@ -98,7 +104,7 @@ export class VenueService {
           location: coordinates,
           radius,
           type: config.type,
-          key: GOOGLE_PLACES_API_KEY,
+          key: getApiKey(),
           language: Language.fr
         }
       });
@@ -122,7 +128,7 @@ export class VenueService {
           reviewCount: place.user_ratings_total || 0,
           priceLevel: place.price_level,
           photos: place.photos?.slice(0, 3).map(p => 
-            `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${p.photo_reference}&key=${GOOGLE_PLACES_API_KEY}`
+            `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${p.photo_reference}&key=${getApiKey()}`
           ) || [],
           types: place.types || [],
           openNow: place.opening_hours?.open_now,
@@ -148,7 +154,7 @@ export class VenueService {
       const response = await this.client.placeDetails({
         params: {
           place_id: placeId,
-          key: GOOGLE_PLACES_API_KEY,
+          key: getApiKey(),
           language: language,
           fields: [
             'place_id',
@@ -192,7 +198,7 @@ export class VenueService {
         reviewCount: place.user_ratings_total || 0,
         priceLevel: place.price_level,
         photos: place.photos?.slice(0, 5).map(p => 
-          `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=${p.photo_reference}&key=${GOOGLE_PLACES_API_KEY}`
+          `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=${p.photo_reference}&key=${getApiKey()}`
         ) || [],
         types: place.types || [],
         openNow: place.opening_hours?.open_now,

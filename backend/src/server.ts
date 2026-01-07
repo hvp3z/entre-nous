@@ -1,13 +1,13 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
-import dotenv from 'dotenv';
 import { locationsRouter } from './routes/locations.js';
 import { equidistantRouter } from './routes/equidistant.js';
 import { venuesRouter } from './routes/venues.js';
 import { directionsRouter } from './routes/directions.js';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
