@@ -1,4 +1,4 @@
-import type { Station } from '../../../shared/types/index.js';
+import type { Station } from '../types/index.js';
 
 // Metro line colors
 export const METRO_LINE_COLORS: Record<string, string> = {

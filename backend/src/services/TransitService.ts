@@ -1,4 +1,4 @@
-import type { Coordinates, Station, RouteSegment } from '../../../shared/types/index.js';
+import type { Coordinates, Station, RouteSegment } from '../types/index.js';
 import { stations, stationIndex, lineConnections, METRO_LINE_COLORS } from '../data/stations.js';
 
 export class TransitService {

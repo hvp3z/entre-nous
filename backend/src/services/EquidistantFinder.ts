@@ -1,4 +1,4 @@
-import type { Location, Station, TravelTime } from '../../../shared/types/index.js';
+import type { Location, Station, TravelTime } from '../types/index.js';
 import { TransitService, findNearestStations } from './TransitService.js';
 import { stations } from '../data/stations.js';
 

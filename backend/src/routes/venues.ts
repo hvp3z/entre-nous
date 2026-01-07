@@ -1,7 +1,8 @@
 import { Router } from 'express';
+import { Language } from '@googlemaps/google-maps-services-js';
 import { VenueService } from '../services/VenueService.js';
 import { CacheService } from '../services/CacheService.js';
-import type { VenueDetails } from '../../../shared/types/index.js';
+import type { VenueDetails } from '../types/index.js';
 
 const router = Router();
 const venueService = new VenueService();
@@ -20,9 +21,13 @@ router.get('/:placeId', async (req, res) => {
       return res.json({ success: true, data: cached });
     }
 
+    // Map language string to Language enum, default to French
+    const langMap: Record<string, Language> = { 'fr': Language.fr, 'en': Language.en };
+    const lang = langMap[language as string] || Language.fr;
+    
     const venueDetails = await venueService.getVenueDetails(
       placeId, 
-      language as string
+      lang
     );
 
     if (!venueDetails) {

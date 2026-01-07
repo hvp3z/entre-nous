@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import type { Coordinates, RouteSegment } from '../../../shared/types/index.js';
+import type { Coordinates, RouteSegment } from '../types/index.js';
 import { TransitService } from '../services/TransitService.js';
 import { CacheService } from '../services/CacheService.js';
 

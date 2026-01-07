@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import type { Coordinates, Station } from '../../../shared/types/index.js';
+import type { Coordinates, Station } from '../types/index.js';
 import { findNearestStations } from '../services/TransitService.js';
 
 const router = Router();
@@ -21,6 +21,18 @@ interface PhotonFeature {
   geometry: {
     coordinates: [number, number]; // [lng, lat]
   };
+}
+
+interface PhotonResponse {
+  features: PhotonFeature[];
+}
+
+interface NominatimResult {
+  lat: string;
+  lon: string;
+  display_name: string;
+  name?: string;
+  error?: string;
 }
 
 // Autocomplete endpoint - using Photon API (OpenStreetMap)
@@ -48,7 +60,7 @@ router.get('/autocomplete', async (req, res) => {
       throw new Error(`Photon API error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as PhotonResponse;
     
     const predictions = (data.features || []).map((feature: PhotonFeature) => {
       const props = feature.properties;
@@ -131,7 +143,7 @@ router.get('/geocode/:placeId', async (req, res) => {
       throw new Error(`Nominatim error: ${response.status}`);
     }
 
-    const results = await response.json();
+    const results = await response.json() as NominatimResult[];
     
     if (!results || results.length === 0) {
       return res.status(404).json({ success: false, error: 'Location not found' });
@@ -183,7 +195,7 @@ router.post('/reverse-geocode', async (req, res) => {
       throw new Error(`Nominatim error: ${response.status}`);
     }
 
-    const result = await response.json();
+    const result = await response.json() as NominatimResult;
     
     if (!result || result.error) {
       return res.status(404).json({ success: false, error: 'Address not found' });

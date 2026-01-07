@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import type { SearchRequest, SearchResponse, Location } from '../../../shared/types/index.js';
+import type { SearchRequest, SearchResponse, Location } from '../types/index.js';
 import { EquidistantFinder } from '../services/EquidistantFinder.js';
 import { VenueService } from '../services/VenueService.js';
 import { CacheService } from '../services/CacheService.js';

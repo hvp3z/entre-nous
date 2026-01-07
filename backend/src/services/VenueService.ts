@@ -1,4 +1,4 @@
-import { Client, PlaceType1 } from '@googlemaps/google-maps-services-js';
+import { Client, PlaceType1, Language } from '@googlemaps/google-maps-services-js';
 import type { 
   Coordinates, 
   Venue, 
@@ -7,7 +7,7 @@ import type {
   SearchResult,
   Location,
   Review
-} from '../../../shared/types/index.js';
+} from '../types/index.js';
 import type { EquidistantStation } from './EquidistantFinder.js';
 
 // Google Places API Key
@@ -99,7 +99,7 @@ export class VenueService {
           radius,
           type: config.type,
           key: GOOGLE_PLACES_API_KEY,
-          language: 'fr'
+          language: Language.fr
         }
       });
 
@@ -143,13 +143,13 @@ export class VenueService {
     }
   }
 
-  async getVenueDetails(placeId: string, language: string = 'fr'): Promise<VenueDetails | null> {
+  async getVenueDetails(placeId: string, language: Language = Language.fr): Promise<VenueDetails | null> {
     try {
       const response = await this.client.placeDetails({
         params: {
           place_id: placeId,
           key: GOOGLE_PLACES_API_KEY,
-          language,
+          language: language,
           fields: [
             'place_id',
             'name',
@@ -175,7 +175,7 @@ export class VenueService {
         authorName: r.author_name || 'Anonymous',
         rating: r.rating || 0,
         text: r.text || '',
-        time: new Date(r.time * 1000).toISOString(),
+        time: new Date(Number(r.time || 0) * 1000).toISOString(),
         language: r.language || 'fr'
       }));
 
