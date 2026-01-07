@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  --font-outfit: 'Outfit', system-ui, sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-outfit);
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    min-height: 100dvh;
+  }
+
+  /* Mobile-first touch optimizations */
+  button, a, input, select, textarea {
+    @apply touch-manipulation;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-3 
+           font-medium rounded-xl transition-all duration-200 
+           active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none
+           min-h-[44px] min-w-[44px];
+  }
+
+  .btn-primary {
+    @apply btn bg-slate-900 text-white hover:bg-slate-800 
+           shadow-lg shadow-slate-900/20;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-slate-900 border border-slate-200 
+           hover:bg-slate-50 hover:border-slate-300;
+  }
+
+  .btn-bars {
+    @apply btn bg-bars-600 text-white hover:bg-bars-700 
+           shadow-lg shadow-bars-600/30;
+  }
+
+  .btn-restaurants {
+    @apply btn bg-restaurants-600 text-white hover:bg-restaurants-700 
+           shadow-lg shadow-restaurants-600/30;
+  }
+
+  .btn-kids {
+    @apply btn bg-kids-600 text-white hover:bg-kids-700 
+           shadow-lg shadow-kids-600/30;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-slate-100 
+           overflow-hidden transition-shadow hover:shadow-md;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-slate-200 
+           bg-white text-slate-900 placeholder-slate-400
+           focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400
+           transition-all duration-200 min-h-[44px];
+  }
+
+  /* Bottom sheet styles */
+  .bottom-sheet {
+    @apply fixed inset-x-0 bottom-0 bg-white rounded-t-3xl shadow-2xl 
+           transform transition-transform duration-300 ease-out
+           max-h-[85vh] overflow-hidden;
+  }
+
+  .bottom-sheet-handle {
+    @apply w-10 h-1 bg-slate-300 rounded-full mx-auto mt-3 mb-2;
+  }
+
+  /* Map container */
+  .map-container {
+    @apply w-full h-full relative;
+  }
+
+  .map-container .leaflet-container {
+    @apply w-full h-full rounded-none;
+    font-family: var(--font-outfit);
+  }
+
+  /* Theme-specific gradients */
+  .gradient-bars {
+    @apply bg-gradient-to-br from-bars-500 via-bars-600 to-amber-700;
+  }
+
+  .gradient-restaurants {
+    @apply bg-gradient-to-br from-restaurants-500 via-restaurants-600 to-rose-800;
+  }
+
+  .gradient-kids {
+    @apply bg-gradient-to-br from-kids-400 via-kids-500 to-teal-600;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply animate-pulse bg-slate-200 rounded;
+  }
+
+  /* Metro line colors */
+  .metro-line-1 { background-color: #FFCD00; }
+  .metro-line-2 { background-color: #003CA6; }
+  .metro-line-3 { background-color: #837902; }
+  .metro-line-4 { background-color: #CF009E; }
+  .metro-line-5 { background-color: #FF7E2E; }
+  .metro-line-6 { background-color: #6ECA97; }
+  .metro-line-7 { background-color: #FA9ABA; }
+  .metro-line-8 { background-color: #E19BDF; }
+  .metro-line-9 { background-color: #B6BD00; }
+  .metro-line-10 { background-color: #C9910D; }
+  .metro-line-11 { background-color: #704B1C; }
+  .metro-line-12 { background-color: #007852; }
+  .metro-line-13 { background-color: #6EC4E8; }
+  .metro-line-14 { background-color: #62259D; }
+  .metro-line-rer-a { background-color: #F7403A; }
+  .metro-line-rer-b { background-color: #4B92DB; }
+  .metro-line-rer-c { background-color: #F3D311; }
+  .metro-line-rer-d { background-color: #5E9B41; }
+  .metro-line-rer-e { background-color: #DE81D3; }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-control-zoom {
+  @apply !border-none !shadow-lg !rounded-xl overflow-hidden;
+}
+
+.leaflet-control-zoom a {
+  @apply !w-10 !h-10 !leading-10 !text-slate-700 !bg-white 
+         !border-none hover:!bg-slate-50 !text-lg;
+}
+
+.leaflet-popup-content-wrapper {
+  @apply !rounded-xl !shadow-lg !border-none;
+}
+
+.leaflet-popup-tip {
+  @apply !shadow-none;
+}
+
+/* Hide Leaflet attribution on mobile */
+@media (max-width: 640px) {
+  .leaflet-control-attribution {
+    @apply !hidden;
+  }
+}
+

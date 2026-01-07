@@ -1,0 +1,149 @@
+{
+  "common": {
+    "appName": "Entre Nous",
+    "tagline": "Trouvez le lieu parfait pour vous retrouver",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "retry": "Réessayer",
+    "close": "Fermer",
+    "back": "Retour",
+    "search": "Rechercher",
+    "share": "Partager",
+    "directions": "Itinéraire",
+    "minutes": "min",
+    "walkingTime": "{time} min à pied"
+  },
+  "nav": {
+    "home": "Accueil",
+    "bars": "Bars",
+    "restaurants": "Restaurants",
+    "kids": "Sorties en famille",
+    "language": "Langue"
+  },
+  "themes": {
+    "bars": {
+      "title": "Bars",
+      "subtitle": "Un verre entre amis",
+      "description": "Trouvez le bar idéal pour vous retrouver après le travail",
+      "cta": "Trouver un bar"
+    },
+    "restaurants": {
+      "title": "Restaurants",
+      "subtitle": "Dîner ensemble",
+      "description": "Découvrez le restaurant parfait pour votre groupe",
+      "cta": "Trouver un restaurant"
+    },
+    "kids": {
+      "title": "En famille",
+      "subtitle": "Sorties avec les enfants",
+      "description": "Parcs, musées et activités pour toute la famille",
+      "cta": "Trouver une sortie"
+    }
+  },
+  "location": {
+    "title": "Vos points de départ",
+    "subtitle": "Ajoutez 2 à 6 adresses pour trouver un lieu équidistant",
+    "addLocation": "Ajouter une adresse",
+    "useCurrentLocation": "Ma position actuelle",
+    "placeholder": "Entrez une adresse à Paris...",
+    "remove": "Supprimer",
+    "minLocations": "Ajoutez au moins 2 adresses pour continuer",
+    "maxLocations": "Maximum 6 adresses",
+    "nearestStation": "Station la plus proche: {station}",
+    "locationError": "Impossible de récupérer votre position",
+    "searchError": "Erreur lors de la recherche"
+  },
+  "search": {
+    "searching": "Recherche des lieux équidistants...",
+    "noResults": "Aucun lieu trouvé dans les critères",
+    "noResultsHint": "Essayez avec des adresses plus proches ou différentes",
+    "relaxedSearch": "Temps de trajet étendu à {minutes} minutes pour trouver des résultats",
+    "findPlaces": "Trouver des lieux"
+  },
+  "results": {
+    "title": "Lieux recommandés",
+    "travelTime": "Temps de trajet",
+    "from": "Depuis {location}",
+    "avgTime": "{time} min en moyenne",
+    "variance": "±{time} min d'écart",
+    "rating": "{rating} ({count} avis)",
+    "openNow": "Ouvert",
+    "closed": "Fermé",
+    "priceLevel": "Prix",
+    "viewDetails": "Voir les détails",
+    "getDirections": "Y aller"
+  },
+  "directions": {
+    "title": "Itinéraires",
+    "fromYourLocation": "Depuis votre position",
+    "walk": "Marche",
+    "metro": "Métro",
+    "rer": "RER",
+    "transilien": "Transilien",
+    "line": "Ligne {line}",
+    "total": "Durée totale: {time} min"
+  },
+  "share": {
+    "title": "Partager ce lieu",
+    "copied": "Lien copié !",
+    "copyLink": "Copier le lien",
+    "shareWith": "Partagez avec vos amis"
+  },
+  "home": {
+    "hero": "Retrouvez-vous",
+    "heroSub": "Trouvez le lieu idéal où chacun peut arriver facilement",
+    "howItWorks": "Comment ça marche",
+    "step1Title": "Ajoutez vos adresses",
+    "step1Desc": "Entrez les points de départ de chaque participant (2 à 6 personnes)",
+    "step2Title": "Choisissez votre activité",
+    "step2Desc": "Bar, restaurant ou sortie en famille",
+    "step3Title": "Découvrez les résultats",
+    "step3Desc": "Des lieux équidistants en métro pour tout le monde"
+  },
+  "legal": {
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : {date}",
+    "contact": "Contact",
+    "termsContent": {
+      "title": "Conditions Générales d'Utilisation",
+      "intro": "En utilisant Entre Nous, vous acceptez les présentes conditions.",
+      "service": "Description du Service",
+      "serviceDesc": "Entre Nous est un service gratuit permettant de trouver des lieux de rendez-vous équidistants en transport en commun à Paris et en Île-de-France.",
+      "usage": "Utilisation du Service",
+      "usageDesc": "Le service est fourni \"tel quel\". Les temps de trajet et informations sur les lieux sont indicatifs et peuvent varier.",
+      "data": "Données",
+      "dataDesc": "Nous ne stockons pas vos données personnelles. Les recherches sont traitées en temps réel et ne sont pas enregistrées.",
+      "liability": "Responsabilité",
+      "liabilityDesc": "Entre Nous ne peut être tenu responsable des informations fournies par les services tiers (Google Places, transports en commun).",
+      "changes": "Modifications",
+      "changesDesc": "Nous nous réservons le droit de modifier ces conditions à tout moment."
+    },
+    "privacyContent": {
+      "title": "Politique de Confidentialité",
+      "intro": "Votre vie privée est importante pour nous. Cette politique explique comment nous traitons vos données.",
+      "collected": "Données Collectées",
+      "collectedDesc": "Nous ne collectons aucune donnée personnelle identifiable. Les adresses entrées sont utilisées uniquement pour calculer les itinéraires et ne sont pas stockées.",
+      "analytics": "Analytics",
+      "analyticsDesc": "Nous utilisons des outils d'analytics respectueux de la vie privée (Plausible/Umami) qui ne collectent pas de données personnelles et ne nécessitent pas de consentement RGPD.",
+      "cookies": "Cookies",
+      "cookiesDesc": "Notre site n'utilise pas de cookies de tracking. Seuls des cookies techniques essentiels peuvent être utilisés pour le bon fonctionnement du service.",
+      "thirdParty": "Services Tiers",
+      "thirdPartyDesc": "Nous utilisons Google Maps/Places pour les informations sur les lieux. Ces services ont leur propre politique de confidentialité.",
+      "rights": "Vos Droits",
+      "rightsDesc": "Conformément au RGPD, vous avez le droit d'accès, de rectification et d'effacement de vos données. Comme nous ne stockons aucune donnée personnelle, ces droits s'exercent automatiquement.",
+      "contact": "Contact",
+      "contactDesc": "Pour toute question concernant vos données, contactez-nous à l'adresse indiquée ci-dessous."
+    }
+  },
+  "footer": {
+    "madeWith": "Fait avec ♥ à Paris",
+    "legal": "Mentions légales"
+  },
+  "support": {
+    "title": "Soutenez Entre Nous",
+    "message": "Entre Nous est gratuit et sans pub. Si vous aimez l'app, offrez-nous un café !",
+    "cta": "Offrir un café"
+  }
+}
+

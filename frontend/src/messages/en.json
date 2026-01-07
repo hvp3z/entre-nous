@@ -1,0 +1,149 @@
+{
+  "common": {
+    "appName": "Entre Nous",
+    "tagline": "Find the perfect meeting spot",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try again",
+    "close": "Close",
+    "back": "Back",
+    "search": "Search",
+    "share": "Share",
+    "directions": "Directions",
+    "minutes": "min",
+    "walkingTime": "{time} min walk"
+  },
+  "nav": {
+    "home": "Home",
+    "bars": "Bars",
+    "restaurants": "Restaurants",
+    "kids": "Family outings",
+    "language": "Language"
+  },
+  "themes": {
+    "bars": {
+      "title": "Bars",
+      "subtitle": "Drinks with friends",
+      "description": "Find the ideal bar to meet up after work",
+      "cta": "Find a bar"
+    },
+    "restaurants": {
+      "title": "Restaurants",
+      "subtitle": "Dine together",
+      "description": "Discover the perfect restaurant for your group",
+      "cta": "Find a restaurant"
+    },
+    "kids": {
+      "title": "Family",
+      "subtitle": "Outings with kids",
+      "description": "Parks, museums and activities for the whole family",
+      "cta": "Find an activity"
+    }
+  },
+  "location": {
+    "title": "Your starting points",
+    "subtitle": "Add 2 to 6 addresses to find an equidistant location",
+    "addLocation": "Add an address",
+    "useCurrentLocation": "Use my location",
+    "placeholder": "Enter an address in Paris...",
+    "remove": "Remove",
+    "minLocations": "Add at least 2 addresses to continue",
+    "maxLocations": "Maximum 6 addresses",
+    "nearestStation": "Nearest station: {station}",
+    "locationError": "Could not get your location",
+    "searchError": "Search error"
+  },
+  "search": {
+    "searching": "Searching for equidistant places...",
+    "noResults": "No places found matching criteria",
+    "noResultsHint": "Try with closer or different addresses",
+    "relaxedSearch": "Travel time extended to {minutes} minutes to find results",
+    "findPlaces": "Find places"
+  },
+  "results": {
+    "title": "Recommended places",
+    "travelTime": "Travel time",
+    "from": "From {location}",
+    "avgTime": "{time} min average",
+    "variance": "±{time} min difference",
+    "rating": "{rating} ({count} reviews)",
+    "openNow": "Open",
+    "closed": "Closed",
+    "priceLevel": "Price",
+    "viewDetails": "View details",
+    "getDirections": "Get directions"
+  },
+  "directions": {
+    "title": "Directions",
+    "fromYourLocation": "From your location",
+    "walk": "Walk",
+    "metro": "Metro",
+    "rer": "RER",
+    "transilien": "Transilien",
+    "line": "Line {line}",
+    "total": "Total time: {time} min"
+  },
+  "share": {
+    "title": "Share this place",
+    "copied": "Link copied!",
+    "copyLink": "Copy link",
+    "shareWith": "Share with friends"
+  },
+  "home": {
+    "hero": "Meet up",
+    "heroSub": "Find the ideal place where everyone can arrive easily",
+    "howItWorks": "How it works",
+    "step1Title": "Add your addresses",
+    "step1Desc": "Enter starting points for each participant (2 to 6 people)",
+    "step2Title": "Choose your activity",
+    "step2Desc": "Bar, restaurant or family outing",
+    "step3Title": "Discover results",
+    "step3Desc": "Equidistant places by metro for everyone"
+  },
+  "legal": {
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "lastUpdated": "Last updated: {date}",
+    "contact": "Contact",
+    "termsContent": {
+      "title": "Terms of Service",
+      "intro": "By using Entre Nous, you agree to these terms.",
+      "service": "Service Description",
+      "serviceDesc": "Entre Nous is a free service to find equidistant meeting places by public transport in Paris and Île-de-France.",
+      "usage": "Use of Service",
+      "usageDesc": "The service is provided \"as is\". Travel times and venue information are indicative and may vary.",
+      "data": "Data",
+      "dataDesc": "We do not store your personal data. Searches are processed in real-time and are not recorded.",
+      "liability": "Liability",
+      "liabilityDesc": "Entre Nous cannot be held responsible for information provided by third-party services (Google Places, public transport).",
+      "changes": "Changes",
+      "changesDesc": "We reserve the right to modify these terms at any time."
+    },
+    "privacyContent": {
+      "title": "Privacy Policy",
+      "intro": "Your privacy is important to us. This policy explains how we handle your data.",
+      "collected": "Data Collected",
+      "collectedDesc": "We do not collect any personally identifiable data. Entered addresses are only used to calculate routes and are not stored.",
+      "analytics": "Analytics",
+      "analyticsDesc": "We use privacy-friendly analytics tools (Plausible/Umami) that do not collect personal data and do not require GDPR consent.",
+      "cookies": "Cookies",
+      "cookiesDesc": "Our site does not use tracking cookies. Only essential technical cookies may be used for the proper functioning of the service.",
+      "thirdParty": "Third-Party Services",
+      "thirdPartyDesc": "We use Google Maps/Places for venue information. These services have their own privacy policies.",
+      "rights": "Your Rights",
+      "rightsDesc": "Under GDPR, you have the right to access, rectify, and delete your data. As we do not store any personal data, these rights are automatically exercised.",
+      "contact": "Contact",
+      "contactDesc": "For any questions about your data, contact us at the address below."
+    }
+  },
+  "footer": {
+    "madeWith": "Made with ♥ in Paris",
+    "legal": "Legal"
+  },
+  "support": {
+    "title": "Support Entre Nous",
+    "message": "Entre Nous is free and ad-free. If you enjoy the app, buy us a coffee!",
+    "cta": "Buy us a coffee"
+  }
+}
+
