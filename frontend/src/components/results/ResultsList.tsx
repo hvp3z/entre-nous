@@ -39,7 +39,7 @@ export function ResultsList({ theme }: ResultsListProps) {
             rank={index + 1}
           />
           {/* Show support banner after the 3rd result */}
-          {index === 2 && <SupportBanner variant="inline" />}
+          {index === 2 && <SupportBanner variant="card" />}
         </motion.div>
       ))}
     </div>

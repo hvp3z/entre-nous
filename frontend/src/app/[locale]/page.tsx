@@ -3,9 +3,10 @@
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
-import { Wine, UtensilsCrossed, Baby, MapPin, Users, Navigation } from 'lucide-react';
+import { Wine, UtensilsCrossed, Baby, MapPin, Users, Navigation, Coffee, Heart } from 'lucide-react';
 import { Header } from '@/components/common/Header';
 import { useSessionStore } from '@/stores/sessionStore';
+import { KOFI_URL } from '@/components/monetization/SupportBanner';
 
 export default function HomePage() {
   const t = useTranslations();
@@ -180,6 +181,42 @@ export default function HomePage() {
             })}
           </div>
         </div>
+      </section>
+
+      {/* Support Section */}
+      <section className="px-4 py-12 sm:py-16 bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-2xl mx-auto text-center"
+        >
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-400 mb-6 shadow-lg shadow-amber-500/25">
+            <Coffee className="w-8 h-8 text-white" />
+          </div>
+          
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#1a1a1a] mb-3">
+            {t('support.homeTitle')}
+          </h2>
+          <p className="text-[#525252] mb-6 max-w-md mx-auto">
+            {t('support.homeMessage')}
+          </p>
+          
+          <a
+            href={KOFI_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 
+                     bg-gradient-to-r from-amber-500 to-orange-500 
+                     hover:from-amber-400 hover:to-orange-400 
+                     text-white font-medium rounded-xl transition-all
+                     shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40
+                     hover:scale-105"
+          >
+            <Heart className="w-5 h-5" />
+            {t('support.cta')}
+          </a>
+        </motion.div>
       </section>
 
       {/* Footer */}

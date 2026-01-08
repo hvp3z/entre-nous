@@ -1,52 +1,41 @@
-# Commit automatique avec message descriptif
+# Commit automatique
 
-Tu dois effectuer un commit Git complet en suivant ces étapes :
+Effectue un commit Git complet :
 
-## Étape 1 : Analyser les changements
+## Étape 1 : Analyser
 
-Exécute `git status` pour voir les fichiers modifiés, ajoutés ou supprimés.
+Exécute `git status` et `git diff` pour comprendre les changements.
 
-## Étape 2 : Analyser le contenu des changements
+## Étape 2 : Commit message court
 
-Exécute `git diff --staged` et `git diff` pour comprendre les modifications apportées.
-
-## Étape 3 : Générer un message de commit
-
-Génère un message de commit en suivant le format Conventional Commits :
+Format Conventional Commits sur **une seule ligne** :
 
 ```
-<type>(<scope>): <description courte>
-
-<corps détaillé expliquant les changements>
+<type>(<scope>): <description>
 ```
 
-### Types disponibles :
-- `feat` : nouvelle fonctionnalité
-- `fix` : correction de bug
-- `docs` : documentation
-- `style` : formatage, points-virgules manquants, etc.
-- `refactor` : refactorisation du code
-- `test` : ajout ou modification de tests
-- `chore` : maintenance, dépendances, config
+Types : `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
-### Règles pour le message :
-- La description courte doit être en anglais, concise (max 50 caractères)
-- Le corps peut être en français ou anglais selon le contexte
-- Liste les fichiers modifiés avec un résumé de chaque changement
-- Mentionne l'impact fonctionnel des modifications
+**Règles strictes :**
+- MAX 72 caractères au total
+- En anglais
+- Pas de point final
+- Pas de corps de message (une ligne uniquement)
 
-## Étape 4 : Exécuter les commandes Git
+Exemples :
+- `feat(filters): add venue filtering system`
+- `fix(api): handle null coordinates`
+- `chore(deps): update next.js to 14.1`
 
-Exécute les commandes suivantes dans l'ordre :
+## Étape 3 : Exécuter
 
-1. `git add -A` - Ajouter tous les fichiers
-2. `git commit -m "<message>"` - Commiter avec le message généré
-3. `git push` - Pousser vers le remote
+```bash
+git add -A
+git commit -m "<message court>"
+git push
+```
 
-## Étape 5 : Confirmer le succès
+## Étape 4 : Confirmer
 
-Affiche un résumé du commit effectué avec :
-- Le hash du commit
-- Le nombre de fichiers modifiés
-- La branche concernée
+Affiche : hash, nb fichiers, branche (format compact)
 

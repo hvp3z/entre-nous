@@ -138,11 +138,16 @@
   },
   "footer": {
     "madeWith": "Made with ♥ in Paris",
-    "legal": "Legal"
+    "legal": "Legal",
+    "support": "Support us"
   },
   "support": {
     "title": "Support Entre Nous",
     "message": "Entre Nous is free and ad-free. If you enjoy the app, buy us a coffee!",
+    "cardMessage": "This service is free and ad-free. If you enjoy the app, help us keep it running by buying us a coffee!",
+    "homeTitle": "Support the project",
+    "homeMessage": "Entre Nous is free, ad-free, and built with care. If you find it useful, consider supporting us!",
+    "badge": "Support",
     "cta": "Buy us a coffee"
   },
   "filters": {

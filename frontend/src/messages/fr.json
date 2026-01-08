@@ -138,11 +138,16 @@
   },
   "footer": {
     "madeWith": "Fait avec ♥ à Paris",
-    "legal": "Mentions légales"
+    "legal": "Mentions légales",
+    "support": "Nous soutenir"
   },
   "support": {
     "title": "Soutenez Entre Nous",
     "message": "Entre Nous est gratuit et sans pub. Si vous aimez l'app, offrez-nous un café !",
+    "cardMessage": "Ce service est gratuit et sans publicité. Si vous l'appréciez, aidez-nous à continuer en nous offrant un café !",
+    "homeTitle": "Soutenez le projet",
+    "homeMessage": "Entre Nous est gratuit, sans pub, et développé avec soin. Si vous le trouvez utile, soutenez-nous !",
+    "badge": "Support",
     "cta": "Offrir un café"
   },
   "filters": {
@@ -183,4 +188,3 @@
     }
   }
 }
-
