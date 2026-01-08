@@ -30,7 +30,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3002',
   process.env.FRONTEND_URL
-].filter(Boolean);
+].filter(Boolean) as string[];
 
 app.use(limiter);
 app.use(cors({
@@ -38,11 +38,23 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps or curl)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.includes(origin) || !isProduction) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+    // Allow localhost in development
+    if (!isProduction) {
+      return callback(null, true);
     }
+    
+    // Check explicit allowed origins
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    // Allow Vercel preview deployments (*.vercel.app)
+    if (origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    
+    console.warn(`CORS blocked origin: ${origin}`);
+    callback(new Error('Not allowed by CORS'));
   },
   credentials: true
 }));

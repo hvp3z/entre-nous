@@ -129,3 +129,4 @@ export interface SessionState {
   locale: 'fr' | 'en';
 }
 
+
