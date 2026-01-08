@@ -1,11 +1,10 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
 export function Footer() {
   const t = useTranslations();
-  const locale = useLocale();
 
   return (
     <footer className="mt-auto py-6 px-4 border-t border-neutral-800 bg-[#1a1a1a]">
@@ -17,13 +16,13 @@ export function Footer() {
           
           <nav className="flex items-center gap-6">
             <Link 
-              href={`/${locale}/legal/terms`}
+              href="/legal/terms"
               className="text-neutral-400 hover:text-white text-sm transition-colors"
             >
               {t('legal.terms')}
             </Link>
             <Link 
-              href={`/${locale}/legal/privacy`}
+              href="/legal/privacy"
               className="text-neutral-400 hover:text-white text-sm transition-colors"
             >
               {t('legal.privacy')}

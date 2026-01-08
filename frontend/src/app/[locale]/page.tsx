@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import { Wine, UtensilsCrossed, Baby, MapPin, Users, Navigation } from 'lucide-react';
 import { Header } from '@/components/common/Header';
