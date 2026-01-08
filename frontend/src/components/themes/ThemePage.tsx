@@ -23,19 +23,19 @@ const themeConfig = {
   bars: {
     gradient: 'gradient-bars',
     btnClass: 'btn-bars',
-    accentColor: 'text-bars-600',
+    accentColor: 'text-bars-500',
     bgColor: 'bg-bars-50',
   },
   restaurants: {
     gradient: 'gradient-restaurants',
     btnClass: 'btn-restaurants',
-    accentColor: 'text-restaurants-600',
+    accentColor: 'text-restaurants-500',
     bgColor: 'bg-restaurants-50',
   },
   kids: {
     gradient: 'gradient-kids',
     btnClass: 'btn-kids',
-    accentColor: 'text-kids-600',
+    accentColor: 'text-kids-500',
     bgColor: 'bg-kids-50',
   },
 };
@@ -90,13 +90,13 @@ export function ThemePage({ theme }: ThemePageProps) {
   const canSearch = locations.length >= 2 && !isSearching;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#fafafa] flex flex-col">
       <Header />
 
       {/* Theme Header */}
       <div className={clsx('px-4 py-6', config.bgColor)}>
         <div className="max-w-4xl mx-auto">
-          <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 mb-1">
+          <h1 className="font-display text-2xl sm:text-3xl font-bold text-[#1a1a1a] mb-1">
             {t(`themes.${theme}.title`)}
           </h1>
           <p className={clsx('text-sm font-medium', config.accentColor)}>
@@ -108,13 +108,13 @@ export function ThemePage({ theme }: ThemePageProps) {
       {/* Main Content */}
       <div className="flex-1 flex flex-col lg:flex-row">
         {/* Sidebar - Location Input (Desktop) */}
-        <div className="lg:w-96 lg:border-r lg:border-slate-200 bg-white p-4 lg:overflow-y-auto">
+        <div className="lg:w-96 lg:border-r lg:border-neutral-200 bg-white p-4 lg:overflow-y-auto">
           <div className="space-y-4">
             <div>
-              <h2 className="font-semibold text-slate-900 mb-1">
+              <h2 className="font-semibold text-[#1a1a1a] mb-1">
                 {t('location.title')}
               </h2>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-[#525252]">
                 {t('location.subtitle')}
               </p>
             </div>
@@ -125,7 +125,7 @@ export function ThemePage({ theme }: ThemePageProps) {
             {/* Search Button */}
             <div className="pt-2">
               {locations.length < 2 && (
-                <p className="text-sm text-slate-500 mb-3 text-center">
+                <p className="text-sm text-[#525252] mb-3 text-center">
                   {t('location.minLocations')}
                 </p>
               )}
@@ -205,10 +205,10 @@ export function ThemePage({ theme }: ThemePageProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             className="hidden lg:block fixed right-0 top-16 bottom-0 w-96 
-                       bg-white border-l border-slate-200 overflow-y-auto z-40"
+                       bg-white border-l border-neutral-200 overflow-y-auto z-40"
           >
             <div className="p-4">
-              <h2 className="font-semibold text-slate-900 mb-4">
+              <h2 className="font-semibold text-[#1a1a1a] mb-4">
                 {t('results.title')}
               </h2>
               <ResultsList theme={theme} />

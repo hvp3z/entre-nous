@@ -33,9 +33,9 @@ const createIcon = (color: string, isVenue = false) => {
 };
 
 const themeColors = {
-  bars: '#e8751d',
-  restaurants: '#cb3062',
-  kids: '#06b6d4',
+  bars: '#b87333',      // cognac
+  restaurants: '#c2703a', // terracotta
+  kids: '#a65d3f',      // brique
 };
 
 // Component to fit bounds when locations change
@@ -81,14 +81,14 @@ export function MapView({ theme }: MapViewProps) {
       <Marker
         key={location.id}
         position={[location.coordinates.lat, location.coordinates.lng]}
-        icon={createIcon('#0f172a')}
+        icon={createIcon('#292524')}
       >
         <Popup>
           <div className="text-sm">
             <p className="font-semibold">{index + 1}. Starting Point</p>
-            <p className="text-slate-600">{location.address}</p>
+            <p className="text-neutral-600">{location.address}</p>
             {location.nearestStations[0] && (
-              <p className="text-slate-500 text-xs mt-1">
+              <p className="text-neutral-500 text-xs mt-1">
                 Metro: {location.nearestStations[0].name}
               </p>
             )}
@@ -111,13 +111,13 @@ export function MapView({ theme }: MapViewProps) {
         <Popup>
           <div className="text-sm min-w-[200px]">
             <p className="font-semibold">{result.venue.name}</p>
-            <p className="text-slate-600 text-xs">{result.venue.address}</p>
+            <p className="text-neutral-600 text-xs">{result.venue.address}</p>
             <div className="mt-2 flex items-center gap-2">
-              <span className="text-yellow-500">★</span>
+              <span className="text-amber-500">★</span>
               <span>{result.venue.rating.toFixed(1)}</span>
-              <span className="text-slate-400">({result.venue.reviewCount})</span>
+              <span className="text-neutral-400">({result.venue.reviewCount})</span>
             </div>
-            <p className="text-slate-500 text-xs mt-1">
+            <p className="text-neutral-500 text-xs mt-1">
               ~{Math.round(result.averageTravelTime)} min average
             </p>
           </div>

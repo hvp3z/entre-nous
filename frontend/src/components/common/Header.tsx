@@ -36,12 +36,12 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200/50">
+    <header className="sticky top-0 z-50 bg-[#1a1a1a]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="font-display text-xl font-bold text-slate-900">
+            <span className="font-display text-xl font-bold text-white">
               {t('common.appName')}
             </span>
           </Link>
@@ -57,8 +57,8 @@ export function Header() {
                   className={clsx(
                     'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors',
                     isActive(item.href)
-                      ? 'bg-slate-900 text-white'
-                      : 'text-slate-600 hover:bg-slate-100'
+                      ? 'bg-white/15 text-white'
+                      : 'text-white/70 hover:text-white hover:bg-white/10'
                   )}
                 >
                   <Icon className="w-4 h-4" />
@@ -73,7 +73,7 @@ export function Header() {
             <button
               onClick={toggleLanguage}
               className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium 
-                       text-slate-600 hover:bg-slate-100 transition-colors"
+                       text-white/70 hover:text-white hover:bg-white/10 transition-colors"
               aria-label={t('nav.language')}
             >
               <Globe className="w-4 h-4" />
@@ -83,7 +83,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100"
+              className="md:hidden p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10"
               aria-label="Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -99,7 +99,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-slate-200 bg-white"
+            className="md:hidden border-t border-white/10 bg-[#1a1a1a]"
           >
             <nav className="px-4 py-4 space-y-1">
               {navItems.map((item) => {
@@ -112,8 +112,8 @@ export function Header() {
                     className={clsx(
                       'flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-colors',
                       isActive(item.href)
-                        ? 'bg-slate-900 text-white'
-                        : 'text-slate-600 hover:bg-slate-100'
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/70 hover:text-white hover:bg-white/10'
                     )}
                   >
                     <Icon className="w-5 h-5" />

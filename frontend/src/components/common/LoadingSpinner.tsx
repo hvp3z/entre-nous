@@ -17,7 +17,7 @@ export function LoadingSpinner({ size = 'md', className }: LoadingSpinnerProps) 
   return (
     <div
       className={clsx(
-        'animate-spin rounded-full border-slate-200 border-t-slate-900',
+        'animate-spin rounded-full border-neutral-200 border-t-[#1a1a1a]',
         sizeClasses[size],
         className
       )}
@@ -33,7 +33,7 @@ export function LoadingOverlay({ message }: { message?: string }) {
       <div className="text-center">
         <LoadingSpinner size="lg" className="mx-auto mb-4" />
         {message && (
-          <p className="text-slate-600 font-medium">{message}</p>
+          <p className="text-[#525252] font-medium">{message}</p>
         )}
       </div>
     </div>

@@ -9,44 +9,50 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Bars theme - warm amber/copper
+        // Editorial base colors
+        editorial: {
+          black: '#1a1a1a',
+          white: '#fafafa',
+          gray: '#525252',
+        },
+        // Bars theme - Cognac (cuivre doré)
         bars: {
-          50: '#fef7ee',
-          100: '#fcecd6',
-          200: '#f8d5ac',
-          300: '#f3b878',
-          400: '#ed9042',
-          500: '#e8751d',
-          600: '#d95b13',
-          700: '#b44312',
-          800: '#903617',
-          900: '#742f15',
+          50: '#fdf8f3',
+          100: '#f9ede0',
+          200: '#f2d9c0',
+          300: '#e8c099',
+          400: '#d4a06a',
+          500: '#b87333',
+          600: '#a5672d',
+          700: '#8a5626',
+          800: '#6e451f',
+          900: '#533418',
         },
-        // Restaurants theme - rich burgundy
+        // Restaurants theme - Terracotta (terre cuite classique)
         restaurants: {
-          50: '#fdf2f4',
-          100: '#fce7eb',
-          200: '#f9d0db',
-          300: '#f4aabe',
-          400: '#ec7a9b',
-          500: '#df507a',
-          600: '#cb3062',
-          700: '#ab2352',
-          800: '#8e214a',
-          900: '#791f44',
+          50: '#fdf7f4',
+          100: '#faece4',
+          200: '#f4d6c7',
+          300: '#ebbb9f',
+          400: '#d99569',
+          500: '#c2703a',
+          600: '#ae6534',
+          700: '#92542c',
+          800: '#754424',
+          900: '#58331b',
         },
-        // Kids theme - playful blue-green
+        // Kids theme - Brique (chaleureux, doux)
         kids: {
-          50: '#ecfeff',
-          100: '#cffafe',
-          200: '#a5f3fc',
-          300: '#67e8f9',
-          400: '#22d3ee',
-          500: '#06b6d4',
-          600: '#0891b2',
-          700: '#0e7490',
-          800: '#155e75',
-          900: '#164e63',
+          50: '#faf6f4',
+          100: '#f5ebe6',
+          200: '#ead4ca',
+          300: '#dbb8a8',
+          400: '#c4907a',
+          500: '#a65d3f',
+          600: '#955438',
+          700: '#7c462f',
+          800: '#633826',
+          900: '#4a2a1d',
         },
       },
       fontFamily: {

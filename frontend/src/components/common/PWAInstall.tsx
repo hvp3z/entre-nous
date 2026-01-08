@@ -69,14 +69,14 @@ export function PWAInstall() {
         exit={{ y: 100, opacity: 0 }}
         className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:max-w-sm"
       >
-        <div className="bg-slate-900 text-white rounded-2xl p-4 shadow-xl">
+        <div className="bg-[#1a1a1a] text-white rounded-2xl p-4 shadow-xl">
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
               <Download className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-sm">Install Entre Nous</h3>
-              <p className="text-xs text-slate-300 mt-0.5">
+              <p className="text-xs text-neutral-400 mt-0.5">
                 Add to home screen for quick access
               </p>
             </div>
@@ -98,7 +98,7 @@ export function PWAInstall() {
             <button
               onClick={handleInstall}
               className="flex-1 px-3 py-2 text-sm font-medium rounded-lg 
-                       bg-white text-slate-900 hover:bg-slate-100 transition-colors"
+                       bg-white text-[#1a1a1a] hover:bg-neutral-100 transition-colors"
             >
               Install
             </button>

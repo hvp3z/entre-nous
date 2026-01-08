@@ -7,6 +7,9 @@
 :root {
   --font-outfit: 'Outfit', system-ui, sans-serif;
   --font-playfair: 'Playfair Display', serif;
+  --editorial-black: #1a1a1a;
+  --editorial-white: #fafafa;
+  --editorial-gray: #525252;
 }
 
 @layer base {
@@ -17,7 +20,9 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply antialiased;
+    background-color: var(--editorial-white);
+    color: var(--editorial-black);
     min-height: 100dvh;
   }
 
@@ -33,15 +38,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-slate-100;
+    @apply bg-neutral-100;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 rounded-full;
+    @apply bg-neutral-300 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-400;
+    @apply bg-neutral-400;
   }
 }
 
@@ -54,40 +59,46 @@
   }
 
   .btn-primary {
-    @apply btn bg-slate-900 text-white hover:bg-slate-800 
-           shadow-lg shadow-slate-900/20;
+    @apply btn text-white shadow-lg;
+    background-color: var(--editorial-black);
+  }
+
+  .btn-primary:hover {
+    background-color: #2d2d2d;
   }
 
   .btn-secondary {
-    @apply btn bg-white text-slate-900 border border-slate-200 
-           hover:bg-slate-50 hover:border-slate-300;
+    @apply btn bg-white border border-neutral-200 
+           hover:bg-neutral-50 hover:border-neutral-300;
+    color: var(--editorial-black);
   }
 
   .btn-bars {
-    @apply btn bg-bars-600 text-white hover:bg-bars-700 
-           shadow-lg shadow-bars-600/30;
+    @apply btn bg-bars-500 text-white hover:bg-bars-600 
+           shadow-lg shadow-bars-500/25;
   }
 
   .btn-restaurants {
-    @apply btn bg-restaurants-600 text-white hover:bg-restaurants-700 
-           shadow-lg shadow-restaurants-600/30;
+    @apply btn bg-restaurants-500 text-white hover:bg-restaurants-600 
+           shadow-lg shadow-restaurants-500/25;
   }
 
   .btn-kids {
-    @apply btn bg-kids-600 text-white hover:bg-kids-700 
-           shadow-lg shadow-kids-600/30;
+    @apply btn bg-kids-500 text-white hover:bg-kids-600 
+           shadow-lg shadow-kids-500/25;
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-sm border border-slate-100 
+    @apply bg-white rounded-2xl shadow-sm border border-neutral-100 
            overflow-hidden transition-shadow hover:shadow-md;
   }
 
   .input {
-    @apply w-full px-4 py-3 rounded-xl border border-slate-200 
-           bg-white text-slate-900 placeholder-slate-400
-           focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400
+    @apply w-full px-4 py-3 rounded-xl border border-neutral-200 
+           bg-white placeholder-neutral-400
+           focus:outline-none focus:ring-2 focus:ring-neutral-800/10 focus:border-neutral-400
            transition-all duration-200 min-h-[44px];
+    color: var(--editorial-black);
   }
 
   /* Bottom sheet styles */
@@ -98,7 +109,7 @@
   }
 
   .bottom-sheet-handle {
-    @apply w-10 h-1 bg-slate-300 rounded-full mx-auto mt-3 mb-2;
+    @apply w-10 h-1 bg-neutral-300 rounded-full mx-auto mt-3 mb-2;
   }
 
   /* Map container */
@@ -111,22 +122,22 @@
     font-family: var(--font-outfit);
   }
 
-  /* Theme-specific gradients */
+  /* Theme-specific gradients - Editorial Terracotta */
   .gradient-bars {
-    @apply bg-gradient-to-br from-bars-500 via-bars-600 to-amber-700;
+    @apply bg-gradient-to-br from-bars-400 via-bars-500 to-bars-600;
   }
 
   .gradient-restaurants {
-    @apply bg-gradient-to-br from-restaurants-500 via-restaurants-600 to-rose-800;
+    @apply bg-gradient-to-br from-restaurants-400 via-restaurants-500 to-restaurants-600;
   }
 
   .gradient-kids {
-    @apply bg-gradient-to-br from-kids-400 via-kids-500 to-teal-600;
+    @apply bg-gradient-to-br from-kids-400 via-kids-500 to-kids-600;
   }
 
   /* Skeleton loading */
   .skeleton {
-    @apply animate-pulse bg-slate-200 rounded;
+    @apply animate-pulse bg-neutral-200 rounded;
   }
 
   /* Metro line colors */
@@ -171,8 +182,8 @@
 }
 
 .leaflet-control-zoom a {
-  @apply !w-10 !h-10 !leading-10 !text-slate-700 !bg-white 
-         !border-none hover:!bg-slate-50 !text-lg;
+  @apply !w-10 !h-10 !leading-10 !text-neutral-700 !bg-white 
+         !border-none hover:!bg-neutral-50 !text-lg;
 }
 
 .leaflet-popup-content-wrapper {

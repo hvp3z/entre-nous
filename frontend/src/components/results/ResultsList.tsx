@@ -17,8 +17,8 @@ export function ResultsList({ theme }: ResultsListProps) {
   if (searchResults.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-slate-500">{t('search.noResults')}</p>
-        <p className="text-sm text-slate-400 mt-1">{t('search.noResultsHint')}</p>
+        <p className="text-[#525252]">{t('search.noResults')}</p>
+        <p className="text-sm text-neutral-400 mt-1">{t('search.noResultsHint')}</p>
       </div>
     );
   }

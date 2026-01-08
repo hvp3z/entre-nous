@@ -25,21 +25,21 @@ export function LocationList() {
           >
             <div className="flex items-start gap-3">
               {/* Index Badge */}
-              <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center 
+              <div className="w-8 h-8 rounded-full bg-[#1a1a1a] text-white flex items-center 
                             justify-center flex-shrink-0 text-sm font-medium">
                 {index + 1}
               </div>
 
               {/* Location Details */}
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-slate-900 truncate">
+                <p className="font-medium text-[#1a1a1a] truncate">
                   {location.address}
                 </p>
                 
                 {location.nearestStations.length > 0 && (
                   <div className="flex items-center gap-1.5 mt-1">
-                    <Train className="w-3.5 h-3.5 text-slate-400" />
-                    <p className="text-xs text-slate-500">
+                    <Train className="w-3.5 h-3.5 text-neutral-400" />
+                    <p className="text-xs text-[#525252]">
                       {t('location.nearestStation', { 
                         station: location.nearestStations[0].name 
                       })}
@@ -51,8 +51,8 @@ export function LocationList() {
               {/* Remove Button */}
               <button
                 onClick={() => removeLocation(location.id)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 
-                         hover:bg-slate-100 transition-colors"
+                className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-600 
+                         hover:bg-neutral-100 transition-colors"
                 aria-label={t('location.remove')}
               >
                 <X className="w-5 h-5" />

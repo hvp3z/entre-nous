@@ -7,6 +7,14 @@ const router = Router();
 // Use Photon API (OpenStreetMap-based, free, no API key needed)
 const PHOTON_API_URL = 'https://photon.komoot.io/api';
 
+// Bounding box de l'Île-de-France (région parisienne)
+const IDF_BOUNDS = {
+  minLat: 48.12,
+  maxLat: 49.25,
+  minLng: 1.45,
+  maxLng: 3.56
+};
+
 interface PhotonFeature {
   properties: {
     osm_id: number;
@@ -44,14 +52,14 @@ router.get('/autocomplete', async (req, res) => {
       return res.status(400).json({ success: false, error: 'Input is required' });
     }
 
-    // Use Photon API for geocoding/autocomplete
+    // Use Photon API for geocoding/autocomplete with bbox filter for Île-de-France
     const params = new URLSearchParams({
       q: input,
       lat: '48.8566',  // Paris center bias
       lon: '2.3522',
-      limit: '5',
+      limit: '8',  // Request more to compensate for filtering
       lang: 'fr',
-      osm_tag: 'place',
+      bbox: `${IDF_BOUNDS.minLng},${IDF_BOUNDS.minLat},${IDF_BOUNDS.maxLng},${IDF_BOUNDS.maxLat}`,
     });
 
     const response = await fetch(`${PHOTON_API_URL}?${params}`);
@@ -62,7 +70,14 @@ router.get('/autocomplete', async (req, res) => {
 
     const data = await response.json() as PhotonResponse;
     
-    const predictions = (data.features || []).map((feature: PhotonFeature) => {
+    // Filter results to ensure they are within Île-de-France bounds
+    const filteredFeatures = (data.features || []).filter((feature: PhotonFeature) => {
+      const [lng, lat] = feature.geometry.coordinates;
+      return lat >= IDF_BOUNDS.minLat && lat <= IDF_BOUNDS.maxLat &&
+             lng >= IDF_BOUNDS.minLng && lng <= IDF_BOUNDS.maxLng;
+    }).slice(0, 5);
+    
+    const predictions = filteredFeatures.map((feature: PhotonFeature) => {
       const props = feature.properties;
       const parts = [];
       

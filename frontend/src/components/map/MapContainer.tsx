@@ -9,7 +9,7 @@ import type { Theme } from '@/stores/sessionStore';
 const MapView = dynamic(() => import('./MapView').then(mod => mod.MapView), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex items-center justify-center bg-slate-100">
+    <div className="w-full h-full flex items-center justify-center bg-neutral-100">
       <LoadingSpinner size="lg" />
     </div>
   ),
@@ -28,7 +28,7 @@ export function MapContainer({ theme }: MapContainerProps) {
 
   if (!isMounted) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-slate-100">
+      <div className="w-full h-full flex items-center justify-center bg-neutral-100">
         <LoadingSpinner size="lg" />
       </div>
     );

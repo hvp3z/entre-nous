@@ -45,7 +45,7 @@ export default function SharedSearchPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#fafafa] flex items-center justify-center">
         <LoadingSpinner size="lg" />
       </div>
     );
@@ -53,16 +53,16 @@ export default function SharedSearchPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-[#fafafa]">
         <Header />
         <div className="max-w-md mx-auto px-4 py-16 text-center">
           <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
             <AlertCircle className="w-8 h-8 text-red-600" />
           </div>
-          <h1 className="font-display text-2xl font-bold text-slate-900 mb-2">
+          <h1 className="font-display text-2xl font-bold text-[#1a1a1a] mb-2">
             {t('common.error')}
           </h1>
-          <p className="text-slate-600 mb-6">{error}</p>
+          <p className="text-[#525252] mb-6">{error}</p>
           <button
             onClick={() => router.push('/')}
             className="btn-primary"
@@ -76,7 +76,7 @@ export default function SharedSearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#fafafa] flex flex-col">
       <Header />
 
       <div className="flex-1 flex flex-col lg:flex-row">
@@ -86,8 +86,8 @@ export default function SharedSearchPage() {
         </div>
 
         {/* Results */}
-        <div className="lg:w-96 bg-white border-l border-slate-200 overflow-y-auto p-4">
-          <h2 className="font-semibold text-slate-900 mb-4">
+        <div className="lg:w-96 bg-white border-l border-neutral-200 overflow-y-auto p-4">
+          <h2 className="font-semibold text-[#1a1a1a] mb-4">
             {t('results.title')}
           </h2>
           <ResultsList theme={theme || 'bars'} />

@@ -170,7 +170,7 @@ export function LocationInput({ theme }: LocationInputProps) {
         onClick={handleUseCurrentLocation}
         disabled={isGeolocating}
         className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 border-dashed 
-                   border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50
+                   border-neutral-200 text-[#525252] hover:border-neutral-300 hover:bg-neutral-50
                    transition-colors disabled:opacity-50"
       >
         {isGeolocating ? (
@@ -184,7 +184,7 @@ export function LocationInput({ theme }: LocationInputProps) {
       {/* Address Input */}
       <div className="relative">
         <div className="relative">
-          <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
           <input
             ref={inputRef}
             type="text"
@@ -198,10 +198,10 @@ export function LocationInput({ theme }: LocationInputProps) {
             )}
           />
           {isLoading && (
-            <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 animate-spin" />
+            <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400 animate-spin" />
           )}
           {!isLoading && inputValue && (
-            <Plus className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <Plus className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
           )}
         </div>
 
@@ -213,20 +213,20 @@ export function LocationInput({ theme }: LocationInputProps) {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-lg border border-slate-200 
+              className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-lg border border-neutral-200 
                          overflow-hidden max-h-64 overflow-y-auto"
             >
               {suggestions.map((suggestion) => (
                 <button
                   key={suggestion.placeId}
                   onClick={() => handleSelectSuggestion(suggestion)}
-                  className="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-slate-50 
-                           transition-colors border-b border-slate-100 last:border-0"
+                  className="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-neutral-50 
+                           transition-colors border-b border-neutral-100 last:border-0"
                 >
-                  <MapPin className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-neutral-400 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-medium text-slate-900">{suggestion.mainText}</p>
-                    <p className="text-sm text-slate-500">{suggestion.secondaryText}</p>
+                    <p className="font-medium text-[#1a1a1a]">{suggestion.mainText}</p>
+                    <p className="text-sm text-[#525252]">{suggestion.secondaryText}</p>
                   </div>
                 </button>
               ))}

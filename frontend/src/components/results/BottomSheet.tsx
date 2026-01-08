@@ -100,8 +100,8 @@ export function BottomSheet({ isOpen, onClose, theme, children }: BottomSheetPro
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-3 right-4 p-2 rounded-full bg-slate-100 
-                       text-slate-600 hover:bg-slate-200 transition-colors"
+              className="absolute top-3 right-4 p-2 rounded-full bg-neutral-100 
+                       text-neutral-600 hover:bg-neutral-200 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>

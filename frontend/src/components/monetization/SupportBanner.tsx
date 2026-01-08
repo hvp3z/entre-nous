@@ -39,7 +39,7 @@ export function SupportBanner({ variant = 'inline' }: SupportBannerProps) {
           <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 backdrop-blur-xl rounded-2xl border border-amber-500/20 p-4 shadow-2xl">
             <button
               onClick={handleDismiss}
-              className="absolute top-2 right-2 text-slate-400 hover:text-white p-1"
+              className="absolute top-2 right-2 text-neutral-400 hover:text-white p-1"
               aria-label="Fermer"
             >
               <X className="w-4 h-4" />
@@ -50,14 +50,14 @@ export function SupportBanner({ variant = 'inline' }: SupportBannerProps) {
                 <Coffee className="w-5 h-5 text-amber-400" />
               </div>
               <div className="flex-1">
-                <p className="text-sm text-slate-300 mb-3">
+                <p className="text-sm text-neutral-600 mb-3">
                   {t('message')}
                 </p>
                 <a
                   href={kofiUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-medium rounded-lg transition-colors text-sm"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-[#1a1a1a] font-medium rounded-lg transition-colors text-sm"
                 >
                   <Heart className="w-4 h-4" />
                   {t('cta')}
@@ -79,7 +79,7 @@ export function SupportBanner({ variant = 'inline' }: SupportBannerProps) {
     >
       <button
         onClick={handleDismiss}
-        className="absolute top-2 right-2 text-slate-500 hover:text-slate-300 p-1"
+        className="absolute top-2 right-2 text-neutral-500 hover:text-neutral-700 p-1"
         aria-label="Fermer"
       >
         <X className="w-4 h-4" />
@@ -87,10 +87,10 @@ export function SupportBanner({ variant = 'inline' }: SupportBannerProps) {
       
       <div className="flex items-center gap-4">
         <div className="p-2 bg-amber-500/20 rounded-xl shrink-0">
-          <Coffee className="w-5 h-5 text-amber-400" />
+          <Coffee className="w-5 h-5 text-amber-500" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-[#525252]">
             {t('message')}
           </p>
         </div>
@@ -98,7 +98,7 @@ export function SupportBanner({ variant = 'inline' }: SupportBannerProps) {
           href={kofiUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 font-medium rounded-lg transition-colors text-sm border border-amber-500/30"
+          className="shrink-0 inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-600 font-medium rounded-lg transition-colors text-sm border border-amber-500/30"
         >
           <Heart className="w-4 h-4" />
           <span className="hidden sm:inline">{t('cta')}</span>

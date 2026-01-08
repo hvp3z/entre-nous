@@ -24,9 +24,9 @@ interface DirectionsPanelProps {
 }
 
 const themeConfig = {
-  bars: { accent: 'text-bars-600', bg: 'bg-bars-50' },
-  restaurants: { accent: 'text-restaurants-600', bg: 'bg-restaurants-50' },
-  kids: { accent: 'text-kids-600', bg: 'bg-kids-50' },
+  bars: { accent: 'text-bars-500', bg: 'bg-bars-50' },
+  restaurants: { accent: 'text-restaurants-500', bg: 'bg-restaurants-50' },
+  kids: { accent: 'text-kids-500', bg: 'bg-kids-50' },
 };
 
 const METRO_COLORS: Record<string, string> = {
@@ -119,21 +119,21 @@ export function DirectionsPanel({ venue, locations, theme, onClose }: Directions
                    max-h-[85vh] overflow-hidden flex flex-col"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-slate-200">
+        <div className="flex items-center justify-between p-4 border-b border-neutral-200">
           <div>
-            <h2 className="font-semibold text-slate-900">{t('directions.title')}</h2>
-            <p className="text-sm text-slate-500">{venue.name}</p>
+            <h2 className="font-semibold text-[#1a1a1a]">{t('directions.title')}</h2>
+            <p className="text-sm text-[#525252]">{venue.name}</p>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-slate-100 transition-colors"
+            className="p-2 rounded-full hover:bg-neutral-100 transition-colors"
           >
-            <X className="w-5 h-5 text-slate-600" />
+            <X className="w-5 h-5 text-neutral-600" />
           </button>
         </div>
 
         {/* Location Tabs */}
-        <div className="flex overflow-x-auto border-b border-slate-200 px-4">
+        <div className="flex overflow-x-auto border-b border-neutral-200 px-4">
           {locations.map((location, index) => (
             <button
               key={location.id}
@@ -141,8 +141,8 @@ export function DirectionsPanel({ venue, locations, theme, onClose }: Directions
               className={clsx(
                 'flex-shrink-0 px-4 py-3 text-sm font-medium border-b-2 transition-colors',
                 selectedLocationId === location.id
-                  ? `border-slate-900 text-slate-900`
-                  : 'border-transparent text-slate-500 hover:text-slate-700'
+                  ? `border-[#1a1a1a] text-[#1a1a1a]`
+                  : 'border-transparent text-[#525252] hover:text-[#1a1a1a]'
               )}
             >
               {index + 1}. {location.address.split(',')[0]}
@@ -158,7 +158,7 @@ export function DirectionsPanel({ venue, locations, theme, onClose }: Directions
             </div>
           ) : error ? (
             <div className="text-center py-12">
-              <p className="text-slate-500">{error}</p>
+              <p className="text-[#525252]">{error}</p>
             </div>
           ) : selectedRoute ? (
             <div className="space-y-3">
@@ -179,17 +179,17 @@ export function DirectionsPanel({ venue, locations, theme, onClose }: Directions
                   return (
                     <div
                       key={index}
-                      className="flex items-start gap-3 p-3 rounded-xl bg-slate-50"
+                      className="flex items-start gap-3 p-3 rounded-xl bg-neutral-50"
                     >
                       {/* Icon */}
                       <div
                         className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: lineColor || '#e2e8f0' }}
+                        style={{ backgroundColor: lineColor || '#e5e5e5' }}
                       >
                         <Icon 
                           className={clsx(
                             'w-4 h-4',
-                            lineColor ? 'text-white' : 'text-slate-600'
+                            lineColor ? 'text-white' : 'text-neutral-600'
                           )} 
                         />
                       </div>
@@ -198,20 +198,20 @@ export function DirectionsPanel({ venue, locations, theme, onClose }: Directions
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           {segment.line && (
-                            <span className="text-sm font-medium text-slate-900">
+                            <span className="text-sm font-medium text-[#1a1a1a]">
                               {t(`directions.${segment.type}`)} {segment.line}
                             </span>
                           )}
                           {segment.type === 'walk' && (
-                            <span className="text-sm font-medium text-slate-900">
+                            <span className="text-sm font-medium text-[#1a1a1a]">
                               {t('directions.walk')}
                             </span>
                           )}
-                          <span className="text-sm text-slate-500">
+                          <span className="text-sm text-[#525252]">
                             {segment.durationMinutes} {t('common.minutes')}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-slate-600 mt-0.5">
+                        <div className="flex items-center gap-1 text-sm text-[#525252] mt-0.5">
                           <span className="truncate">{segment.from}</span>
                           <ChevronRight className="w-4 h-4 flex-shrink-0" />
                           <span className="truncate">{segment.to}</span>
@@ -235,7 +235,7 @@ export function DirectionsPanel({ venue, locations, theme, onClose }: Directions
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-slate-500">Select a starting point</p>
+              <p className="text-[#525252]">Select a starting point</p>
             </div>
           )}
         </div>
