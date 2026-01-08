@@ -63,6 +63,8 @@ router.post('/search', async (req, res) => {
       maxVarianceMinutes
     );
 
+    console.log(`📍 Found ${equidistantStations.length} equidistant stations with variance ${maxVarianceMinutes}`);
+
     let relaxedVariance: number | undefined;
 
     // Progressive relaxation if no results
@@ -72,6 +74,7 @@ router.post('/search', async (req, res) => {
           locations,
           variance
         );
+        console.log(`📍 Relaxed search: ${equidistantStations.length} stations with variance ${variance}`);
         if (equidistantStations.length > 0) {
           relaxedVariance = variance;
           break;
@@ -80,6 +83,7 @@ router.post('/search', async (req, res) => {
     }
 
     if (equidistantStations.length === 0) {
+      console.log('❌ No equidistant stations found after relaxation');
       return res.json({
         success: true,
         data: {
@@ -91,12 +95,16 @@ router.post('/search', async (req, res) => {
       });
     }
 
+    console.log(`🏪 Searching venues near ${equidistantStations.length} stations for theme: ${theme}`);
+    
     // Search for venues near equidistant stations
     const results = await venueService.searchVenuesNearStations(
       equidistantStations,
       theme,
       locations
     );
+    
+    console.log(`✅ Found ${results.length} venues`);
 
     const response: SearchResponse = {
       results,
