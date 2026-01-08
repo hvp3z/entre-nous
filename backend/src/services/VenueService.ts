@@ -6,8 +6,10 @@ import type {
   Theme, 
   SearchResult,
   Location,
-  Review
+  Review,
+  SelectedFilters
 } from '../types/index.js';
+import { THEME_FILTERS } from '../types/index.js';
 import type { EquidistantStation } from './EquidistantFinder.js';
 
 // Helper function to get API key lazily (after dotenv is loaded)
@@ -19,6 +21,7 @@ function getApiKey(): string {
   return key;
 }
 
+// Base theme configuration
 const THEME_CONFIG = {
   bars: {
     type: 'bar' as PlaceType1,
@@ -37,6 +40,51 @@ const THEME_CONFIG = {
   }
 };
 
+// Build keywords and types from selected filters
+function buildFilterConfig(theme: Theme, filters?: SelectedFilters): { 
+  keywords: string[]; 
+  types: PlaceType1[];
+} {
+  const themeFilters = THEME_FILTERS[theme];
+  const result: { keywords: string[]; types: PlaceType1[] } = {
+    keywords: [],
+    types: []
+  };
+
+  if (!filters || Object.keys(filters).length === 0) {
+    // No filters selected, return default theme keywords
+    return { keywords: THEME_CONFIG[theme].keywords, types: [THEME_CONFIG[theme].type] };
+  }
+
+  // Iterate through filter groups and collect keywords/types from selected options
+  for (const group of themeFilters.groups) {
+    const selectedOptionIds = filters[group.id];
+    if (!selectedOptionIds || selectedOptionIds.length === 0) continue;
+
+    for (const optionId of selectedOptionIds) {
+      const option = group.options.find(o => o.id === optionId);
+      if (option) {
+        result.keywords.push(...option.keywords);
+        if (option.googleTypes) {
+          result.types.push(...option.googleTypes.map(t => t as PlaceType1));
+        }
+      }
+    }
+  }
+
+  // If no keywords collected (shouldn't happen), fall back to theme defaults
+  if (result.keywords.length === 0) {
+    result.keywords = THEME_CONFIG[theme].keywords;
+  }
+  
+  // If no types collected, use the default theme type
+  if (result.types.length === 0) {
+    result.types = [THEME_CONFIG[theme].type];
+  }
+
+  return result;
+}
+
 export class VenueService {
   private client: Client;
 
@@ -47,9 +95,9 @@ export class VenueService {
   async searchVenuesNearStations(
     equidistantStations: EquidistantStation[],
     theme: Theme,
-    locations: Location[]
+    locations: Location[],
+    filters?: SelectedFilters
   ): Promise<SearchResult[]> {
-    const config = THEME_CONFIG[theme];
     const allVenues: SearchResult[] = [];
     const seenPlaceIds = new Set<string>();
 
@@ -59,7 +107,8 @@ export class VenueService {
         const venues = await this.searchVenuesByLocation(
           equidistantStation.station.coordinates,
           theme,
-          400
+          400,
+          filters
         );
 
         for (const venue of venues) {
@@ -94,59 +143,68 @@ export class VenueService {
   async searchVenuesByLocation(
     coordinates: Coordinates,
     theme: Theme,
-    radius: number = 400
+    radius: number = 400,
+    filters?: SelectedFilters
   ): Promise<Venue[]> {
-    const config = THEME_CONFIG[theme];
+    const baseConfig = THEME_CONFIG[theme];
+    const filterConfig = buildFilterConfig(theme, filters);
 
-    try {
-      const response = await this.client.placesNearby({
-        params: {
-          location: coordinates,
-          radius,
-          type: config.type,
-          key: getApiKey(),
-          language: Language.fr
-        }
-      });
+    // Perform searches for each type (or keyword-based search)
+    const allVenues: Venue[] = [];
+    const seenPlaceIds = new Set<string>();
 
-      const venues: Venue[] = [];
-
-      for (const place of response.data.results) {
-        if (!place.place_id || !place.geometry?.location) continue;
-        if ((place.rating || 0) < config.minRating) continue;
-
-        venues.push({
-          id: place.place_id,
-          placeId: place.place_id,
-          name: place.name || 'Unknown',
-          address: place.vicinity || '',
-          coordinates: {
-            lat: place.geometry.location.lat,
-            lng: place.geometry.location.lng
-          },
-          rating: place.rating || 0,
-          reviewCount: place.user_ratings_total || 0,
-          priceLevel: place.price_level,
-          photos: place.photos?.slice(0, 3).map(p => 
-            `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${p.photo_reference}&key=${getApiKey()}`
-          ) || [],
-          types: place.types || [],
-          openNow: place.opening_hours?.open_now,
-          nearestStation: { 
-            id: '', 
-            name: '', 
-            coordinates: { lat: 0, lng: 0 }, 
-            lines: [], 
-            walkingTimeMinutes: 0 
+    // Search with each Google Places type
+    for (const placeType of filterConfig.types) {
+      try {
+        const response = await this.client.placesNearby({
+          params: {
+            location: coordinates,
+            radius,
+            type: placeType,
+            keyword: filterConfig.keywords.slice(0, 3).join(' '), // Use top 3 keywords
+            key: getApiKey(),
+            language: Language.fr
           }
         });
-      }
 
-      return venues;
-    } catch (error) {
-      console.error('Places search error:', error);
-      return [];
+        for (const place of response.data.results) {
+          if (!place.place_id || !place.geometry?.location) continue;
+          if ((place.rating || 0) < baseConfig.minRating) continue;
+          if (seenPlaceIds.has(place.place_id)) continue;
+          seenPlaceIds.add(place.place_id);
+
+          allVenues.push({
+            id: place.place_id,
+            placeId: place.place_id,
+            name: place.name || 'Unknown',
+            address: place.vicinity || '',
+            coordinates: {
+              lat: place.geometry.location.lat,
+              lng: place.geometry.location.lng
+            },
+            rating: place.rating || 0,
+            reviewCount: place.user_ratings_total || 0,
+            priceLevel: place.price_level,
+            photos: place.photos?.slice(0, 3).map(p => 
+              `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${p.photo_reference}&key=${getApiKey()}`
+            ) || [],
+            types: place.types || [],
+            openNow: place.opening_hours?.open_now,
+            nearestStation: { 
+              id: '', 
+              name: '', 
+              coordinates: { lat: 0, lng: 0 }, 
+              lines: [], 
+              walkingTimeMinutes: 0 
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Places search error:', error);
+      }
     }
+
+    return allVenues;
   }
 
   async getVenueDetails(placeId: string, language: Language = Language.fr): Promise<VenueDetails | null> {

@@ -63,11 +63,142 @@ export interface Review {
   language: string;
 }
 
+// Filter types
+export type FilterGroupType = 'category' | 'cuisine' | 'age' | 'weather';
+
+export interface FilterOption {
+  id: string;
+  labelKey: string;
+  keywords: string[];
+  googleTypes?: string[];
+  icon?: string;
+}
+
+export interface FilterGroup {
+  id: string;
+  type: FilterGroupType;
+  labelKey: string;
+  options: FilterOption[];
+  multiSelect: boolean;
+}
+
+export interface ThemeFiltersConfig {
+  groups: FilterGroup[];
+}
+
+export const BARS_FILTERS: ThemeFiltersConfig = {
+  groups: [
+    {
+      id: 'bars-category',
+      type: 'category',
+      labelKey: 'filters.bars.category',
+      multiSelect: true,
+      options: [
+        { id: 'beer', labelKey: 'filters.bars.beer', keywords: ['craft beer', 'brasserie', 'beer bar', 'pub'] },
+        { id: 'cocktails', labelKey: 'filters.bars.cocktails', keywords: ['cocktail bar', 'mixology', 'cocktails'] },
+        { id: 'wine', labelKey: 'filters.bars.wine', keywords: ['wine bar', 'bar à vin', 'vin naturel'] },
+        { id: 'tapas', labelKey: 'filters.bars.tapas', keywords: ['tapas', 'tapas bar', 'small plates'] },
+        { id: 'mocktails', labelKey: 'filters.bars.mocktails', keywords: ['juice bar', 'smoothie', 'sans alcool', 'mocktail'] },
+      ],
+    },
+  ],
+};
+
+export const RESTAURANTS_FILTERS: ThemeFiltersConfig = {
+  groups: [
+    {
+      id: 'restaurants-cuisine',
+      type: 'cuisine',
+      labelKey: 'filters.restaurants.cuisine',
+      multiSelect: true,
+      options: [
+        { id: 'brasserie', labelKey: 'filters.restaurants.brasserie', keywords: ['brasserie', 'french bistro', 'bistrot'] },
+        { id: 'italian', labelKey: 'filters.restaurants.italian', keywords: ['italian', 'italien', 'pizza', 'pasta', 'trattoria'] },
+        { id: 'chinese', labelKey: 'filters.restaurants.chinese', keywords: ['chinese', 'chinois', 'dim sum', 'cantonese'] },
+        { id: 'indian', labelKey: 'filters.restaurants.indian', keywords: ['indian', 'indien', 'curry', 'tandoori'] },
+        { id: 'korean', labelKey: 'filters.restaurants.korean', keywords: ['korean', 'coréen', 'korean bbq', 'bibimbap'] },
+        { id: 'japanese', labelKey: 'filters.restaurants.japanese', keywords: ['japanese', 'japonais', 'sushi', 'ramen', 'izakaya'] },
+        { id: 'turkish', labelKey: 'filters.restaurants.turkish', keywords: ['turkish', 'turc', 'lebanese', 'libanais', 'kebab', 'mezze'] },
+        { id: 'african', labelKey: 'filters.restaurants.african', keywords: ['african', 'africain', 'ethiopian', 'senegalese', 'mafé'] },
+      ],
+    },
+  ],
+};
+
+export const KIDS_FILTERS: ThemeFiltersConfig = {
+  groups: [
+    {
+      id: 'kids-category',
+      type: 'category',
+      labelKey: 'filters.kids.category',
+      multiSelect: false,
+      options: [
+        { 
+          id: 'culture', 
+          labelKey: 'filters.kids.culture', 
+          keywords: ['museum', 'musée', 'science museum', 'children museum', 'ludique', 'éducatif'],
+          googleTypes: ['museum']
+        },
+        { 
+          id: 'nature', 
+          labelKey: 'filters.kids.nature', 
+          keywords: ['zoo', 'aquarium', 'farm', 'ferme pédagogique', 'jardin botanique', 'botanical garden'],
+          googleTypes: ['zoo', 'aquarium', 'park']
+        },
+        { 
+          id: 'shows', 
+          labelKey: 'filters.kids.shows', 
+          keywords: ['theater', 'théâtre enfant', 'circus', 'cirque', 'puppet', 'marionnettes', 'spectacle'],
+          googleTypes: ['performing_arts_theater']
+        },
+        { 
+          id: 'activities', 
+          labelKey: 'filters.kids.activities', 
+          keywords: ['indoor playground', 'parc indoor', 'trampoline', 'climbing', 'escalade', 'bowling', 'laser game'],
+          googleTypes: ['amusement_center', 'bowling_alley']
+        },
+      ],
+    },
+    {
+      id: 'kids-age',
+      type: 'age',
+      labelKey: 'filters.kids.ageGroup',
+      multiSelect: true,
+      options: [
+        { id: 'age-0-3', labelKey: 'filters.kids.age03', keywords: ['toddler', 'bébé', 'tout-petit'] },
+        { id: 'age-4-7', labelKey: 'filters.kids.age47', keywords: ['children', 'enfant', 'kids'] },
+        { id: 'age-8-12', labelKey: 'filters.kids.age812', keywords: ['pre-teen', 'junior', 'grand enfant'] },
+      ],
+    },
+    {
+      id: 'kids-weather',
+      type: 'weather',
+      labelKey: 'filters.kids.weather',
+      multiSelect: false,
+      options: [
+        { id: 'indoor', labelKey: 'filters.kids.indoor', keywords: ['indoor', 'intérieur', 'covered'] },
+        { id: 'outdoor', labelKey: 'filters.kids.outdoor', keywords: ['outdoor', 'extérieur', 'plein air', 'garden'] },
+      ],
+    },
+  ],
+};
+
+export const THEME_FILTERS: Record<Theme, ThemeFiltersConfig> = {
+  bars: BARS_FILTERS,
+  restaurants: RESTAURANTS_FILTERS,
+  kids: KIDS_FILTERS,
+};
+
+export interface SelectedFilters {
+  [groupId: string]: string[];
+}
+
 // Search types
 export interface SearchRequest {
   locations: Location[];
   theme: Theme;
   maxVarianceMinutes?: number;
+  filters?: SelectedFilters;
 }
 
 export interface SearchResult {

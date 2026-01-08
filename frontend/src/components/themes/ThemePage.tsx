@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import { Header } from '@/components/common/Header';
 import { LocationInput } from '@/components/location/LocationInput';
 import { LocationList } from '@/components/location/LocationList';
+import { FilterChips } from '@/components/filters/FilterChips';
 import { MapContainer } from '@/components/map/MapContainer';
 import { ResultsList } from '@/components/results/ResultsList';
 import { BottomSheet } from '@/components/results/BottomSheet';
@@ -54,6 +55,7 @@ export function ThemePage({ theme }: ThemePageProps) {
     setRelaxedVariance,
     showBottomSheet,
     setShowBottomSheet,
+    selectedFilters,
   } = useSessionStore();
 
   const [error, setError] = useState<string | null>(null);
@@ -66,10 +68,17 @@ export function ThemePage({ theme }: ThemePageProps) {
     setSearchResults([]);
     setRelaxedVariance(null);
 
+    // Get active filters for current theme
+    const activeFilters = selectedFilters[theme] || {};
+    const hasFilters = Object.values(activeFilters).some(
+      (options) => options && options.length > 0
+    );
+
     try {
       const response = await searchEquidistant({
         locations,
         theme,
+        filters: hasFilters ? activeFilters : undefined,
       });
 
       setSearchResults(response.results);
@@ -85,7 +94,7 @@ export function ThemePage({ theme }: ThemePageProps) {
     } finally {
       setIsSearching(false);
     }
-  }, [locations, theme, setIsSearching, setSearchResults, setRelaxedVariance, setShowBottomSheet]);
+  }, [locations, theme, selectedFilters, setIsSearching, setSearchResults, setRelaxedVariance, setShowBottomSheet]);
 
   const canSearch = locations.length >= 2 && !isSearching;
 
@@ -94,9 +103,9 @@ export function ThemePage({ theme }: ThemePageProps) {
       <Header />
 
       {/* Theme Header */}
-      <div className={clsx('px-4 py-6', config.bgColor)}>
+      <div className={clsx('px-4 py-4 sm:py-6', config.bgColor)}>
         <div className="max-w-4xl mx-auto">
-          <h1 className="font-display text-2xl sm:text-3xl font-bold text-[#1a1a1a] mb-1">
+          <h1 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-[#1a1a1a] mb-1">
             {t(`themes.${theme}.title`)}
           </h1>
           <p className={clsx('text-sm font-medium', config.accentColor)}>
@@ -104,6 +113,9 @@ export function ThemePage({ theme }: ThemePageProps) {
           </p>
         </div>
       </div>
+
+      {/* Filter Chips - Horizontal scrollable on mobile */}
+      <FilterChips theme={theme} />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col lg:flex-row">

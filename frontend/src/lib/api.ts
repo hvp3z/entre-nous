@@ -87,6 +87,11 @@ export async function reverseGeocode(
   });
 }
 
+// Filter types
+export interface SelectedFilters {
+  [groupId: string]: string[];
+}
+
 // Search API
 export interface SearchRequest {
   locations: Array<{
@@ -103,6 +108,7 @@ export interface SearchRequest {
   }>;
   theme: 'bars' | 'restaurants' | 'kids';
   maxVarianceMinutes?: number;
+  filters?: SelectedFilters;
 }
 
 export interface SearchResponse {

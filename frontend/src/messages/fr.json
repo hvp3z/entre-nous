@@ -144,6 +144,43 @@
     "title": "Soutenez Entre Nous",
     "message": "Entre Nous est gratuit et sans pub. Si vous aimez l'app, offrez-nous un café !",
     "cta": "Offrir un café"
+  },
+  "filters": {
+    "title": "Filtres",
+    "clearAll": "Effacer tout",
+    "bars": {
+      "category": "Type de bar",
+      "beer": "Bières",
+      "cocktails": "Cocktails",
+      "wine": "Vins naturels",
+      "tapas": "Tapas",
+      "mocktails": "Sans alcool"
+    },
+    "restaurants": {
+      "cuisine": "Type de cuisine",
+      "brasserie": "Brasserie",
+      "italian": "Italien",
+      "chinese": "Chinois",
+      "indian": "Indien",
+      "korean": "Coréen",
+      "japanese": "Japonais",
+      "turkish": "Turc / Libanais",
+      "african": "Africain"
+    },
+    "kids": {
+      "category": "Type de sortie",
+      "culture": "Culture & Musées",
+      "nature": "Nature & Animaux",
+      "shows": "Spectacles",
+      "activities": "Loisirs actifs",
+      "ageGroup": "Tranche d'âge",
+      "age03": "0-3 ans",
+      "age47": "4-7 ans",
+      "age812": "8-12 ans",
+      "weather": "Météo",
+      "indoor": "Intérieur",
+      "outdoor": "Extérieur"
+    }
   }
 }
 

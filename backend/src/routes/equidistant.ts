@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import type { SearchRequest, SearchResponse, Location } from '../types/index.js';
+import type { SearchRequest, SearchResponse, Location, SelectedFilters } from '../types/index.js';
 import { EquidistantFinder } from '../services/EquidistantFinder.js';
 import { VenueService } from '../services/VenueService.js';
 import { CacheService } from '../services/CacheService.js';
@@ -12,12 +12,13 @@ const cacheService = new CacheService();
 
 router.post('/search', async (req, res) => {
   try {
-    const { locations, theme, maxVarianceMinutes = 10 }: SearchRequest = req.body;
+    const { locations, theme, maxVarianceMinutes = 10, filters }: SearchRequest = req.body;
 
     console.log('🔍 Search request received:', {
       locationsCount: locations?.length,
       theme,
       maxVarianceMinutes,
+      filters,
       locations: locations?.map(l => ({
         id: l.id,
         address: l.address,
@@ -48,8 +49,8 @@ router.post('/search', async (req, res) => {
       });
     }
 
-    // Generate cache key
-    const cacheKey = generateCacheKey(locations, theme, maxVarianceMinutes);
+    // Generate cache key (include filters in cache key)
+    const cacheKey = generateCacheKey(locations, theme, maxVarianceMinutes, filters);
     
     // Check cache
     const cachedResult = await cacheService.get<SearchResponse>(cacheKey);
@@ -97,11 +98,12 @@ router.post('/search', async (req, res) => {
 
     console.log(`🏪 Searching venues near ${equidistantStations.length} stations for theme: ${theme}`);
     
-    // Search for venues near equidistant stations
+    // Search for venues near equidistant stations (with filters if provided)
     const results = await venueService.searchVenuesNearStations(
       equidistantStations,
       theme,
-      locations
+      locations,
+      filters
     );
     
     console.log(`✅ Found ${results.length} venues`);
@@ -140,12 +142,27 @@ router.get('/search/:searchId', async (req, res) => {
   }
 });
 
-function generateCacheKey(locations: Location[], theme: string, variance: number): string {
+function generateCacheKey(
+  locations: Location[], 
+  theme: string, 
+  variance: number,
+  filters?: SelectedFilters
+): string {
   const locationIds = locations
     .map(l => `${l.coordinates.lat.toFixed(4)},${l.coordinates.lng.toFixed(4)}`)
     .sort()
     .join('|');
-  return `equidistant:${theme}:${variance}:${locationIds}`;
+  
+  // Include filters in cache key if present
+  const filtersKey = filters 
+    ? Object.entries(filters)
+        .filter(([_, values]) => values.length > 0)
+        .map(([key, values]) => `${key}:${values.sort().join(',')}`)
+        .sort()
+        .join('|')
+    : '';
+  
+  return `equidistant:${theme}:${variance}:${locationIds}:${filtersKey}`;
 }
 
 export { router as equidistantRouter };

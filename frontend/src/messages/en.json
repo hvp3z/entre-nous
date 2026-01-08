@@ -144,6 +144,43 @@
     "title": "Support Entre Nous",
     "message": "Entre Nous is free and ad-free. If you enjoy the app, buy us a coffee!",
     "cta": "Buy us a coffee"
+  },
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear all",
+    "bars": {
+      "category": "Bar type",
+      "beer": "Craft beer",
+      "cocktails": "Cocktails",
+      "wine": "Natural wines",
+      "tapas": "Tapas",
+      "mocktails": "Non-alcoholic"
+    },
+    "restaurants": {
+      "cuisine": "Cuisine type",
+      "brasserie": "French bistro",
+      "italian": "Italian",
+      "chinese": "Chinese",
+      "indian": "Indian",
+      "korean": "Korean",
+      "japanese": "Japanese",
+      "turkish": "Turkish / Lebanese",
+      "african": "African"
+    },
+    "kids": {
+      "category": "Activity type",
+      "culture": "Culture & Museums",
+      "nature": "Nature & Animals",
+      "shows": "Shows",
+      "activities": "Active play",
+      "ageGroup": "Age group",
+      "age03": "0-3 years",
+      "age47": "4-7 years",
+      "age812": "8-12 years",
+      "weather": "Weather",
+      "indoor": "Indoor",
+      "outdoor": "Outdoor"
+    }
   }
 }
 
