@@ -8,16 +8,18 @@ import { Coffee, X, Heart, Sparkles } from 'lucide-react';
 interface SupportBannerProps {
   variant?: 'inline' | 'floating' | 'card';
   dismissible?: boolean;
+  persistDismiss?: boolean; // If false, dismiss is temporary (session only)
 }
 
 export const KOFI_URL = 'https://ko-fi.com/entrenous';
 
-export function SupportBanner({ variant = 'inline', dismissible = true }: SupportBannerProps) {
+export function SupportBanner({ variant = 'inline', dismissible = true, persistDismiss = true }: SupportBannerProps) {
   const t = useTranslations('support');
   const [isDismissed, setIsDismissed] = useState(false);
 
   // Check if user has previously dismissed (stored in localStorage)
-  const shouldShow = typeof window !== 'undefined' 
+  // Only check localStorage if persistDismiss is enabled
+  const shouldShow = typeof window !== 'undefined' && persistDismiss
     ? !localStorage.getItem('support_banner_dismissed')
     : true;
 
@@ -25,7 +27,10 @@ export function SupportBanner({ variant = 'inline', dismissible = true }: Suppor
 
   const handleDismiss = () => {
     setIsDismissed(true);
-    localStorage.setItem('support_banner_dismissed', 'true');
+    // Only persist to localStorage if persistDismiss is enabled
+    if (persistDismiss) {
+      localStorage.setItem('support_banner_dismissed', 'true');
+    }
   };
 
   // Card variant - looks like a VenueCard
