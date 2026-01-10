@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Entre Nous",
+    "appName": "Le Middle",
     "tagline": "Trouvez le lieu parfait pour vous retrouver",
     "loading": "Chargement...",
     "error": "Une erreur est survenue",
@@ -107,15 +107,15 @@
     "contact": "Contact",
     "termsContent": {
       "title": "Conditions Générales d'Utilisation",
-      "intro": "En utilisant Entre Nous, vous acceptez les présentes conditions.",
+      "intro": "En utilisant Le Middle, vous acceptez les présentes conditions.",
       "service": "Description du Service",
-      "serviceDesc": "Entre Nous est un service gratuit permettant de trouver des lieux de rendez-vous équidistants en transport en commun à Paris et en Île-de-France.",
+      "serviceDesc": "Le Middle est un service gratuit permettant de trouver des lieux de rendez-vous équidistants en transport en commun à Paris et en Île-de-France.",
       "usage": "Utilisation du Service",
       "usageDesc": "Le service est fourni \"tel quel\". Les temps de trajet et informations sur les lieux sont indicatifs et peuvent varier.",
       "data": "Données",
       "dataDesc": "Nous ne stockons pas vos données personnelles. Les recherches sont traitées en temps réel et ne sont pas enregistrées.",
       "liability": "Responsabilité",
-      "liabilityDesc": "Entre Nous ne peut être tenu responsable des informations fournies par les services tiers (Google Places, transports en commun).",
+      "liabilityDesc": "Le Middle ne peut être tenu responsable des informations fournies par les services tiers (Google Places, transports en commun).",
       "changes": "Modifications",
       "changesDesc": "Nous nous réservons le droit de modifier ces conditions à tout moment."
     },
@@ -142,11 +142,11 @@
     "support": "Nous soutenir"
   },
   "support": {
-    "title": "Soutenez Entre Nous",
-    "message": "Entre Nous est gratuit et sans pub. Si vous aimez l'app, offrez-nous un café !",
+    "title": "Soutenez Le Middle",
+    "message": "Le Middle est gratuit et sans pub. Si vous aimez l'app, offrez-nous un café !",
     "cardMessage": "Ce service est gratuit et sans publicité. Si vous l'appréciez, aidez-nous à continuer en nous offrant un café !",
     "homeTitle": "Soutenez le projet",
-    "homeMessage": "Entre Nous est gratuit, sans pub, et développé avec soin. Si vous le trouvez utile, soutenez-nous !",
+    "homeMessage": "Le Middle est gratuit, sans pub, et développé avec soin. Si vous le trouvez utile, soutenez-nous !",
     "badge": "Support",
     "cta": "Offrir un café"
   },

@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Entre Nous API Server",
+  "description": "Le Middle API Server",
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",

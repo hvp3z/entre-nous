@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Entre Nous",
+    "appName": "Le Middle",
     "tagline": "Find the perfect meeting spot",
     "loading": "Loading...",
     "error": "An error occurred",
@@ -107,15 +107,15 @@
     "contact": "Contact",
     "termsContent": {
       "title": "Terms of Service",
-      "intro": "By using Entre Nous, you agree to these terms.",
+      "intro": "By using Le Middle, you agree to these terms.",
       "service": "Service Description",
-      "serviceDesc": "Entre Nous is a free service to find equidistant meeting places by public transport in Paris and Île-de-France.",
+      "serviceDesc": "Le Middle is a free service to find equidistant meeting places by public transport in Paris and Île-de-France.",
       "usage": "Use of Service",
       "usageDesc": "The service is provided \"as is\". Travel times and venue information are indicative and may vary.",
       "data": "Data",
       "dataDesc": "We do not store your personal data. Searches are processed in real-time and are not recorded.",
       "liability": "Liability",
-      "liabilityDesc": "Entre Nous cannot be held responsible for information provided by third-party services (Google Places, public transport).",
+      "liabilityDesc": "Le Middle cannot be held responsible for information provided by third-party services (Google Places, public transport).",
       "changes": "Changes",
       "changesDesc": "We reserve the right to modify these terms at any time."
     },
@@ -142,11 +142,11 @@
     "support": "Support us"
   },
   "support": {
-    "title": "Support Entre Nous",
-    "message": "Entre Nous is free and ad-free. If you enjoy the app, buy us a coffee!",
+    "title": "Support Le Middle",
+    "message": "Le Middle is free and ad-free. If you enjoy the app, buy us a coffee!",
     "cardMessage": "This service is free and ad-free. If you enjoy the app, help us keep it running by buying us a coffee!",
     "homeTitle": "Support the project",
-    "homeMessage": "Entre Nous is free, ad-free, and built with care. If you find it useful, consider supporting us!",
+    "homeMessage": "Le Middle is free, ad-free, and built with care. If you find it useful, consider supporting us!",
     "badge": "Support",
     "cta": "Buy us a coffee"
   },

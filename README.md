@@ -1,4 +1,4 @@
-# Entre Nous - Paris Meeting Point Finder
+# Le Middle - Paris Meeting Point Finder
 
 A responsive, mobile-first web application that helps groups of up to 6 friends find optimal meeting locations in Paris (bars, restaurants, kid-friendly places) that are equidistant via metro/train for all participants.
 
@@ -30,7 +30,7 @@ A responsive, mobile-first web application that helps groups of up to 6 friends 
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd entre-nous
+cd le-middle
 ```
 
 2. Install dependencies:
@@ -55,7 +55,7 @@ The backend API will be available at http://localhost:3001
 ## Project Structure
 
 ```
-entre-nous/
+le-middle/
 ├── frontend/          # Next.js application
 ├── backend/           # Express API server
 ├── shared/            # Shared TypeScript types

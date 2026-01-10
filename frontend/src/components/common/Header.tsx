@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Menu, X, Globe, Home, Wine, UtensilsCrossed, Baby } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
+import { LeMiddleLogo } from './LeMiddleLogo';
 
 export function Header() {
   const t = useTranslations();
@@ -39,6 +40,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
+            <LeMiddleLogo className="text-white" size={28} />
             <span className="font-display text-xl font-bold text-white">
               {t('common.appName')}
             </span>

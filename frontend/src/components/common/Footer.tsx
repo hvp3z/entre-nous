@@ -13,7 +13,7 @@ export function Footer() {
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-neutral-400 text-sm">
-            {t('footer.madeWith')} • © {new Date().getFullYear()} Entre Nous
+            {t('footer.madeWith')} • © {new Date().getFullYear()} Le Middle
           </p>
           
           <nav className="flex items-center gap-4 sm:gap-6">

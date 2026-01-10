@@ -75,7 +75,7 @@ export function PWAInstall() {
               <Download className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-sm">Install Entre Nous</h3>
+              <h3 className="font-semibold text-sm">Install Le Middle</h3>
               <p className="text-xs text-neutral-400 mt-0.5">
                 Add to home screen for quick access
               </p>

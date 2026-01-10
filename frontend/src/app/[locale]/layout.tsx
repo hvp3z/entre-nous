@@ -13,13 +13,13 @@ export function generateStaticParams() {
 }
 
 export const metadata = {
-  title: 'Entre Nous - Paris Meeting Point Finder',
+  title: 'Le Middle - Paris Meeting Point Finder',
   description: 'Find the perfect meeting spot in Paris that is equidistant for everyone',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Entre Nous',
+    title: 'Le Middle',
   },
 };
 
@@ -43,7 +43,7 @@ export default async function LocaleLayout({
         <meta name="theme-color" content="#0f172a" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>

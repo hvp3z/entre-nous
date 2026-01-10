@@ -78,7 +78,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Entre Nous API server running on port ${PORT}`);
+  console.log(`🚀 Le Middle API server running on port ${PORT}`);
   console.log(`📍 Environment: ${isProduction ? 'PRODUCTION' : 'DEVELOPMENT'}`);
   console.log(`🔑 Google Places API Key: ${process.env.GOOGLE_PLACES_API_KEY ? 'CONFIGURED ✅' : 'MISSING ❌'}`);
   console.log(`🌐 Frontend URL: ${process.env.FRONTEND_URL || 'NOT SET (using *.vercel.app)'}`);

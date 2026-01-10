@@ -53,7 +53,7 @@ export function trackEvent(eventName: string, props?: Record<string, string | nu
 }
 
 /**
- * Pre-defined events for Entre Nous
+ * Pre-defined events for Le Middle
  */
 export const AnalyticsEvents = {
   // Search events

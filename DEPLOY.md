@@ -1,6 +1,6 @@
-# Guide de Déploiement - Entre Nous
+# Guide de Déploiement - Le Middle
 
-Ce guide explique comment déployer Entre Nous en production.
+Ce guide explique comment déployer Le Middle en production.
 
 ## Architecture
 
@@ -38,7 +38,7 @@ Ce guide explique comment déployer Entre Nous en production.
 
 1. Cliquer "New Project"
 2. Sélectionner "Deploy from GitHub repo"
-3. Choisir le repo `entre-nous`
+3. Choisir le repo `le-middle`
 4. Dans les settings, configurer :
    - **Root Directory** : `/` (racine)
    - Railway utilisera Nixpacks pour builder automatiquement
@@ -66,7 +66,7 @@ NAVITIA_API_KEY=votre_cle
 
 1. Aller dans "Settings" du service backend
 2. Dans "Networking", générer un domaine public
-3. Noter l'URL (ex: `entre-nous-api.up.railway.app`)
+3. Noter l'URL (ex: `le-middle-api.up.railway.app`)
 
 ---
 
@@ -80,7 +80,7 @@ NAVITIA_API_KEY=votre_cle
 ### 2.2 Importer le projet
 
 1. Cliquer "Add New" → "Project"
-2. Importer le repo `entre-nous`
+2. Importer le repo `le-middle`
 3. Configurer :
    - **Root Directory** : `frontend`
    - **Framework Preset** : Next.js
@@ -90,7 +90,7 @@ NAVITIA_API_KEY=votre_cle
 Ajouter dans les settings Vercel :
 
 ```
-NEXT_PUBLIC_API_URL=https://entre-nous-api.up.railway.app
+NEXT_PUBLIC_API_URL=https://le-middle-api.up.railway.app
 ```
 
 Optionnel (analytics) :
@@ -110,7 +110,7 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=votre-domaine.com
 ### Sur Vercel (Frontend)
 
 1. Aller dans Project Settings → Domains
-2. Ajouter votre domaine (ex: `entrenous.paris`)
+2. Ajouter votre domaine (ex: `lemiddle.app`)
 3. Configurer les DNS chez votre registrar :
    ```
    Type: CNAME
@@ -121,7 +121,7 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=votre-domaine.com
 ### Sur Railway (Backend) - Optionnel
 
 1. Aller dans Settings → Networking
-2. Ajouter un domaine personnalisé (ex: `api.entrenous.paris`)
+2. Ajouter un domaine personnalisé (ex: `api.lemiddle.app`)
 
 ### Mettre à jour les variables
 
@@ -129,20 +129,20 @@ Après avoir configuré les domaines, mettre à jour :
 
 **Railway (backend)** :
 ```
-FRONTEND_URL=https://entrenous.paris
+FRONTEND_URL=https://lemiddle.app
 ```
 
 **Vercel (frontend)** :
 ```
-NEXT_PUBLIC_API_URL=https://api.entrenous.paris
+NEXT_PUBLIC_API_URL=https://api.lemiddle.app
 ```
 
 ---
 
 ## Étape 4 : Vérification
 
-1. Tester l'API : `curl https://api.entrenous.paris/health`
-2. Ouvrir le frontend : `https://entrenous.paris`
+1. Tester l'API : `curl https://api.lemiddle.app/health`
+2. Ouvrir le frontend : `https://lemiddle.app`
 3. Faire une recherche de test
 
 ---
