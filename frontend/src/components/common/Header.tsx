@@ -29,9 +29,9 @@ export function Header() {
 
   const isActive = (href: string) => {
     if (href === '/') {
-      return pathname === `/${locale}` || pathname === '/';
+      return pathname === '/';
     }
-    return pathname.includes(href);
+    return pathname.startsWith(href);
   };
 
   return (
