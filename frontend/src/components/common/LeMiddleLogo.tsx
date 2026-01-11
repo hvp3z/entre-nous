@@ -10,38 +10,23 @@ export function LeMiddleLogo({ className = '', size = 32 }: LeMiddleLogoProps) {
     <svg 
       width={size} 
       height={size} 
-      viewBox="0 0 40 40" 
+      viewBox="0 0 100 120" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Converging lines from top - representing paths meeting */}
+      {/* Location pin marker */}
       <path 
-        d="M8 4L20 16" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round"
+        d="M50 0C30.67 0 15 15.67 15 35C15 54.33 50 75 50 75C50 75 85 54.33 85 35C85 15.67 69.33 0 50 0ZM50 47C42.27 47 36 40.73 36 33C36 25.27 42.27 19 50 19C57.73 19 64 25.27 64 33C64 40.73 57.73 47 50 47Z"
+        fill="currentColor"
+        fillRule="evenodd"
       />
-      <path 
-        d="M32 4L20 16" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round"
-      />
-      
-      {/* Central meeting point dot */}
-      <circle cx="20" cy="16" r="2.5" fill="currentColor"/>
       
       {/* Stylized M letter */}
       <path 
-        d="M8 36V22L20 32L32 22V36" 
-        stroke="currentColor" 
-        strokeWidth="2.5" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        fill="none"
+        d="M10 120V82L50 108L90 82V120H75V98L50 114L25 98V120H10Z"
+        fill="currentColor"
       />
     </svg>
   );
 }
-

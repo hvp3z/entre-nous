@@ -262,4 +262,3 @@ export const THEME_FILTERS: Record<Theme, ThemeFiltersConfig> = {
 export interface SelectedFilters {
   [groupId: string]: string[]; // Array of selected option IDs
 }
-
