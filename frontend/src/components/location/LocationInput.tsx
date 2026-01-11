@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { MapPin, Navigation, Plus, Loader2 } from 'lucide-react';
+import { MapPin, Navigation, Plus, Loader2, MapPinPlus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { useSessionStore, type Theme } from '@/stores/sessionStore';
@@ -184,7 +184,7 @@ export function LocationInput({ theme }: LocationInputProps) {
       {/* Address Input */}
       <div className="relative">
         <div className="relative">
-          <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+          <MapPinPlus className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
           <input
             ref={inputRef}
             type="text"

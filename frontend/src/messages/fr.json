@@ -45,7 +45,7 @@
     "subtitle": "Ajoutez 2 à 6 adresses pour trouver un lieu équidistant",
     "addLocation": "Ajouter une adresse",
     "useCurrentLocation": "Ma position actuelle",
-    "placeholder": "Entrez une adresse à Paris...",
+    "placeholder": "Ajouter une adresse...",
     "remove": "Supprimer",
     "minLocations": "Ajoutez au moins 2 adresses pour continuer",
     "maxLocations": "Maximum 6 adresses",
