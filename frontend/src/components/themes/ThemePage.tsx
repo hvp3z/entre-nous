@@ -131,8 +131,8 @@ export function ThemePage({ theme }: ThemePageProps) {
               </p>
             </div>
 
-            <LocationInput theme={theme} />
             <LocationList />
+            <LocationInput theme={theme} />
 
             {/* Search Button */}
             <div className="pt-2">
