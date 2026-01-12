@@ -43,6 +43,12 @@ const themeConfig = {
   },
 };
 
+const fallbackImages: Record<Theme, string> = {
+  restaurants: '/images/fallback-restaurants.svg',
+  bars: '/images/fallback-bars.svg',
+  kids: '/images/fallback-kids.svg',
+};
+
 export function VenueCard({ result, locations, theme, rank }: VenueCardProps) {
   const t = useTranslations();
   const config = themeConfig[theme];
@@ -75,22 +81,20 @@ export function VenueCard({ result, locations, theme, rank }: VenueCardProps) {
   return (
     <div className="card overflow-hidden">
       {/* Image */}
-      {venue.photos.length > 0 && (
-        <div className="relative h-32 sm:h-40 bg-neutral-200">
-          <Image
-            src={venue.photos[0]}
-            alt={venue.name}
-            fill
-            className="object-cover"
-            unoptimized // Google Places photos don't work well with Next.js optimization
-          />
-          <div className="absolute top-3 left-3">
-            <span className={clsx('px-2.5 py-1 rounded-full text-sm font-medium', config.badge)}>
-              #{rank}
-            </span>
-          </div>
+      <div className="relative h-32 sm:h-40 bg-neutral-200">
+        <Image
+          src={venue.photos[0] || fallbackImages[theme]}
+          alt={venue.name}
+          fill
+          className="object-cover"
+          unoptimized={venue.photos.length > 0} // Only unoptimize Google Places photos
+        />
+        <div className="absolute top-3 left-3">
+          <span className={clsx('px-2.5 py-1 rounded-full text-sm font-medium', config.badge)}>
+            #{rank}
+          </span>
         </div>
-      )}
+      </div>
 
       <div className="p-4">
         {/* Header */}
