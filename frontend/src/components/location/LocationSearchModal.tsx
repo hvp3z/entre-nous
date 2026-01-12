@@ -27,6 +27,11 @@ const themeConfig = {
     accentBg: 'bg-restaurants-500',
     accentText: 'text-restaurants-600',
   },
+  cafes: { 
+    focusRing: 'focus:ring-cafes-500/30 focus:border-cafes-400',
+    accentBg: 'bg-cafes-500',
+    accentText: 'text-cafes-600',
+  },
   kids: { 
     focusRing: 'focus:ring-kids-500/30 focus:border-kids-400',
     accentBg: 'bg-kids-500',

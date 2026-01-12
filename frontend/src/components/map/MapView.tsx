@@ -35,6 +35,7 @@ const createIcon = (color: string, isVenue = false) => {
 const themeColors = {
   bars: '#b87333',      // cognac
   restaurants: '#c2703a', // terracotta
+  cafes: '#8B5C2A',     // café/brown
   kids: '#a65d3f',      // brique
 };
 

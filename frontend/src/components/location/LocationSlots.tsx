@@ -31,6 +31,13 @@ const themeConfig = {
     activeText: 'text-restaurants-600',
     badge: 'bg-restaurants-500',
   },
+  cafes: { 
+    focusRing: 'focus:ring-cafes-500/20 focus:border-cafes-400',
+    activeBorder: 'border-cafes-300',
+    activeBg: 'bg-cafes-50',
+    activeText: 'text-cafes-600',
+    badge: 'bg-cafes-500',
+  },
   kids: { 
     focusRing: 'focus:ring-kids-500/20 focus:border-kids-400',
     activeBorder: 'border-kids-300',

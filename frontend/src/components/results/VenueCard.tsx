@@ -37,6 +37,11 @@ const themeConfig = {
     bg: 'bg-restaurants-50',
     badge: 'bg-restaurants-100 text-restaurants-600',
   },
+  cafes: { 
+    accent: 'text-cafes-500', 
+    bg: 'bg-cafes-50',
+    badge: 'bg-cafes-100 text-cafes-600',
+  },
   kids: { 
     accent: 'text-kids-500', 
     bg: 'bg-kids-50',
@@ -47,6 +52,7 @@ const themeConfig = {
 const fallbackImages: Record<Theme, string> = {
   restaurants: '/images/fallback-restaurants.svg',
   bars: '/images/fallback-bars.svg',
+  cafes: '/images/fallback-restaurants.svg',
   kids: '/images/fallback-kids.svg',
 };
 

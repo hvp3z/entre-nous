@@ -19,6 +19,10 @@ const themeConfig = {
     bgClass: 'bg-restaurants-500 hover:bg-restaurants-600',
     shadowClass: 'shadow-restaurants-500/30',
   },
+  cafes: {
+    bgClass: 'bg-cafes-500 hover:bg-cafes-600',
+    shadowClass: 'shadow-cafes-500/30',
+  },
   kids: {
     bgClass: 'bg-kids-500 hover:bg-kids-600',
     shadowClass: 'shadow-kids-500/30',

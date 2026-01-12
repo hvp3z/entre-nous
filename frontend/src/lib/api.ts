@@ -115,7 +115,7 @@ export interface SearchRequest {
       walkingTimeMinutes: number;
     }>;
   }>;
-  theme: 'bars' | 'restaurants' | 'kids';
+  theme: 'bars' | 'restaurants' | 'cafes' | 'kids';
   maxVarianceMinutes?: number;
   filters?: SelectedFilters;
 }

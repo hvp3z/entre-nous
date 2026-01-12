@@ -26,6 +26,7 @@ interface DirectionsPanelProps {
 const themeConfig = {
   bars: { accent: 'text-bars-500', bg: 'bg-bars-50' },
   restaurants: { accent: 'text-restaurants-500', bg: 'bg-restaurants-50' },
+  cafes: { accent: 'text-cafes-500', bg: 'bg-cafes-50' },
   kids: { accent: 'text-kids-500', bg: 'bg-kids-50' },
 };
 
