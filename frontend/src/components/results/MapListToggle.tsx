@@ -48,7 +48,7 @@ export function MapListToggle({ theme }: MapListToggleProps) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.9 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="lg:hidden fixed left-1/2 -translate-x-1/2 z-[60]"
+          className="lg:hidden fixed inset-x-0 flex justify-center z-[60]"
           style={{ bottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px) + 1rem)' }}
         >
           <button
