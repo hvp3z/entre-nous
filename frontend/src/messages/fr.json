@@ -55,8 +55,9 @@
   },
   "search": {
     "searching": "Recherche des lieux équidistants...",
-    "noResults": "Aucun lieu trouvé dans les critères",
+    "noResults": "Aucun lieu trouvé",
     "noResultsHint": "Essayez avec des adresses plus proches ou différentes",
+    "noResultsFilterHint": "Essayez de modifier vos filtres ou d'utiliser des adresses différentes",
     "relaxedSearch": "Temps de trajet étendu à {minutes} minutes pour trouver des résultats",
     "findPlaces": "Trouver des lieux"
   },

@@ -55,8 +55,9 @@
   },
   "search": {
     "searching": "Searching for equidistant places...",
-    "noResults": "No places found matching criteria",
+    "noResults": "No places found",
     "noResultsHint": "Try with closer or different addresses",
+    "noResultsFilterHint": "Try adjusting your filters or using different addresses",
     "relaxedSearch": "Travel time extended to {minutes} minutes to find results",
     "findPlaces": "Find places"
   },

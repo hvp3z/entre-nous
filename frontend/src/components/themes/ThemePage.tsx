@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, AlertCircle } from 'lucide-react';
+import { Search, AlertCircle, SearchX } from 'lucide-react';
 import clsx from 'clsx';
 import { Header } from '@/components/common/Header';
 import { LocationInput } from '@/components/location/LocationInput';
@@ -59,6 +59,7 @@ export function ThemePage({ theme }: ThemePageProps) {
   } = useSessionStore();
 
   const [error, setError] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleSearch = useCallback(async () => {
     if (locations.length < 2) return;
@@ -67,6 +68,7 @@ export function ThemePage({ theme }: ThemePageProps) {
     setError(null);
     setSearchResults([]);
     setRelaxedVariance(null);
+    setHasSearched(true);
 
     // Get active filters for current theme
     const activeFilters = selectedFilters[theme] || {};
@@ -187,6 +189,22 @@ export function ThemePage({ theme }: ThemePageProps) {
                     <p className="text-sm text-amber-700">
                       {t('search.relaxedSearch', { minutes: relaxedVariance })}
                     </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* No Results Message */}
+              <AnimatePresence>
+                {hasSearched && !isSearching && searchResults.length === 0 && !error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="mt-3 p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-center"
+                  >
+                    <SearchX className="w-8 h-8 text-neutral-400 mx-auto mb-2" />
+                    <p className="font-medium text-neutral-700">{t('search.noResults')}</p>
+                    <p className="text-sm text-neutral-500 mt-1">{t('search.noResultsFilterHint')}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
