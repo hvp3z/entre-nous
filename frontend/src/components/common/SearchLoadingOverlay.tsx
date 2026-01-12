@@ -159,35 +159,6 @@ export function SearchLoadingOverlay({ isVisible }: SearchLoadingOverlayProps) {
                 );
               })}
 
-              {/* Decorative diamond shapes at intersections */}
-              {[
-                { x: 50, y: 32.5 },  // N-C midpoint
-                { x: 50, y: 67.5 },  // S-C midpoint
-                { x: 32.5, y: 50 },  // W-C midpoint
-                { x: 67.5, y: 50 },  // E-C midpoint
-              ].map((diamond, i) => (
-                <motion.polygon
-                  key={`diamond-${i}`}
-                  points={`${diamond.x},${diamond.y - 3} ${diamond.x + 3},${diamond.y} ${diamond.x},${diamond.y + 3} ${diamond.x - 3},${diamond.y}`}
-                  fill="none"
-                  stroke={PALETTE.point}
-                  strokeWidth="0.5"
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ 
-                    scale: [0, 1, 1, 0],
-                    opacity: [0, 0.6, 0.6, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    delay: 0.8 + i * 0.15,
-                    repeat: Infinity,
-                    repeatDelay: 0.5,
-                    times: [0, 0.2, 0.8, 1],
-                  }}
-                  style={{ transformOrigin: `${diamond.x}px ${diamond.y}px` }}
-                />
-              ))}
-
               {/* Phase 2: Points lighting up */}
               {NETWORK_POINTS.map((point, i) => {
                 const isCenter = point.id === 'c';
@@ -240,59 +211,23 @@ export function SearchLoadingOverlay({ isVisible }: SearchLoadingOverlayProps) {
                 );
               })}
 
-              {/* Central element - sophisticated multi-ring design */}
+              {/* Central element - simplified design */}
               <g>
-                {/* Outer rotating ring */}
+                {/* Pulsing ring */}
                 <motion.circle
                   cx={50}
                   cy={50}
-                  r="12"
+                  r="6"
                   fill="none"
                   stroke={PALETTE.centerRing}
-                  strokeWidth="0.5"
-                  strokeDasharray="3 6"
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: 'linear',
-                  }}
-                  style={{ transformOrigin: '50px 50px' }}
-                />
-
-                {/* Middle pulsing ring */}
-                <motion.circle
-                  cx={50}
-                  cy={50}
-                  r="8"
-                  fill="none"
-                  stroke={PALETTE.point}
                   strokeWidth="0.8"
-                  initial={{ scale: 0.8, opacity: 0.4 }}
+                  initial={{ scale: 0.9, opacity: 0.5 }}
                   animate={{ 
-                    scale: [0.8, 1.1, 0.8],
-                    opacity: [0.4, 0.8, 0.4],
+                    scale: [0.9, 1.2, 0.9],
+                    opacity: [0.5, 0.8, 0.5],
                   }}
                   transition={{
                     duration: 2,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                />
-
-                {/* Inner solid ring */}
-                <motion.circle
-                  cx={50}
-                  cy={50}
-                  r="5"
-                  fill="none"
-                  stroke={PALETTE.center}
-                  strokeWidth="1"
-                  initial={{ scale: 0.9 }}
-                  animate={{ scale: [0.9, 1.05, 0.9] }}
-                  transition={{
-                    duration: 1.5,
                     repeat: Infinity,
                     ease: 'easeInOut',
                   }}
@@ -302,26 +237,18 @@ export function SearchLoadingOverlay({ isVisible }: SearchLoadingOverlayProps) {
                 <motion.circle
                   cx={50}
                   cy={50}
-                  r="3"
+                  r="3.5"
                   fill={PALETTE.center}
                   filter="url(#cartGlow)"
-                  initial={{ scale: 0.9 }}
+                  initial={{ scale: 0.95 }}
                   animate={{ 
-                    scale: [0.9, 1.15, 0.9],
+                    scale: [0.95, 1.1, 0.95],
                   }}
                   transition={{
-                    duration: 1.2,
+                    duration: 1.5,
                     repeat: Infinity,
                     ease: 'easeInOut',
                   }}
-                />
-
-                {/* Inner detail */}
-                <circle
-                  cx={50}
-                  cy={50}
-                  r="1"
-                  fill="#1a1a1a"
                 />
               </g>
 
