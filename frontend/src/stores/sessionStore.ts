@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 export type Theme = 'bars' | 'restaurants' | 'kids';
 
 // Filter types (synced with shared/types)
-export type FilterGroupType = 'category' | 'cuisine' | 'age' | 'weather';
+export type FilterGroupType = 'category' | 'cuisine' | 'age' | 'weather' | 'price';
 
 export interface FilterOption {
   id: string;
@@ -46,6 +46,18 @@ export const BARS_FILTERS: ThemeFiltersConfig = {
         { id: 'mocktails', labelKey: 'filters.bars.mocktails', keywords: ['juice bar', 'smoothie', 'sans alcool', 'mocktail'] },
       ],
     },
+    {
+      id: 'bars-price',
+      type: 'price',
+      labelKey: 'filters.price.title',
+      multiSelect: false,
+      options: [
+        { id: 'price-1', labelKey: 'filters.price.cheap', keywords: [] },
+        { id: 'price-2', labelKey: 'filters.price.moderate', keywords: [] },
+        { id: 'price-3', labelKey: 'filters.price.expensive', keywords: [] },
+        { id: 'price-4', labelKey: 'filters.price.veryExpensive', keywords: [] },
+      ],
+    },
   ],
 };
 
@@ -65,6 +77,18 @@ export const RESTAURANTS_FILTERS: ThemeFiltersConfig = {
         { id: 'japanese', labelKey: 'filters.restaurants.japanese', keywords: ['japanese', 'japonais', 'sushi', 'ramen', 'izakaya'] },
         { id: 'turkish', labelKey: 'filters.restaurants.turkish', keywords: ['turkish', 'turc', 'lebanese', 'libanais', 'kebab', 'mezze'] },
         { id: 'african', labelKey: 'filters.restaurants.african', keywords: ['african', 'africain', 'ethiopian', 'senegalese', 'mafé'] },
+      ],
+    },
+    {
+      id: 'restaurants-price',
+      type: 'price',
+      labelKey: 'filters.price.title',
+      multiSelect: false,
+      options: [
+        { id: 'price-1', labelKey: 'filters.price.cheap', keywords: [] },
+        { id: 'price-2', labelKey: 'filters.price.moderate', keywords: [] },
+        { id: 'price-3', labelKey: 'filters.price.expensive', keywords: [] },
+        { id: 'price-4', labelKey: 'filters.price.veryExpensive', keywords: [] },
       ],
     },
   ],

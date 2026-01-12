@@ -40,6 +40,27 @@ const THEME_CONFIG = {
   }
 };
 
+// Extract max price level from filters (returns null if no price filter selected)
+function getMaxPriceLevel(theme: Theme, filters?: SelectedFilters): number | null {
+  if (!filters) return null;
+  
+  const priceGroupId = `${theme}-price`;
+  const selectedPrices = filters[priceGroupId];
+  
+  if (!selectedPrices || selectedPrices.length === 0) return null;
+  
+  // Price IDs are: price-1, price-2, price-3, price-4
+  // Extract the number to get the max price level
+  const priceId = selectedPrices[0]; // Only one can be selected (exclusive)
+  const match = priceId.match(/price-(\d)/);
+  
+  if (match) {
+    return parseInt(match[1], 10);
+  }
+  
+  return null;
+}
+
 // Build keywords and types from selected filters
 function buildFilterConfig(theme: Theme, filters?: SelectedFilters): { 
   keywords: string[]; 
@@ -148,6 +169,7 @@ export class VenueService {
   ): Promise<Venue[]> {
     const baseConfig = THEME_CONFIG[theme];
     const filterConfig = buildFilterConfig(theme, filters);
+    const maxPriceLevel = getMaxPriceLevel(theme, filters);
 
     // Perform searches for each type (or keyword-based search)
     const allVenues: Venue[] = [];
@@ -202,6 +224,14 @@ export class VenueService {
       } catch (error) {
         console.error('Places search error:', error);
       }
+    }
+
+    // Apply price filter if set
+    // Include venues without price info (undefined) to not exclude potentially relevant places
+    if (maxPriceLevel !== null) {
+      return allVenues.filter(venue => 
+        venue.priceLevel === undefined || venue.priceLevel <= maxPriceLevel
+      );
     }
 
     return allVenues;

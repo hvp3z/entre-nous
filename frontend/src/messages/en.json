@@ -195,6 +195,13 @@
       "weather": "Weather",
       "indoor": "Indoor",
       "outdoor": "Outdoor"
+    },
+    "price": {
+      "title": "Max budget",
+      "cheap": "€ · Cheap",
+      "moderate": "€€ · Moderate",
+      "expensive": "€€€ · Expensive",
+      "veryExpensive": "€€€€ · Very expensive"
     }
   }
 }
