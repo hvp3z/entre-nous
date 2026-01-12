@@ -84,7 +84,7 @@ interface MapViewProps {
 }
 
 export function MapView({ theme, showZoomControls = false }: MapViewProps) {
-  const { locations, searchResults, setSelectedVenue } = useSessionStore();
+  const { locations, searchResults, setSelectedVenue, setHighlightedVenueId } = useSessionStore();
   const themeColor = themeColors[theme];
 
   // Paris center
@@ -113,32 +113,20 @@ export function MapView({ theme, showZoomControls = false }: MapViewProps) {
   }, [locations]);
 
   const venueMarkers = useMemo(() => {
-    return searchResults.map((result, index) => (
+    return searchResults.map((result) => (
       <Marker
         key={result.venue.id}
         position={[result.venue.coordinates.lat, result.venue.coordinates.lng]}
         icon={createIcon(themeColor, true)}
         eventHandlers={{
-          click: () => setSelectedVenue(result.venue),
+          click: () => {
+            setSelectedVenue(result.venue);
+            setHighlightedVenueId(result.venue.id);
+          },
         }}
-      >
-        <Popup>
-          <div className="text-sm min-w-[200px]">
-            <p className="font-semibold">{result.venue.name}</p>
-            <p className="text-neutral-600 text-xs">{result.venue.address}</p>
-            <div className="mt-2 flex items-center gap-2">
-              <span className="text-amber-500">★</span>
-              <span>{result.venue.rating.toFixed(1)}</span>
-              <span className="text-neutral-400">({result.venue.reviewCount})</span>
-            </div>
-            <p className="text-neutral-500 text-xs mt-1">
-              ~{Math.round(result.averageTravelTime)} min average
-            </p>
-          </div>
-        </Popup>
-      </Marker>
+      />
     ));
-  }, [searchResults, themeColor, setSelectedVenue]);
+  }, [searchResults, themeColor, setSelectedVenue, setHighlightedVenueId]);
 
   return (
     <MapContainer
