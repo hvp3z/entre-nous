@@ -100,51 +100,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Theme Cards */}
-      <section className="px-4 py-12 sm:py-16 -mt-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {themes.map((theme, index) => {
-              const Icon = theme.icon;
-              return (
-                <motion.div
-                  key={theme.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <button
-                    onClick={() => handleThemeSelect(theme.id)}
-                    className={`card w-full p-6 text-left transition-all duration-300 
-                              ${theme.hoverBg} border ${theme.borderColor} group`}
-                  >
-                    <div className={`w-14 h-14 rounded-2xl ${theme.gradient} 
-                                    flex items-center justify-center mb-4
-                                    group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
-                    
-                    <h2 className="font-display text-2xl font-semibold text-[#1a1a1a] mb-1">
-                      {t(`themes.${theme.id}.title`)}
-                    </h2>
-                    <p className={`text-sm font-medium ${theme.iconColor} mb-2`}>
-                      {t(`themes.${theme.id}.subtitle`)}
-                    </p>
-                    <p className="text-[#525252] text-sm mb-4">
-                      {t(`themes.${theme.id}.description`)}
-                    </p>
-                    
-                    <span className={`${theme.btnClass} w-full`}>
-                      {t(`themes.${theme.id}.cta`)}
-                    </span>
-                  </button>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* How it Works */}
       <section className="px-4 py-12 sm:py-16 bg-white">
         <div className="max-w-4xl mx-auto">
@@ -184,6 +139,51 @@ export default function HomePage() {
                   <p className="text-[#525252] text-sm">
                     {t(`home.${step.descKey}`)}
                   </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Theme Cards */}
+      <section className="px-4 py-12 sm:py-16 -mt-8 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {themes.map((theme, index) => {
+              const Icon = theme.icon;
+              return (
+                <motion.div
+                  key={theme.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <button
+                    onClick={() => handleThemeSelect(theme.id)}
+                    className={`card w-full p-6 text-left transition-all duration-300 
+                              ${theme.hoverBg} border ${theme.borderColor} group`}
+                  >
+                    <div className={`w-14 h-14 rounded-2xl ${theme.gradient} 
+                                    flex items-center justify-center mb-4
+                                    group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-7 h-7 text-white" />
+                    </div>
+                    
+                    <h2 className="font-display text-2xl font-semibold text-[#1a1a1a] mb-1">
+                      {t(`themes.${theme.id}.title`)}
+                    </h2>
+                    <p className={`text-sm font-medium ${theme.iconColor} mb-2`}>
+                      {t(`themes.${theme.id}.subtitle`)}
+                    </p>
+                    <p className="text-[#525252] text-sm mb-4">
+                      {t(`themes.${theme.id}.description`)}
+                    </p>
+                    
+                    <span className={`${theme.btnClass} w-full`}>
+                      {t(`themes.${theme.id}.cta`)}
+                    </span>
+                  </button>
                 </motion.div>
               );
             })}

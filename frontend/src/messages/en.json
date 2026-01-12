@@ -45,11 +45,12 @@
     "subtitle": "Add 2 to 6 addresses to find an equidistant location",
     "addLocation": "Add an address",
     "useCurrentLocation": "Use my location",
-    "placeholder": "Enter an address in Paris...",
+    "placeholder": "Address or metro station...",
     "remove": "Remove",
     "minLocations": "Add at least 2 addresses to continue",
     "maxLocations": "Maximum 6 addresses",
     "nearestStation": "Nearest station: {station}",
+    "metroStation": "Metro station · Lines {lines}",
     "locationError": "Could not get your location",
     "searchError": "Search error"
   },

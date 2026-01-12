@@ -34,6 +34,15 @@ export interface AutocompleteResult {
   mainText: string;
   secondaryText: string;
   coordinates?: { lat: number; lng: number };
+  // Station-specific fields
+  type?: 'place' | 'station';
+  station?: {
+    id: string;
+    name: string;
+    coordinates: { lat: number; lng: number };
+    lines: string[];
+    walkingTimeMinutes: number;
+  };
 }
 
 export interface GeocodeResult {

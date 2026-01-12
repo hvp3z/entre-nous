@@ -2,11 +2,12 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { MapPin, Navigation, Loader2, Search, X } from 'lucide-react';
+import { MapPin, Navigation, Loader2, Search, X, Train } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { useSessionStore, type Theme } from '@/stores/sessionStore';
 import { searchLocations, geocodePlace, reverseGeocode, type AutocompleteResult } from '@/lib/api';
+import { searchStations, getLineColor } from '@/data/stations';
 import { v4 as uuidv4 } from 'uuid';
 
 interface LocationSearchModalProps {
@@ -60,22 +61,46 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
     }
   }, [isOpen]);
 
-  // Search for suggestions
+  // Search for suggestions (hybrid: stations + places)
   const searchSuggestions = useCallback(async (query: string) => {
     if (query.length < 2) {
       setSuggestions([]);
       return;
     }
 
-    setIsLoading(true);
     setError(null);
 
+    // Search stations locally (instant)
+    const stationResults = searchStations(query, 5);
+    const stationSuggestions: AutocompleteResult[] = stationResults.map(station => ({
+      placeId: `station-${station.id}`,
+      description: station.name,
+      mainText: station.name,
+      secondaryText: t('location.metroStation', { lines: station.lines.join(', ') }),
+      coordinates: station.coordinates,
+      type: 'station' as const,
+      station,
+    }));
+
+    // Show station results immediately
+    setSuggestions(stationSuggestions);
+
+    // Then search Google Places (async)
+    setIsLoading(true);
     try {
-      const results = await searchLocations(query, sessionTokenRef.current);
-      setSuggestions(results);
+      const placeResults = await searchLocations(query, sessionTokenRef.current);
+      const placeSuggestions: AutocompleteResult[] = placeResults.map(place => ({
+        ...place,
+        type: 'place' as const,
+      }));
+      
+      // Combine: stations first, then places
+      setSuggestions([...stationSuggestions, ...placeSuggestions]);
     } catch (err) {
-      setError(t('location.searchError'));
-      setSuggestions([]);
+      // Keep station results even if Google Places fails
+      if (stationSuggestions.length === 0) {
+        setError(t('location.searchError'));
+      }
     } finally {
       setIsLoading(false);
     }
@@ -96,6 +121,22 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
 
   // Select a suggestion
   const handleSelectSuggestion = async (suggestion: AutocompleteResult) => {
+    // Handle station selection directly (no API call needed)
+    if (suggestion.type === 'station' && suggestion.station) {
+      addLocation({
+        id: uuidv4(),
+        address: suggestion.station.name,
+        coordinates: suggestion.station.coordinates,
+        nearestStations: [{
+          ...suggestion.station,
+          walkingTimeMinutes: 0, // Already at the station
+        }],
+      });
+      onClose();
+      return;
+    }
+
+    // Handle place selection via geocoding API
     setIsLoading(true);
 
     try {
@@ -249,22 +290,58 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
               {/* Suggestions */}
               {suggestions.length > 0 && (
                 <div>
-                  {suggestions.map((suggestion) => (
-                    <button
-                      key={suggestion.placeId}
-                      onClick={() => handleSelectSuggestion(suggestion)}
-                      className="w-full flex items-start gap-4 px-4 py-4 text-left 
-                               hover:bg-neutral-50 transition-colors border-b border-neutral-100 last:border-0"
-                    >
-                      <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-neutral-500" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-[#1a1a1a] truncate">{suggestion.mainText}</p>
-                        <p className="text-sm text-neutral-500 truncate">{suggestion.secondaryText}</p>
-                      </div>
-                    </button>
-                  ))}
+                  {suggestions.map((suggestion) => {
+                    const isStation = suggestion.type === 'station';
+                    const primaryLineColor = isStation && suggestion.station 
+                      ? getLineColor(suggestion.station.lines[0]) 
+                      : null;
+                    
+                    return (
+                      <button
+                        key={suggestion.placeId}
+                        onClick={() => handleSelectSuggestion(suggestion)}
+                        className="w-full flex items-start gap-4 px-4 py-4 text-left 
+                                 hover:bg-neutral-50 transition-colors border-b border-neutral-100 last:border-0"
+                      >
+                        {isStation ? (
+                          <div 
+                            className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                            style={{ backgroundColor: primaryLineColor || '#666666' }}
+                          >
+                            <Train className="w-5 h-5 text-white" />
+                          </div>
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center flex-shrink-0">
+                            <MapPin className="w-5 h-5 text-neutral-500" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-[#1a1a1a] truncate">{suggestion.mainText}</p>
+                          <p className="text-sm text-neutral-500 truncate">{suggestion.secondaryText}</p>
+                          {/* Show metro line badges for stations */}
+                          {isStation && suggestion.station && (
+                            <div className="flex flex-wrap gap-1.5 mt-1.5">
+                              {suggestion.station.lines.slice(0, 4).map(line => (
+                                <span
+                                  key={line}
+                                  className="inline-flex items-center justify-center px-1.5 py-0.5 
+                                           text-xs font-bold text-white rounded"
+                                  style={{ backgroundColor: getLineColor(line) }}
+                                >
+                                  {line}
+                                </span>
+                              ))}
+                              {suggestion.station.lines.length > 4 && (
+                                <span className="text-xs text-neutral-400">
+                                  +{suggestion.station.lines.length - 4}
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
 
