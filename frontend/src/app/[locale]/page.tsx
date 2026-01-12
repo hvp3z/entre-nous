@@ -78,6 +78,14 @@ export default function HomePage() {
             <p className="text-lg sm:text-xl text-neutral-400 max-w-2xl mx-auto text-balance">
               {t('home.heroSub')}
             </p>
+            
+            {/* Paris disclaimer badge */}
+            <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20">
+              <MapPin className="w-4 h-4 text-neutral-400" />
+              <span className="text-sm text-neutral-400">
+                {t('disclaimer.parisOnlyShort')}
+              </span>
+            </div>
           </motion.div>
         </div>
 

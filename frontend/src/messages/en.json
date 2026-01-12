@@ -151,6 +151,10 @@
     "badge": "Support",
     "cta": "Buy us a coffee"
   },
+  "disclaimer": {
+    "parisOnly": "Available in Paris and Île-de-France only",
+    "parisOnlyShort": "Paris"
+  },
   "filters": {
     "title": "Filters",
     "clearAll": "Clear all",

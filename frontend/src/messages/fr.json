@@ -151,6 +151,10 @@
     "badge": "Support",
     "cta": "Offrir un café"
   },
+  "disclaimer": {
+    "parisOnly": "Disponible uniquement à Paris et Île-de-France",
+    "parisOnlyShort": "Paris"
+  },
   "filters": {
     "title": "Filtres",
     "clearAll": "Effacer tout",
