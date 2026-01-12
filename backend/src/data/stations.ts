@@ -105,6 +105,7 @@ export const stations: Station[] = [
   { id: 'parmentier', name: 'Parmentier', coordinates: { lat: 48.8660, lng: 2.3750 }, lines: ['3'], walkingTimeMinutes: 2 },
   { id: 'rue-saint-maur', name: 'Rue Saint-Maur', coordinates: { lat: 48.8640, lng: 2.3800 }, lines: ['3'], walkingTimeMinutes: 2 },
   { id: 'gambetta', name: 'Gambetta', coordinates: { lat: 48.8650, lng: 2.3980 }, lines: ['3', '3bis'], walkingTimeMinutes: 2 },
+  { id: 'porte-de-bagnolet', name: 'Porte de Bagnolet', coordinates: { lat: 48.8635, lng: 2.4097 }, lines: ['3'], walkingTimeMinutes: 2 },
   { id: 'pelleport', name: 'Pelleport', coordinates: { lat: 48.8680, lng: 2.4010 }, lines: ['3bis'], walkingTimeMinutes: 2 },
   { id: 'saint-fargeau', name: 'Saint-Fargeau', coordinates: { lat: 48.8720, lng: 2.4040 }, lines: ['3bis'], walkingTimeMinutes: 2 },
   { id: 'porte-des-lilas', name: 'Porte des Lilas', coordinates: { lat: 48.8770, lng: 2.4065 }, lines: ['3bis', '11'], walkingTimeMinutes: 2 },
@@ -495,7 +496,8 @@ export const lineConnections: LineConnection[] = [
   { from: 'parmentier', to: 'rue-saint-maur', line: '3', duration: 1 },
   { from: 'rue-saint-maur', to: 'pere-lachaise', line: '3', duration: 2 },
   { from: 'pere-lachaise', to: 'gambetta', line: '3', duration: 2 },
-  { from: 'gambetta', to: 'gallieni', line: '3', duration: 4 },
+  { from: 'gambetta', to: 'porte-de-bagnolet', line: '3', duration: 2 },
+  { from: 'porte-de-bagnolet', to: 'gallieni', line: '3', duration: 2 },
   
   // Line 4
   { from: 'porte-clignancourt', to: 'simplon', line: '4', duration: 2 },
