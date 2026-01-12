@@ -155,6 +155,10 @@
     "parisOnly": "Available in Paris and Île-de-France only",
     "parisOnlyShort": "Paris"
   },
+  "toggle": {
+    "map": "Map",
+    "list": "List · {count, plural, =1 {# place} other {# places}}"
+  },
   "filters": {
     "title": "Filters",
     "clearAll": "Clear all",

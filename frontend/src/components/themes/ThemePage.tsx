@@ -12,6 +12,8 @@ import { FilterChips } from '@/components/filters/FilterChips';
 import { MapContainer } from '@/components/map/MapContainer';
 import { ResultsList } from '@/components/results/ResultsList';
 import { BottomSheet } from '@/components/results/BottomSheet';
+import { MapListToggle } from '@/components/results/MapListToggle';
+import { VenuePreviewCard } from '@/components/results/VenuePreviewCard';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { SearchLoadingOverlay } from '@/components/common/SearchLoadingOverlay';
 import { useSessionStore, type Theme } from '@/stores/sessionStore';
@@ -57,6 +59,11 @@ export function ThemePage({ theme }: ThemePageProps) {
     showBottomSheet,
     setShowBottomSheet,
     selectedFilters,
+    mobileViewMode,
+    setMobileViewMode,
+    selectedVenue,
+    setSelectedVenue,
+    setHighlightedVenueId,
   } = useSessionStore();
 
   const [error, setError] = useState<string | null>(null);
@@ -213,20 +220,64 @@ export function ThemePage({ theme }: ThemePageProps) {
           </div>
         </div>
 
-        {/* Map Container */}
-        <div className="flex-1 relative min-h-[400px] lg:min-h-0">
-          <MapContainer theme={theme} />
+        {/* Map Container - Normal flow on desktop, conditionally full screen on mobile */}
+        <div className={clsx(
+          'flex-1 relative lg:min-h-0 min-h-[400px]',
+          // Hide on mobile when in map mode (we show full screen map separately)
+          mobileViewMode === 'map' && searchResults.length > 0 && 'hidden lg:block'
+        )}>
+          <MapContainer theme={theme} showZoomControls={false} />
         </div>
       </div>
 
-      {/* Results Bottom Sheet (Mobile) */}
+      {/* Full Screen Map (Mobile only - when in map mode) */}
+      <AnimatePresence>
+        {mobileViewMode === 'map' && searchResults.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="lg:hidden fixed inset-0 z-40 bg-white"
+          >
+            <MapContainer theme={theme} showZoomControls={true} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Results Bottom Sheet (Mobile) - Only show in list mode */}
       <BottomSheet
-        isOpen={showBottomSheet && searchResults.length > 0}
+        isOpen={showBottomSheet && searchResults.length > 0 && mobileViewMode === 'list'}
         onClose={() => setShowBottomSheet(false)}
         theme={theme}
       >
         <ResultsList theme={theme} />
       </BottomSheet>
+
+      {/* Map/List Toggle FAB (Mobile only) */}
+      <MapListToggle theme={theme} />
+
+      {/* Venue Preview Card (Mobile map view only) */}
+      <AnimatePresence>
+        {selectedVenue && mobileViewMode === 'map' && (
+          <VenuePreviewCard
+            result={searchResults.find((r) => r.venue.id === selectedVenue.id)!}
+            theme={theme}
+            onTap={() => {
+              // Switch to list view and highlight the venue
+              setHighlightedVenueId(selectedVenue.id);
+              setMobileViewMode('list');
+              setShowBottomSheet(true);
+              setSelectedVenue(null);
+            }}
+            onDirections={() => {
+              window.open(
+                `https://www.google.com/maps/dir/?api=1&destination=${selectedVenue.coordinates.lat},${selectedVenue.coordinates.lng}&travelmode=transit`,
+                '_blank'
+              );
+            }}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Results Panel (Desktop) */}
       <AnimatePresence>

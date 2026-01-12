@@ -23,6 +23,7 @@ interface VenueCardProps {
   locations: Location[];
   theme: Theme;
   rank: number;
+  isHighlighted?: boolean;
 }
 
 const themeConfig = {
@@ -49,7 +50,7 @@ const fallbackImages: Record<Theme, string> = {
   kids: '/images/fallback-kids.svg',
 };
 
-export function VenueCard({ result, locations, theme, rank }: VenueCardProps) {
+export function VenueCard({ result, locations, theme, rank, isHighlighted = false }: VenueCardProps) {
   const t = useTranslations();
   const config = themeConfig[theme];
   const [expanded, setExpanded] = useState(false);
@@ -84,7 +85,10 @@ export function VenueCard({ result, locations, theme, rank }: VenueCardProps) {
     : null;
 
   return (
-    <div className="card overflow-hidden">
+    <div className={clsx(
+      'card overflow-hidden transition-all duration-300',
+      isHighlighted && 'ring-2 ring-offset-2 ring-amber-400 animate-pulse'
+    )}>
       {/* Image */}
       <div className="relative h-32 sm:h-40 bg-neutral-200 overflow-hidden">
         {hasValidPhoto ? (

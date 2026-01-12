@@ -212,11 +212,17 @@ interface SessionState {
   selectedVenue: Venue | null;
   setSelectedVenue: (venue: Venue | null) => void;
 
+  // Highlighted venue (for scroll-to animation)
+  highlightedVenueId: string | null;
+  setHighlightedVenueId: (id: string | null) => void;
+
   // UI State
   showBottomSheet: boolean;
   setShowBottomSheet: (show: boolean) => void;
   bottomSheetHeight: 'collapsed' | 'half' | 'full';
   setBottomSheetHeight: (height: 'collapsed' | 'half' | 'full') => void;
+  mobileViewMode: 'list' | 'map';
+  setMobileViewMode: (mode: 'list' | 'map') => void;
 
   // Reset
   resetSearch: () => void;
@@ -314,19 +320,27 @@ export const useSessionStore = create<SessionState>()(
       selectedVenue: null,
       setSelectedVenue: (selectedVenue) => set({ selectedVenue }),
 
+      // Highlighted venue
+      highlightedVenueId: null,
+      setHighlightedVenueId: (highlightedVenueId) => set({ highlightedVenueId }),
+
       // UI State
       showBottomSheet: false,
       setShowBottomSheet: (showBottomSheet) => set({ showBottomSheet }),
       bottomSheetHeight: 'half',
       setBottomSheetHeight: (bottomSheetHeight) => set({ bottomSheetHeight }),
+      mobileViewMode: 'list',
+      setMobileViewMode: (mobileViewMode) => set({ mobileViewMode }),
 
       // Reset
       resetSearch: () =>
         set({
           searchResults: [],
           selectedVenue: null,
+          highlightedVenueId: null,
           relaxedVariance: null,
           showBottomSheet: false,
+          mobileViewMode: 'list',
         }),
       resetAll: () =>
         set({
@@ -334,10 +348,12 @@ export const useSessionStore = create<SessionState>()(
           locations: [],
           searchResults: [],
           selectedVenue: null,
+          highlightedVenueId: null,
           relaxedVariance: null,
           isSearching: false,
           showBottomSheet: false,
           bottomSheetHeight: 'half',
+          mobileViewMode: 'list',
           selectedFilters: initialFilters,
         }),
     }),

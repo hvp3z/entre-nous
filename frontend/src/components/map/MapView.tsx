@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useSessionStore, type Theme } from '@/stores/sessionStore';
@@ -38,6 +38,19 @@ const themeColors = {
   kids: '#a65d3f',      // brique
 };
 
+// Component to handle map click events (close preview when clicking on map)
+function MapClickHandler() {
+  const { setSelectedVenue } = useSessionStore();
+  
+  useMapEvents({
+    click: () => {
+      setSelectedVenue(null);
+    },
+  });
+
+  return null;
+}
+
 // Component to fit bounds when locations change
 function MapBoundsHandler() {
   const map = useMap();
@@ -67,9 +80,10 @@ function MapBoundsHandler() {
 
 interface MapViewProps {
   theme: Theme;
+  showZoomControls?: boolean;
 }
 
-export function MapView({ theme }: MapViewProps) {
+export function MapView({ theme, showZoomControls = false }: MapViewProps) {
   const { locations, searchResults, setSelectedVenue } = useSessionStore();
   const themeColor = themeColors[theme];
 
@@ -131,12 +145,13 @@ export function MapView({ theme }: MapViewProps) {
       center={defaultCenter}
       zoom={12}
       className="w-full h-full z-0"
-      zoomControl={false}
+      zoomControl={showZoomControls}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
       />
+      <MapClickHandler />
       <MapBoundsHandler />
       {locationMarkers}
       {venueMarkers}

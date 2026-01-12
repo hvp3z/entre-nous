@@ -17,9 +17,10 @@ const MapView = dynamic(() => import('./MapView').then(mod => mod.MapView), {
 
 interface MapContainerProps {
   theme: Theme;
+  showZoomControls?: boolean;
 }
 
-export function MapContainer({ theme }: MapContainerProps) {
+export function MapContainer({ theme, showZoomControls = false }: MapContainerProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -34,6 +35,6 @@ export function MapContainer({ theme }: MapContainerProps) {
     );
   }
 
-  return <MapView theme={theme} />;
+  return <MapView theme={theme} showZoomControls={showZoomControls} />;
 }
 
