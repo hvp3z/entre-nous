@@ -53,7 +53,12 @@ export function VenueCard({ result, locations, theme, rank }: VenueCardProps) {
   const t = useTranslations();
   const config = themeConfig[theme];
   const [expanded, setExpanded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const { venue, travelTimes, averageTravelTime, variance } = result;
+  
+  // Determine if we should use fallback image
+  const hasValidPhoto = venue.photos.length > 0 && venue.photos[0] && !imageError;
+  const imageSrc = hasValidPhoto ? venue.photos[0] : fallbackImages[theme];
 
   const handleShare = async () => {
     const shareData = {
@@ -81,14 +86,24 @@ export function VenueCard({ result, locations, theme, rank }: VenueCardProps) {
   return (
     <div className="card overflow-hidden">
       {/* Image */}
-      <div className="relative h-32 sm:h-40 bg-neutral-200">
-        <Image
-          src={venue.photos[0] || fallbackImages[theme]}
-          alt={venue.name}
-          fill
-          className="object-cover"
-          unoptimized={venue.photos.length > 0} // Only unoptimize Google Places photos
-        />
+      <div className="relative h-32 sm:h-40 bg-neutral-200 overflow-hidden">
+        {hasValidPhoto ? (
+          <Image
+            src={imageSrc}
+            alt={venue.name}
+            fill
+            className="object-cover"
+            unoptimized // Google Places photos don't work well with Next.js optimization
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={imageSrc}
+            alt={venue.name}
+            className="w-full h-full object-cover"
+          />
+        )}
         <div className="absolute top-3 left-3">
           <span className={clsx('px-2.5 py-1 rounded-full text-sm font-medium', config.badge)}>
             #{rank}
