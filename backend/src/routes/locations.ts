@@ -57,7 +57,7 @@ router.get('/autocomplete', async (req, res) => {
       q: input,
       lat: '48.8566',  // Paris center bias
       lon: '2.3522',
-      limit: '8',  // Request more to compensate for filtering
+      limit: '12',  // Request more to compensate for filtering and prioritization
       lang: 'fr',
       bbox: `${IDF_BOUNDS.minLng},${IDF_BOUNDS.minLat},${IDF_BOUNDS.maxLng},${IDF_BOUNDS.maxLat}`,
     });
@@ -70,14 +70,33 @@ router.get('/autocomplete', async (req, res) => {
 
     const data = await response.json() as PhotonResponse;
     
-    // Filter results to ensure they are within Île-de-France bounds
-    const filteredFeatures = (data.features || []).filter((feature: PhotonFeature) => {
+    // Filter results to ensure they are within Île-de-France bounds and prepare for sorting
+    const featuresWithScore = (data.features || []).filter((feature: PhotonFeature) => {
       const [lng, lat] = feature.geometry.coordinates;
       return lat >= IDF_BOUNDS.minLat && lat <= IDF_BOUNDS.maxLat &&
              lng >= IDF_BOUNDS.minLng && lng <= IDF_BOUNDS.maxLng;
-    }).slice(0, 5);
+    }).map((feature: PhotonFeature) => {
+      const props = feature.properties;
+      // Score: prioritize addresses with house numbers and street names
+      let score = 0;
+      if (props.housenumber && props.street) {
+        score = 100; // Highest priority: full address with number
+      } else if (props.street) {
+        score = 50; // Medium priority: street name only
+      } else if (props.name) {
+        score = 30; // Lower priority: place name only
+      }
+      
+      return { feature, score };
+    });
     
-    const predictions = filteredFeatures.map((feature: PhotonFeature) => {
+    // Sort by score (highest first), then take top results
+    const sortedFeatures = featuresWithScore
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8) // Return up to 8 results
+      .map(({ feature }) => feature);
+    
+    const predictions = sortedFeatures.map((feature: PhotonFeature) => {
       const props = feature.properties;
       const parts = [];
       

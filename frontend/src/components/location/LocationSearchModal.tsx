@@ -66,7 +66,7 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
     }
   }, [isOpen]);
 
-  // Search for suggestions (hybrid: stations + places)
+  // Search for suggestions (hybrid: stations first when they match, then addresses)
   const searchSuggestions = useCallback(async (query: string) => {
     if (query.length < 2) {
       setSuggestions([]);
@@ -74,8 +74,9 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
     }
 
     setError(null);
+    setIsLoading(true);
 
-    // Search stations locally (instant)
+    // Search stations locally first (instant, strict filtering)
     const stationResults = searchStations(query, 5);
     const stationSuggestions: AutocompleteResult[] = stationResults.map(station => ({
       placeId: `station-${station.id}`,
@@ -87,28 +88,25 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
       station,
     }));
 
-    // Show station results immediately
-    setSuggestions(stationSuggestions);
-
-    // Then search Google Places (async)
-    setIsLoading(true);
+    // Search addresses (async)
+    let placeSuggestions: AutocompleteResult[] = [];
     try {
       const placeResults = await searchLocations(query, sessionTokenRef.current);
-      const placeSuggestions: AutocompleteResult[] = placeResults.map(place => ({
+      placeSuggestions = placeResults.map(place => ({
         ...place,
         type: 'place' as const,
       }));
-      
-      // Combine: stations first, then places
-      setSuggestions([...stationSuggestions, ...placeSuggestions]);
     } catch (err) {
-      // Keep station results even if Google Places fails
+      console.error('Failed to search addresses:', err);
       if (stationSuggestions.length === 0) {
         setError(t('location.searchError'));
       }
-    } finally {
-      setIsLoading(false);
     }
+    
+    // Combine: stations first (they match exactly), then addresses
+    // This way, when a user types an exact station name, it appears first
+    setSuggestions([...stationSuggestions, ...placeSuggestions]);
+    setIsLoading(false);
   }, [t]);
 
   // Debounced input handler

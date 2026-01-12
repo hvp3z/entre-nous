@@ -375,41 +375,68 @@ function normalizeString(str: string): string {
     .replace(/['-]/g, ' ');
 }
 
+// Common words to ignore for partial matching (to avoid false positives)
+const COMMON_STREET_WORDS = new Set(['rue', 'avenue', 'boulevard', 'place', 'avenue', 'chemin', 'route', 'impasse', 'passage']);
+
+// Check if query contains a street number (starts with digits)
+function hasStreetNumber(query: string): boolean {
+  return /^\d+/.test(query.trim());
+}
+
 // Search stations by name
 export function searchStations(query: string, limit: number = 5): Station[] {
   if (!query || query.length < 2) return [];
   
   const normalizedQuery = normalizeString(query);
   const queryWords = normalizedQuery.split(/\s+/).filter(w => w.length > 0);
+  const hasNumber = hasStreetNumber(query);
   
   // Score each station
   const scored = stations.map(station => {
     const normalizedName = normalizeString(station.name);
     let score = 0;
     
-    // Exact match gets highest score
+    // Exact match gets highest score (always passes, even with numbers)
     if (normalizedName === normalizedQuery) {
       score = 100;
     }
-    // Starts with query
+    // Starts with query (always passes, even with numbers)
     else if (normalizedName.startsWith(normalizedQuery)) {
       score = 80;
     }
-    // All query words found
+    // All query words found (excluding common street words)
     else if (queryWords.every(word => normalizedName.includes(word))) {
-      score = 60;
+      const significantWords = queryWords.filter(w => !COMMON_STREET_WORDS.has(w) && w.length >= 4);
+      if (significantWords.length > 0 && significantWords.every(word => normalizedName.includes(word))) {
+        score = 60;
+      } else if (queryWords.length === 1 && COMMON_STREET_WORDS.has(queryWords[0])) {
+        // Don't score if query is just a common word (unless it's an exact match)
+        score = 0;
+      } else {
+        score = 30; // Lower score if only matching common words
+      }
     }
-    // Any word starts with query
-    else if (normalizedName.split(/\s+/).some(word => word.startsWith(normalizedQuery))) {
+    // Any word starts with query (only if query is long enough)
+    else if (normalizedQuery.length >= 4 && normalizedName.split(/\s+/).some(word => word.startsWith(normalizedQuery))) {
       score = 40;
     }
-    // Contains query
-    else if (normalizedName.includes(normalizedQuery)) {
+    // Contains query (only if query is long enough and not a common word)
+    else if (normalizedQuery.length >= 4 && !COMMON_STREET_WORDS.has(normalizedQuery) && normalizedName.includes(normalizedQuery)) {
       score = 20;
     }
-    // Partial match on any word
-    else if (queryWords.some(word => normalizedName.includes(word) && word.length >= 3)) {
+    // Partial match on any word (exclude common words and require minimum length)
+    else if (queryWords.some(word => {
+      const isCommon = COMMON_STREET_WORDS.has(word);
+      const isLongEnough = word.length >= 4;
+      return !isCommon && isLongEnough && normalizedName.includes(word);
+    })) {
       score = 10;
+    }
+    
+    // If query contains a street number, only show exact or very strong matches (score >= 60)
+    // But exact matches (100) and starts-with matches (80) always pass (they're already >= 60)
+    if (hasNumber && score < 60) {
+      score = 0;
     }
     
     return { station, score };
