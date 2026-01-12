@@ -13,6 +13,7 @@ import { MapContainer } from '@/components/map/MapContainer';
 import { ResultsList } from '@/components/results/ResultsList';
 import { BottomSheet } from '@/components/results/BottomSheet';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
+import { SearchLoadingOverlay } from '@/components/common/SearchLoadingOverlay';
 import { useSessionStore, type Theme } from '@/stores/sessionStore';
 import { searchEquidistant } from '@/lib/api';
 
@@ -246,6 +247,9 @@ export function ThemePage({ theme }: ThemePageProps) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Full-screen Search Loading Overlay */}
+      <SearchLoadingOverlay isVisible={isSearching} />
     </div>
   );
 }
