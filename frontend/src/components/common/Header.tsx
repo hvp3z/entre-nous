@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useState } from 'react';
-import { Menu, X, Globe, Home, Wine, UtensilsCrossed, Baby } from 'lucide-react';
+import { Menu, X, Globe, Home, Wine, UtensilsCrossed, Coffee, Baby } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { LeMiddleLogo } from './LeMiddleLogo';
@@ -19,6 +19,7 @@ export function Header() {
     { href: '/', icon: Home, label: t('nav.home') },
     { href: '/bars', icon: Wine, label: t('nav.bars') },
     { href: '/restaurants', icon: UtensilsCrossed, label: t('nav.restaurants') },
+    { href: '/cafes', icon: Coffee, label: t('nav.cafes') },
     { href: '/kids', icon: Baby, label: t('nav.kids') },
   ];
 

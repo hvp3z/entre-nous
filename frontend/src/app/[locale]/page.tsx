@@ -13,7 +13,7 @@ export default function HomePage() {
   const router = useRouter();
   const setTheme = useSessionStore((state) => state.setTheme);
 
-  const handleThemeSelect = (theme: 'bars' | 'restaurants' | 'kids') => {
+  const handleThemeSelect = (theme: 'bars' | 'restaurants' | 'cafes' | 'kids') => {
     setTheme(theme);
     router.push(`/${theme}`);
   };
@@ -36,6 +36,15 @@ export default function HomePage() {
       borderColor: 'border-neutral-200 hover:border-restaurants-300',
       iconColor: 'text-restaurants-500',
       btnClass: 'btn-restaurants',
+    },
+    {
+      id: 'cafes' as const,
+      icon: Coffee,
+      gradient: 'gradient-cafes',
+      hoverBg: 'hover:bg-cafes-50',
+      borderColor: 'border-neutral-200 hover:border-cafes-300',
+      iconColor: 'text-cafes-500',
+      btnClass: 'btn-cafes',
     },
     {
       id: 'kids' as const,
@@ -149,7 +158,7 @@ export default function HomePage() {
       {/* Theme Cards */}
       <section className="px-4 py-12 sm:py-16 -mt-8 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {themes.map((theme, index) => {
               const Icon = theme.icon;
               return (

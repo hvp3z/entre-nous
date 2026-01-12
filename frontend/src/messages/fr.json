@@ -17,6 +17,7 @@
     "home": "Accueil",
     "bars": "Bars",
     "restaurants": "Restaurants",
+    "cafes": "Cafés",
     "kids": "Sorties en famille",
     "language": "Langue"
   },
@@ -32,6 +33,12 @@
       "subtitle": "Dîner ensemble",
       "description": "Découvrez le restaurant parfait pour votre groupe",
       "cta": "Trouver un restaurant"
+    },
+    "cafes": {
+      "title": "Cafés",
+      "subtitle": "Pause café entre amis",
+      "description": "Trouvez le café idéal pour un moment convivial",
+      "cta": "Trouver un café"
     },
     "kids": {
       "title": "En famille",
@@ -98,7 +105,7 @@
     "step1Title": "Ajoutez vos adresses",
     "step1Desc": "Entrez les points de départ de chaque participant (2 à 6 personnes)",
     "step2Title": "Choisissez votre activité",
-    "step2Desc": "Bar, restaurant ou sortie en famille",
+    "step2Desc": "Bar, restaurant, café ou sortie en famille",
     "step3Title": "Découvrez les résultats",
     "step3Desc": "Des lieux équidistants en métro pour tout le monde"
   },
@@ -181,6 +188,18 @@
       "japanese": "Japonais",
       "turkish": "Turc / Libanais",
       "african": "Africain"
+    },
+    "cafes": {
+      "category": "Type de café",
+      "specialty": "Café de spécialité",
+      "tearoom": "Salon de thé",
+      "brunch": "Brunch",
+      "coworking": "Café coworking",
+      "pastry": "Pâtisserie",
+      "ambiance": "Ambiance",
+      "cozy": "Calme & Cosy",
+      "lively": "Animé & Social",
+      "terrace": "Terrasse"
     },
     "kids": {
       "category": "Type de sortie",

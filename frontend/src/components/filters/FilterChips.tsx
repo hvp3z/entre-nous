@@ -35,6 +35,15 @@ const themeStyles = {
     activeBorder: 'border-restaurants-500',
     groupLabel: 'text-restaurants-600',
   },
+  cafes: {
+    activeBg: 'bg-cafes-500',
+    activeText: 'text-white',
+    inactiveBg: 'bg-white',
+    inactiveText: 'text-neutral-700',
+    border: 'border-cafes-200',
+    activeBorder: 'border-cafes-500',
+    groupLabel: 'text-cafes-600',
+  },
   kids: {
     activeBg: 'bg-kids-500',
     activeText: 'text-white',

@@ -17,6 +17,7 @@
     "home": "Home",
     "bars": "Bars",
     "restaurants": "Restaurants",
+    "cafes": "Cafés",
     "kids": "Family outings",
     "language": "Language"
   },
@@ -32,6 +33,12 @@
       "subtitle": "Dine together",
       "description": "Discover the perfect restaurant for your group",
       "cta": "Find a restaurant"
+    },
+    "cafes": {
+      "title": "Cafés",
+      "subtitle": "Coffee break with friends",
+      "description": "Find the perfect café for a cozy moment",
+      "cta": "Find a café"
     },
     "kids": {
       "title": "Family",
@@ -98,7 +105,7 @@
     "step1Title": "Add your addresses",
     "step1Desc": "Enter starting points for each participant (2 to 6 people)",
     "step2Title": "Choose your activity",
-    "step2Desc": "Bar, restaurant or family outing",
+    "step2Desc": "Bar, restaurant, café or family outing",
     "step3Title": "Discover results",
     "step3Desc": "Equidistant places by metro for everyone"
   },
@@ -181,6 +188,18 @@
       "japanese": "Japanese",
       "turkish": "Turkish / Lebanese",
       "african": "African"
+    },
+    "cafes": {
+      "category": "Café type",
+      "specialty": "Specialty coffee",
+      "tearoom": "Tea room",
+      "brunch": "Brunch",
+      "coworking": "Coworking café",
+      "pastry": "Pastry & Bakery",
+      "ambiance": "Ambiance",
+      "cozy": "Quiet & Cozy",
+      "lively": "Lively & Social",
+      "terrace": "Terrace"
     },
     "kids": {
       "category": "Activity type",

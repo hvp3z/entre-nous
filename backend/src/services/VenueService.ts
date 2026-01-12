@@ -33,6 +33,11 @@ const THEME_CONFIG = {
     keywords: ['bistro', 'brasserie', 'restaurant'],
     minRating: 4.0
   },
+  cafes: {
+    type: 'cafe' as PlaceType1,
+    keywords: ['coffee shop', 'specialty coffee', 'tea room', 'brunch'],
+    minRating: 4.0
+  },
   kids: {
     type: 'park' as PlaceType1,
     keywords: ['family', 'children', 'playground', 'museum', 'parc'],

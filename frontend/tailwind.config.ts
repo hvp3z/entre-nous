@@ -41,6 +41,19 @@ const config: Config = {
           800: '#754424',
           900: '#58331b',
         },
+        // Cafes theme - Caramel/Coffee (brun café chaleureux)
+        cafes: {
+          50: '#faf7f5',
+          100: '#f5ede7',
+          200: '#e9d8cc',
+          300: '#d9bda8',
+          400: '#c49a7a',
+          500: '#8b5a2b',
+          600: '#7d5127',
+          700: '#694421',
+          800: '#54371a',
+          900: '#3f2914',
+        },
         // Kids theme - Brique (chaleureux, doux)
         kids: {
           50: '#faf6f4',

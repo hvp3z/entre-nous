@@ -83,6 +83,11 @@
            shadow-lg shadow-restaurants-500/25;
   }
 
+  .btn-cafes {
+    @apply btn bg-cafes-500 text-white hover:bg-cafes-600 
+           shadow-lg shadow-cafes-500/25;
+  }
+
   .btn-kids {
     @apply btn bg-kids-500 text-white hover:bg-kids-600 
            shadow-lg shadow-kids-500/25;
@@ -129,6 +134,10 @@
 
   .gradient-restaurants {
     @apply bg-gradient-to-br from-restaurants-400 via-restaurants-500 to-restaurants-600;
+  }
+
+  .gradient-cafes {
+    @apply bg-gradient-to-br from-cafes-400 via-cafes-500 to-cafes-600;
   }
 
   .gradient-kids {

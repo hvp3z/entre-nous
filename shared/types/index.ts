@@ -21,7 +21,7 @@ export interface Station {
 }
 
 // Theme types
-export type Theme = 'bars' | 'restaurants' | 'kids';
+export type Theme = 'bars' | 'restaurants' | 'cafes' | 'kids';
 
 export interface ThemeConfig {
   id: Theme;
@@ -131,7 +131,7 @@ export interface SessionState {
 }
 
 // Filter types
-export type FilterGroupType = 'category' | 'cuisine' | 'age' | 'weather' | 'price';
+export type FilterGroupType = 'category' | 'cuisine' | 'age' | 'weather' | 'price' | 'ambiance';
 
 export interface FilterOption {
   id: string;
@@ -217,6 +217,47 @@ export const RESTAURANTS_FILTERS: ThemeFiltersConfig = {
   ],
 };
 
+export const CAFES_FILTERS: ThemeFiltersConfig = {
+  groups: [
+    {
+      id: 'cafes-category',
+      type: 'category',
+      labelKey: 'filters.cafes.category',
+      multiSelect: true,
+      options: [
+        { id: 'specialty', labelKey: 'filters.cafes.specialty', keywords: ['specialty coffee', 'third wave', 'coffee shop', 'café de spécialité', 'torréfacteur'] },
+        { id: 'tearoom', labelKey: 'filters.cafes.tearoom', keywords: ['tea room', 'salon de thé', 'tea house', 'thé'] },
+        { id: 'brunch', labelKey: 'filters.cafes.brunch', keywords: ['brunch', 'breakfast', 'petit-déjeuner', 'brunch spot'] },
+        { id: 'coworking', labelKey: 'filters.cafes.coworking', keywords: ['laptop friendly', 'coworking', 'work cafe', 'wifi', 'travail'] },
+        { id: 'pastry', labelKey: 'filters.cafes.pastry', keywords: ['bakery', 'pâtisserie', 'pastry', 'boulangerie', 'viennoiserie'] },
+      ],
+    },
+    {
+      id: 'cafes-ambiance',
+      type: 'ambiance',
+      labelKey: 'filters.cafes.ambiance',
+      multiSelect: false,
+      options: [
+        { id: 'cozy', labelKey: 'filters.cafes.cozy', keywords: ['cozy', 'quiet', 'calm', 'cosy', 'calme', 'studieux'] },
+        { id: 'lively', labelKey: 'filters.cafes.lively', keywords: ['lively', 'social', 'animé', 'convivial', 'bustling'] },
+        { id: 'terrace', labelKey: 'filters.cafes.terrace', keywords: ['terrace', 'terrasse', 'outdoor seating', 'extérieur', 'patio'] },
+      ],
+    },
+    {
+      id: 'cafes-price',
+      type: 'price',
+      labelKey: 'filters.price.title',
+      multiSelect: false,
+      options: [
+        { id: 'price-1', labelKey: 'filters.price.cheap', keywords: [] },
+        { id: 'price-2', labelKey: 'filters.price.moderate', keywords: [] },
+        { id: 'price-3', labelKey: 'filters.price.expensive', keywords: [] },
+        { id: 'price-4', labelKey: 'filters.price.veryExpensive', keywords: [] },
+      ],
+    },
+  ],
+};
+
 export const KIDS_FILTERS: ThemeFiltersConfig = {
   groups: [
     {
@@ -279,6 +320,7 @@ export const KIDS_FILTERS: ThemeFiltersConfig = {
 export const THEME_FILTERS: Record<Theme, ThemeFiltersConfig> = {
   bars: BARS_FILTERS,
   restaurants: RESTAURANTS_FILTERS,
+  cafes: CAFES_FILTERS,
   kids: KIDS_FILTERS,
 };
 

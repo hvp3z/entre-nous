@@ -28,6 +28,11 @@ const themeConfig = {
     bgHover: 'hover:bg-kids-50',
     iconColor: 'group-hover:text-kids-500',
   },
+  cafes: { 
+    borderHover: 'hover:border-cafes-400 hover:text-cafes-600',
+    bgHover: 'hover:bg-cafes-50',
+    iconColor: 'group-hover:text-cafes-500',
+  },
 };
 
 export function LocationInput({ theme }: LocationInputProps) {

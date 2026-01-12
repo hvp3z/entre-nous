@@ -36,6 +36,12 @@ const themeConfig = {
     accentColor: 'text-restaurants-500',
     bgColor: 'bg-restaurants-50',
   },
+  cafes: {
+    gradient: 'gradient-cafes',
+    btnClass: 'btn-cafes',
+    accentColor: 'text-cafes-500',
+    bgColor: 'bg-cafes-50',
+  },
   kids: {
     gradient: 'gradient-kids',
     btnClass: 'btn-kids',
