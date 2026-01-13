@@ -42,10 +42,10 @@ router.post('/search', async (req, res) => {
       });
     }
 
-    if (!theme || !['bars', 'restaurants', 'kids'].includes(theme)) {
+    if (!theme || !['bars', 'restaurants', 'cafes', 'kids'].includes(theme)) {
       return res.status(400).json({ 
         success: false, 
-        error: 'Invalid theme. Must be bars, restaurants, or kids' 
+        error: 'Invalid theme. Must be bars, restaurants, cafes, or kids' 
       });
     }
 
