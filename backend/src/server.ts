@@ -33,52 +33,27 @@ const allowedOrigins = [
   process.env.FRONTEND_URL
 ].filter(Boolean) as string[];
 
-// #region agent log
-console.log('[DEBUG-STARTUP] CORS config:', { isProduction, allowedOrigins, FRONTEND_URL: process.env.FRONTEND_URL });
-// #endregion
-
 // Apply rate limiter AFTER CORS for preflight requests
 app.use(cors({
   origin: (origin, callback) => {
-    // #region agent log
-    console.log('[DEBUG-CORS-H1H2H4] Origin check:', { origin, isProduction, allowedOrigins });
-    // #endregion
-    
     // Allow requests with no origin (like mobile apps or curl)
-    if (!origin) {
-      // #region agent log
-      console.log('[DEBUG-CORS] No origin, allowing');
-      // #endregion
-      return callback(null, true);
-    }
+    if (!origin) return callback(null, true);
     
     // Allow localhost in development
     if (!isProduction) {
-      // #region agent log
-      console.log('[DEBUG-CORS] Dev mode, allowing');
-      // #endregion
       return callback(null, true);
     }
     
     // Check explicit allowed origins
     if (allowedOrigins.includes(origin)) {
-      // #region agent log
-      console.log('[DEBUG-CORS] Explicit origin match, allowing:', origin);
-      // #endregion
       return callback(null, true);
     }
     
     // Allow Vercel preview deployments (*.vercel.app)
     if (origin.endsWith('.vercel.app')) {
-      // #region agent log
-      console.log('[DEBUG-CORS] Vercel preview match, allowing');
-      // #endregion
       return callback(null, true);
     }
     
-    // #region agent log
-    console.warn('[DEBUG-CORS-H1] BLOCKED origin:', origin, 'Returning false instead of error');
-    // #endregion
     // Return false instead of throwing error to avoid 500
     callback(null, false);
   },
