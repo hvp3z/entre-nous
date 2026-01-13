@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
@@ -16,6 +16,8 @@ export default function HomePage() {
   const setTheme = useSessionStore((state) => state.setTheme);
   const theme = useSessionStore((state) => state.theme) || 'bars';
   const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const handleThemeSelect = (themeId: 'bars' | 'restaurants' | 'cafes' | 'kids') => {
     setTheme(themeId);
@@ -24,6 +26,62 @@ export default function HomePage() {
 
   const handleSearchClick = () => {
     setIsThemeModalOpen(true);
+  };
+
+  const steps = [
+    { icon: MapPin, titleKey: 'step1Title', descKey: 'step1Desc' },
+    { icon: Wine, titleKey: 'step2Title', descKey: 'step2Desc' },
+    { icon: Compass, titleKey: 'step3Title', descKey: 'step3Desc' },
+  ];
+
+  // Handle scroll to update active step indicator
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const handleScroll = () => {
+      const scrollLeft = carousel.scrollLeft;
+      const containerWidth = carousel.clientWidth;
+      const cardWidth = containerWidth * 0.88; // 88% width per card
+      const gap = 16; // gap-4 = 16px
+      const totalCardWidth = cardWidth + gap;
+      
+      // Calculate which card is most visible (centered)
+      // Add half of card width to center the calculation
+      const currentStep = Math.round((scrollLeft + cardWidth / 2) / totalCardWidth);
+      const clampedStep = Math.max(0, Math.min(currentStep, steps.length - 1));
+      setActiveStep(clampedStep);
+    };
+
+    // Use both scroll and scrollend events for better accuracy
+    carousel.addEventListener('scroll', handleScroll);
+    carousel.addEventListener('scrollend', handleScroll);
+    // Initial check
+    handleScroll();
+    
+    return () => {
+      carousel.removeEventListener('scroll', handleScroll);
+      carousel.removeEventListener('scrollend', handleScroll);
+    };
+  }, [steps.length]);
+
+  // Handle dot click to scroll to step
+  const handleDotClick = (index: number) => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const containerWidth = carousel.clientWidth;
+    const cardWidth = containerWidth * 0.90;
+    const gap = 16;
+    const scrollPosition = index * (cardWidth + gap);
+    
+    carousel.scrollTo({ 
+      left: scrollPosition, 
+      behavior: 'smooth' 
+    });
+    
+    // Update active step immediately for better UX
+    setActiveStep(index);
   };
 
   const themes = [
@@ -63,12 +121,6 @@ export default function HomePage() {
       iconColor: 'text-kids-500',
       btnClass: 'btn-kids',
     },
-  ];
-
-  const steps = [
-    { icon: MapPin, titleKey: 'step1Title', descKey: 'step1Desc' },
-    { icon: Wine, titleKey: 'step2Title', descKey: 'step2Desc' },
-    { icon: Compass, titleKey: 'step3Title', descKey: 'step3Desc' },
   ];
 
   return (
@@ -128,7 +180,70 @@ export default function HomePage() {
             {t('home.howItWorks')}
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {/* Mobile Carousel */}
+          <div className="md:hidden -mx-4">
+            <div
+              ref={carouselRef}
+              className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 pb-4 pl-4 pr-4"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch',
+                scrollSnapType: 'x mandatory',
+              }}
+            >
+              {steps.map((step, index) => {
+                const StepIcon = step.icon;
+                return (
+                  <motion.div
+                    key={step.titleKey}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="relative bg-white rounded-3xl p-6 shadow-sm border border-neutral-100 hover:shadow-md transition-shadow flex-shrink-0 w-[88%] snap-center"
+                    style={{
+                      scrollSnapAlign: 'center',
+                      scrollSnapStop: 'always',
+                    }}
+                  >
+                    
+                    {/* Icon */}
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-coral-500 flex items-center justify-center mb-4">
+                      <StepIcon className="w-7 h-7 text-white" />
+                    </div>
+                    
+                    {/* Title and description */}
+                    <h3 className="font-semibold text-[#1a1a1a] text-lg mb-2">
+                      {t(`home.${step.titleKey}`)}
+                    </h3>
+                    <p className="text-[#525252] text-sm">
+                      {t(`home.${step.descKey}`)}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+            
+            {/* Dot Indicators */}
+            <div className="flex justify-center gap-2 mt-4">
+              {steps.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleDotClick(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    activeStep === index
+                      ? 'bg-orange-500 w-8'
+                      : 'bg-neutral-300 hover:bg-neutral-400 w-2'
+                  }`}
+                  aria-label={`Go to step ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-3 gap-6 md:gap-8">
             {steps.map((step, index) => {
               const StepIcon = step.icon;
               return (
@@ -172,7 +287,7 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-display text-2xl sm:text-3xl font-semibold text-[#1a1a1a] mb-6 md:mb-8"
+            className="font-display text-2xl sm:text-3xl font-semibold text-center text-[#1a1a1a] mb-6 md:mb-8"
           >
             {t('home.exploreCategories')}
           </motion.h2>
