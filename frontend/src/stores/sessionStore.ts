@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 export type Theme = 'bars' | 'restaurants' | 'cafes' | 'kids';
 
 // Filter types (synced with shared/types)
-export type FilterGroupType = 'category' | 'cuisine' | 'age' | 'weather' | 'price' | 'ambiance';
+export type FilterGroupType = 'category' | 'cuisine' | 'age' | 'price';
 
 export interface FilterOption {
   id: string;
@@ -110,17 +110,6 @@ export const CAFES_FILTERS: ThemeFiltersConfig = {
       ],
     },
     {
-      id: 'cafes-ambiance',
-      type: 'ambiance',
-      labelKey: 'filters.cafes.ambiance',
-      multiSelect: false,
-      options: [
-        { id: 'cozy', labelKey: 'filters.cafes.cozy', keywords: ['cozy', 'quiet', 'calm', 'cosy', 'calme', 'studieux'] },
-        { id: 'lively', labelKey: 'filters.cafes.lively', keywords: ['lively', 'social', 'animé', 'convivial', 'bustling'] },
-        { id: 'terrace', labelKey: 'filters.cafes.terrace', keywords: ['terrace', 'terrasse', 'outdoor seating', 'extérieur', 'patio'] },
-      ],
-    },
-    {
       id: 'cafes-price',
       type: 'price',
       labelKey: 'filters.price.title',
@@ -178,16 +167,6 @@ export const KIDS_FILTERS: ThemeFiltersConfig = {
         { id: 'age-0-3', labelKey: 'filters.kids.age03', keywords: ['toddler', 'bébé', 'tout-petit'] },
         { id: 'age-4-7', labelKey: 'filters.kids.age47', keywords: ['children', 'enfant', 'kids'] },
         { id: 'age-8-12', labelKey: 'filters.kids.age812', keywords: ['pre-teen', 'junior', 'grand enfant'] },
-      ],
-    },
-    {
-      id: 'kids-weather',
-      type: 'weather',
-      labelKey: 'filters.kids.weather',
-      multiSelect: false,
-      options: [
-        { id: 'indoor', labelKey: 'filters.kids.indoor', keywords: ['indoor', 'intérieur', 'covered'] },
-        { id: 'outdoor', labelKey: 'filters.kids.outdoor', keywords: ['outdoor', 'extérieur', 'plein air', 'garden'] },
       ],
     },
   ],
