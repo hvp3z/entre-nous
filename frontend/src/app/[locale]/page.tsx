@@ -64,7 +64,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#fafafa]">
+    <div className="min-h-screen bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6]">
       <Header />
 
       {/* Hero Section */}
@@ -103,14 +103,14 @@ export default function HomePage() {
           <svg viewBox="0 0 1440 120" fill="none" className="w-full h-auto">
             <path
               d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z"
-              fill="#fafafa"
+              fill="#F9FAFB"
             />
           </svg>
         </div>
       </section>
 
       {/* How it Works */}
-      <section className="px-4 py-6 sm:py-12 bg-white">
+      <section className="px-4 py-6 sm:py-12 bg-[#FEFEFE]">
         <div className="max-w-4xl mx-auto">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -237,7 +237,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="px-4 py-8 border-t border-neutral-200 bg-white">
+      <footer className="px-4 py-8 border-t border-neutral-200 bg-[#FEFEFE]">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[#525252] text-sm">
             {t('common.appName')} - {t('common.tagline')}

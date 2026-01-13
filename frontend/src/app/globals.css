@@ -11,6 +11,8 @@
   --editorial-black: #1a1a1a;
   --editorial-white: #fafafa;
   --editorial-gray: #525252;
+  --bg-gradient-start: #F9FAFB;
+  --bg-gradient-end: #F3F4F6;
 }
 
 @layer base {
@@ -22,7 +24,7 @@
 
   body {
     @apply antialiased;
-    background-color: var(--editorial-white);
+    background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     color: var(--editorial-black);
     min-height: 100dvh;
   }
@@ -198,6 +200,11 @@
   /* Smooth horizontal scroll for touch devices */
   .-webkit-overflow-scrolling-touch {
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Subtle gradient background utility */
+  .bg-subtle-gradient {
+    background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
   }
 }
 

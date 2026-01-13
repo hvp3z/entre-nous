@@ -14,6 +14,8 @@ const config: Config = {
           black: '#1a1a1a',
           white: '#fafafa',
           gray: '#525252',
+          surface: '#F9FAFB',
+          surfaceAlt: '#F3F4F6',
         },
         // Bars theme - Cognac (cuivre doré)
         bars: {
