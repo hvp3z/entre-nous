@@ -54,6 +54,7 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
   const inputRef = useRef<HTMLInputElement>(null);
   const sessionTokenRef = useRef<string>(uuidv4());
   const debounceRef = useRef<NodeJS.Timeout>();
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Reset state when modal opens
   useEffect(() => {
@@ -65,6 +66,13 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
+
+  // Scroll to top when suggestions change
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+  }, [suggestions]);
 
   // Search for suggestions (hybrid: stations first when they match, then addresses)
   const searchSuggestions = useCallback(async (query: string) => {
@@ -265,7 +273,7 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto">
+            <div ref={contentRef} className="flex-1 overflow-y-auto">
               {/* Geolocation Button */}
               <button
                 onClick={handleUseCurrentLocation}
