@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
-import { Wine, UtensilsCrossed, Baby, MapPin, Users, Navigation, Coffee, Heart } from 'lucide-react';
+import { Wine, UtensilsCrossed, Baby, MapPin, ArrowRight, Coffee, Heart, ChevronRight } from 'lucide-react';
 import { Header } from '@/components/common/Header';
 import { useSessionStore } from '@/stores/sessionStore';
 import { KOFI_URL } from '@/components/monetization/SupportBanner';
@@ -12,10 +12,16 @@ export default function HomePage() {
   const t = useTranslations();
   const router = useRouter();
   const setTheme = useSessionStore((state) => state.setTheme);
+  const theme = useSessionStore((state) => state.theme) || 'bars';
 
-  const handleThemeSelect = (theme: 'bars' | 'restaurants' | 'cafes' | 'kids') => {
-    setTheme(theme);
-    router.push(`/${theme}`);
+  const handleThemeSelect = (themeId: 'bars' | 'restaurants' | 'cafes' | 'kids') => {
+    setTheme(themeId);
+    router.push(`/${themeId}`);
+  };
+
+  const handleSearchClick = () => {
+    setTheme('bars');
+    router.push('/bars?openModal=true');
   };
 
   const themes = [
@@ -58,72 +64,68 @@ export default function HomePage() {
   ];
 
   const steps = [
-    { icon: MapPin, titleKey: 'step1Title', descKey: 'step1Desc' },
-    { icon: Users, titleKey: 'step2Title', descKey: 'step2Desc' },
-    { icon: Navigation, titleKey: 'step3Title', descKey: 'step3Desc' },
+    { image: '/images/step-locations.png', titleKey: 'step1Title', descKey: 'step1Desc' },
+    { image: '/images/step-activity.png', titleKey: 'step2Title', descKey: 'step2Desc' },
+    { image: '/images/step-discover.png', titleKey: 'step3Title', descKey: 'step3Desc' },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#FFFBF7] to-[#FEF3E7]">
+    <div className="min-h-screen bg-gradient-to-b from-[#FFFBF7] to-white">
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#1a1a1a]" />
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center" />
-        </div>
-        
-        <div className="relative px-4 py-16 sm:py-24 lg:py-32">
+      <section className="relative px-4 py-12 sm:py-16 lg:py-20">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1a1a1a] mb-4">
               {t('home.hero')}
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-400 max-w-2xl mx-auto text-balance">
+            <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto text-balance mb-8">
               {t('home.heroSub')}
             </p>
             
-            {/* Paris disclaimer badge */}
-            <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20">
-              <MapPin className="w-4 h-4 text-neutral-400" />
-              <span className="text-sm text-neutral-400">
-                {t('disclaimer.parisOnlyShort')}
-              </span>
-            </div>
+            {/* Search Input */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="max-w-2xl mx-auto"
+            >
+              <button
+                onClick={handleSearchClick}
+                className="w-full flex items-center gap-4 px-6 py-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 border border-neutral-200 hover:border-orange-300 group"
+              >
+                <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                <span className="flex-1 text-left text-neutral-500 group-hover:text-neutral-700">
+                  {t('home.searchPlaceholder')}
+                </span>
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-coral-500 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <ArrowRight className="w-5 h-5 text-white" />
+                </div>
+              </button>
+            </motion.div>
           </motion.div>
-        </div>
-
-        {/* Wave decoration */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" className="w-full h-auto">
-            <path
-              d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z"
-              fill="#F9FAFB"
-            />
-          </svg>
         </div>
       </section>
 
       {/* How it Works */}
-      <section className="px-4 py-6 sm:py-12 bg-[#FEFEFE]">
-        <div className="max-w-4xl mx-auto">
+      <section className="px-4 py-12 sm:py-16 bg-white">
+        <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-display text-2xl sm:text-3xl font-semibold text-center text-[#1a1a1a] mb-6 md:mb-12"
+            className="font-display text-2xl sm:text-3xl font-semibold text-center text-[#1a1a1a] mb-8 md:mb-12"
           >
             {t('home.howItWorks')}
           </motion.h2>
 
-          <div className="grid grid-cols-3 gap-2 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {steps.map((step, index) => {
-              const Icon = step.icon;
               return (
                 <motion.div
                   key={step.titleKey}
@@ -131,21 +133,27 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="text-center"
+                  className="relative bg-white rounded-3xl p-6 shadow-sm border border-neutral-100 hover:shadow-md transition-shadow"
                 >
-                  <div className="relative inline-flex mb-2 md:mb-4">
-                    <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-neutral-100 flex items-center justify-center">
-                      <Icon className="w-5 h-5 md:w-7 md:h-7 text-[#1a1a1a]" />
-                    </div>
-                    <span className="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#1a1a1a] 
-                                   text-white text-xs md:text-sm font-medium flex items-center justify-center">
-                      {index + 1}
-                    </span>
+                  {/* Step number badge */}
+                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-orange-500 text-white text-sm font-semibold flex items-center justify-center shadow-lg">
+                    {index + 1}
                   </div>
-                  <h3 className="font-semibold text-[#1a1a1a] text-xs md:text-base mb-1 md:mb-2">
-                    {t(`home.${step.titleKey}`)}
+                  
+                  {/* Illustration */}
+                  <div className="w-full h-48 mb-4 rounded-2xl bg-neutral-50 flex items-center justify-center overflow-hidden">
+                    <img
+                      src={step.image}
+                      alt={t(`home.${step.titleKey}`)}
+                      className="object-contain w-full h-full"
+                    />
+                  </div>
+                  
+                  {/* Title and description */}
+                  <h3 className="font-semibold text-[#1a1a1a] text-lg mb-2">
+                    {index + 1}. {t(`home.${step.titleKey}`)}
                   </h3>
-                  <p className="text-[#525252] text-sm hidden md:block">
+                  <p className="text-[#525252] text-sm">
                     {t(`home.${step.descKey}`)}
                   </p>
                 </motion.div>
@@ -155,43 +163,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Theme Cards */}
-      <section className="px-4 py-12 sm:py-16 -mt-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {themes.map((theme, index) => {
-              const Icon = theme.icon;
+      {/* Categories List */}
+      <section className="px-4 py-12 sm:py-16 bg-gradient-to-b from-white to-[#FFFBF7]">
+        <div className="max-w-2xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="font-display text-2xl sm:text-3xl font-semibold text-[#1a1a1a] mb-6 md:mb-8"
+          >
+            {t('home.exploreCategories')}
+          </motion.h2>
+
+          <div className="space-y-3">
+            {themes.map((themeItem, index) => {
+              const Icon = themeItem.icon;
               return (
                 <motion.div
-                  key={theme.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  key={themeItem.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <button
-                    onClick={() => handleThemeSelect(theme.id)}
-                    className={`card w-full p-6 text-left transition-all duration-300 
-                              ${theme.hoverBg} border ${theme.borderColor} group rounded-3xl`}
+                    onClick={() => handleThemeSelect(themeItem.id)}
+                    className="w-full flex items-center gap-4 px-6 py-4 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:shadow-md hover:border-orange-200 transition-all duration-200 group text-left"
                   >
-                    <div className={`w-14 h-14 rounded-3xl ${theme.gradient} 
-                                    flex items-center justify-center mb-4
+                    <div className={`w-12 h-12 rounded-2xl ${themeItem.gradient} 
+                                    flex items-center justify-center flex-shrink-0
                                     group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-7 h-7 text-white" />
+                      <Icon className="w-6 h-6 text-white" />
                     </div>
-                    
-                    <h2 className="font-display text-2xl font-semibold text-[#1a1a1a] mb-1">
-                      {t(`themes.${theme.id}.title`)}
-                    </h2>
-                    <p className={`text-sm font-medium ${theme.iconColor} mb-2`}>
-                      {t(`themes.${theme.id}.subtitle`)}
-                    </p>
-                    <p className="text-[#525252] text-sm mb-4">
-                      {t(`themes.${theme.id}.description`)}
-                    </p>
-                    
-                    <span className={`${theme.btnClass} w-full rounded-3xl`}>
-                      {t(`themes.${theme.id}.cta`)}
+                    <span className="flex-1 font-semibold text-[#1a1a1a] text-lg">
+                      {t(`themes.${themeItem.id}.title`)}
                     </span>
+                    <ChevronRight className="w-5 h-5 text-neutral-400 group-hover:text-orange-500 transition-colors flex-shrink-0" />
                   </button>
                 </motion.div>
               );
@@ -237,13 +244,14 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="px-4 py-8 border-t border-neutral-200 bg-[#FEFEFE]">
+      <footer className="px-4 py-8 border-t border-neutral-200 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[#525252] text-sm">
             {t('common.appName')} - {t('common.tagline')}
           </p>
         </div>
       </footer>
+
     </div>
   );
 }

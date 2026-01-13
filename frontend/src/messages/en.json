@@ -99,15 +99,17 @@
     "shareWith": "Share with friends"
   },
   "home": {
-    "hero": "Meet up",
-    "heroSub": "Find the ideal place where everyone can arrive easily",
+    "hero": "Meet up simply.",
+    "heroSub": "Find the ideal meeting point.",
     "howItWorks": "How it works",
-    "step1Title": "Add your addresses",
-    "step1Desc": "Enter starting points for each participant (2 to 6 people)",
-    "step2Title": "Choose your activity",
-    "step2Desc": "Bar, restaurant, café or family outing",
-    "step3Title": "Discover results",
-    "step3Desc": "Equidistant places by metro for everyone"
+    "step1Title": "Enter your starting points",
+    "step1Desc": "Indicate everyone's addresses.",
+    "step2Title": "Choose the activity",
+    "step2Desc": "Bar, restaurant, café... it's up to you to decide.",
+    "step3Title": "Let's go!",
+    "step3Desc": "Discover the perfect place.",
+    "searchPlaceholder": "Where are you?",
+    "exploreCategories": "Explore by category"
   },
   "legal": {
     "terms": "Terms of Service",

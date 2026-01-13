@@ -1,0 +1,21 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- White circular base -->
+  <circle cx="100" cy="100" r="80" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+  
+  <!-- Orange pin -->
+  <path d="M 60 80 L 60 140 L 80 140 L 100 160 L 120 140 L 140 140 L 140 80 L 100 40 Z" fill="#F97316" opacity="0.9"/>
+  <circle cx="100" cy="90" r="15" fill="white"/>
+  
+  <!-- Yellow pin -->
+  <path d="M 100 60 L 100 120 L 115 120 L 130 135 L 145 120 L 160 120 L 160 60 L 130 30 Z" fill="#FCD34D" opacity="0.9" transform="translate(-20, -10)"/>
+  <circle cx="130" cy="70" r="12" fill="white" transform="translate(-20, -10)"/>
+  
+  <!-- Purple pin -->
+  <path d="M 40 100 L 40 160 L 60 160 L 80 180 L 100 160 L 120 160 L 120 100 L 80 60 Z" fill="#A78BFA" opacity="0.9" transform="translate(20, 20)"/>
+  <circle cx="80" cy="110" r="13" fill="white" transform="translate(20, 20)"/>
+  
+  <!-- Connecting lines -->
+  <line x1="100" y1="100" x2="80" y2="120" stroke="#F97316" stroke-width="3" opacity="0.6"/>
+  <line x1="100" y1="100" x2="110" y2="110" stroke="#FCD34D" stroke-width="3" opacity="0.6"/>
+  <line x1="100" y1="100" x2="120" y2="120" stroke="#A78BFA" stroke-width="3" opacity="0.6"/>
+</svg>

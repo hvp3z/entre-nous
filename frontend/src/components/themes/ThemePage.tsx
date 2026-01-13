@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, AlertCircle, SearchX } from 'lucide-react';
 import clsx from 'clsx';
 import { Header } from '@/components/common/Header';
 import { LocationInput } from '@/components/location/LocationInput';
+import { LocationSearchModal } from '@/components/location/LocationSearchModal';
 import { LocationList } from '@/components/location/LocationList';
 import { FilterChips } from '@/components/filters/FilterChips';
 import { MapContainer } from '@/components/map/MapContainer';
@@ -21,6 +22,7 @@ import { searchEquidistant } from '@/lib/api';
 
 interface ThemePageProps {
   theme: Theme;
+  openModal?: boolean;
 }
 
 const themeConfig = {
@@ -50,7 +52,7 @@ const themeConfig = {
   },
 };
 
-export function ThemePage({ theme }: ThemePageProps) {
+export function ThemePage({ theme, openModal = false }: ThemePageProps) {
   const t = useTranslations();
   const config = themeConfig[theme];
   
@@ -74,6 +76,14 @@ export function ThemePage({ theme }: ThemePageProps) {
 
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+
+  // Open modal automatically if openModal prop is true
+  useEffect(() => {
+    if (openModal) {
+      setIsLocationModalOpen(true);
+    }
+  }, [openModal]);
 
   const handleSearch = useCallback(async () => {
     if (locations.length < 2) return;
@@ -149,6 +159,13 @@ export function ThemePage({ theme }: ThemePageProps) {
 
             <LocationList />
             <LocationInput theme={theme} />
+            
+            {/* Location Search Modal (for auto-open from homepage) */}
+            <LocationSearchModal
+              isOpen={isLocationModalOpen}
+              onClose={() => setIsLocationModalOpen(false)}
+              theme={theme}
+            />
 
             {/* Search Button */}
             <div className="pt-2">

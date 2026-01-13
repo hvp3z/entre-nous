@@ -99,15 +99,17 @@
     "shareWith": "Partagez avec vos amis"
   },
   "home": {
-    "hero": "Retrouvez-vous",
-    "heroSub": "Trouvez le lieu idéal où chacun peut arriver facilement",
+    "hero": "Retrouvez-vous simplement.",
+    "heroSub": "Trouvez le point de rencontre idéal.",
     "howItWorks": "Comment ça marche",
-    "step1Title": "Ajoutez vos adresses",
-    "step1Desc": "Entrez les points de départ de chaque participant (2 à 6 personnes)",
-    "step2Title": "Choisissez votre activité",
-    "step2Desc": "Bar, restaurant, café ou sortie en famille",
-    "step3Title": "Découvrez les résultats",
-    "step3Desc": "Des lieux équidistants en métro pour tout le monde"
+    "step1Title": "Renseignez vos départs",
+    "step1Desc": "Indiquez les adresses de chacun.",
+    "step2Title": "Choisissez l'activité",
+    "step2Desc": "Bar, resto, café... à vous de décider.",
+    "step3Title": "C'est parti !",
+    "step3Desc": "Découvrez le lieu parfait.",
+    "searchPlaceholder": "Où êtes-vous ?",
+    "exploreCategories": "Explorez par catégorie"
   },
   "legal": {
     "terms": "Conditions d'utilisation",

@@ -52,10 +52,10 @@ const themeConfig = {
 };
 
 const fallbackImages: Record<Theme, string> = {
-  restaurants: '/images/fallback-restaurants.svg',
-  bars: '/images/fallback-bars.svg',
-  cafes: '/images/fallback-restaurants.svg',
-  kids: '/images/fallback-kids.svg',
+  restaurants: '/images/fallback-restaurants.png',
+  bars: '/images/fallback-bars.png',
+  cafes: '/images/fallback-restaurants.png',
+  kids: '/images/fallback-kids.png',
 };
 
 export function VenueCard({ result, locations, theme, rank, isHighlighted = false }: VenueCardProps) {
@@ -109,11 +109,12 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
             onError={() => setImageError(true)}
           />
         ) : (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
+          <Image
             src={imageSrc}
             alt={venue.name}
-            className="w-full h-full object-cover rounded-t-3xl"
+            fill
+            className="object-cover rounded-t-3xl"
+            onError={() => setImageError(true)}
           />
         )}
         
