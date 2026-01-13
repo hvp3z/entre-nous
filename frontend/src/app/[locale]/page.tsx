@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
-import { Wine, UtensilsCrossed, Baby, MapPin, ArrowRight, Coffee, Heart, ChevronRight } from 'lucide-react';
+import { Wine, UtensilsCrossed, Baby, MapPin, ArrowRight, Coffee, Heart, ChevronRight, Compass } from 'lucide-react';
 import { Header } from '@/components/common/Header';
 import { useSessionStore } from '@/stores/sessionStore';
 import { KOFI_URL } from '@/components/monetization/SupportBanner';
@@ -64,56 +64,58 @@ export default function HomePage() {
   ];
 
   const steps = [
-    { image: '/images/step-locations.png', titleKey: 'step1Title', descKey: 'step1Desc' },
-    { image: '/images/step-activity.png', titleKey: 'step2Title', descKey: 'step2Desc' },
-    { image: '/images/step-discover.png', titleKey: 'step3Title', descKey: 'step3Desc' },
+    { icon: MapPin, titleKey: 'step1Title', descKey: 'step1Desc' },
+    { icon: Wine, titleKey: 'step2Title', descKey: 'step2Desc' },
+    { icon: Compass, titleKey: 'step3Title', descKey: 'step3Desc' },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FFFBF7] to-white">
-      <Header />
+      {/* Mobile Full Height Container */}
+      <div className="min-h-screen md:min-h-0 flex flex-col">
+        <Header />
 
-      {/* Hero Section */}
-      <section className="relative px-4 py-12 sm:py-16 lg:py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1a1a1a] mb-4">
-              {t('home.hero')}
-            </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto text-balance mb-8">
-              {t('home.heroSub')}
-            </p>
-            
-            {/* Search Input */}
+        {/* Hero Section */}
+        <section className="flex-1 flex flex-col justify-center relative px-4 py-12 sm:py-16 lg:py-20">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="max-w-2xl mx-auto"
+              transition={{ duration: 0.6 }}
             >
-              <button
-                onClick={handleSearchClick}
-                className="w-full flex items-center gap-4 px-6 py-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 border border-neutral-200 hover:border-orange-300 group"
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1a1a1a] mb-4">
+                {t('home.hero')}
+              </h1>
+              <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto text-balance mb-8">
+                {t('home.heroSub')}
+              </p>
+              
+              {/* Search Input */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="max-w-2xl mx-auto"
               >
-                <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                <span className="flex-1 text-left text-neutral-500 group-hover:text-neutral-700">
-                  {t('home.searchPlaceholder')}
-                </span>
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-coral-500 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                  <ArrowRight className="w-5 h-5 text-white" />
-                </div>
-              </button>
+                <button
+                  onClick={handleSearchClick}
+                  className="w-full flex items-center gap-4 px-6 py-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 border border-neutral-200 hover:border-orange-300 group"
+                >
+                  <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                  <span className="flex-1 text-left text-neutral-500 group-hover:text-neutral-700">
+                    {t('home.searchPlaceholder')}
+                  </span>
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-coral-500 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <ArrowRight className="w-5 h-5 text-white" />
+                  </div>
+                </button>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* How it Works */}
-      <section className="px-4 py-12 sm:py-16 bg-white">
+        {/* How it Works */}
+        <section className="px-4 py-6 md:py-12 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -126,6 +128,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {steps.map((step, index) => {
+              const StepIcon = step.icon;
               return (
                 <motion.div
                   key={step.titleKey}
@@ -136,22 +139,18 @@ export default function HomePage() {
                   className="relative bg-white rounded-3xl p-6 shadow-sm border border-neutral-100 hover:shadow-md transition-shadow"
                 >
                   {/* Step number badge */}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-orange-500 text-white text-sm font-semibold flex items-center justify-center shadow-lg">
+                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-coral-500 text-white text-sm font-semibold flex items-center justify-center shadow-lg">
                     {index + 1}
                   </div>
                   
-                  {/* Illustration */}
-                  <div className="w-full h-48 mb-4 rounded-2xl bg-neutral-50 flex items-center justify-center overflow-hidden">
-                    <img
-                      src={step.image}
-                      alt={t(`home.${step.titleKey}`)}
-                      className="object-contain w-full h-full"
-                    />
+                  {/* Icon */}
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-coral-500 flex items-center justify-center mb-4">
+                    <StepIcon className="w-7 h-7 text-white" />
                   </div>
                   
                   {/* Title and description */}
                   <h3 className="font-semibold text-[#1a1a1a] text-lg mb-2">
-                    {index + 1}. {t(`home.${step.titleKey}`)}
+                    {t(`home.${step.titleKey}`)}
                   </h3>
                   <p className="text-[#525252] text-sm">
                     {t(`home.${step.descKey}`)}
@@ -162,6 +161,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* Categories List */}
       <section className="px-4 py-12 sm:py-16 bg-gradient-to-b from-white to-[#FFFBF7]">
