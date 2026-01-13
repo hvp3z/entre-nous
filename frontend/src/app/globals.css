@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  --font-outfit: 'Outfit', system-ui, sans-serif;
-  --font-playfair: 'Playfair Display', serif;
+  --font-satoshi: 'Satoshi', system-ui, sans-serif;
+  --font-libre-baskerville: 'Libre Baskerville', serif;
   --editorial-black: #1a1a1a;
   --editorial-white: #fafafa;
   --editorial-gray: #525252;
@@ -14,7 +15,7 @@
 
 @layer base {
   html {
-    font-family: var(--font-outfit);
+    font-family: var(--font-satoshi);
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
@@ -124,7 +125,7 @@
 
   .map-container .leaflet-container {
     @apply w-full h-full rounded-none;
-    font-family: var(--font-outfit);
+    font-family: var(--font-satoshi);
   }
 
   /* Theme-specific gradients - Editorial Terracotta */

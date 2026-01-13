@@ -69,8 +69,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['var(--font-playfair)', 'serif'],
-        sans: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-libre-baskerville)', 'serif'],
+        sans: ['var(--font-satoshi)', 'system-ui', 'sans-serif'],
       },
       animation: {
         'slide-up': 'slideUp 0.3s ease-out',
