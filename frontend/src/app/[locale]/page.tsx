@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import { Wine, UtensilsCrossed, Baby, MapPin, ArrowRight, Coffee, Heart, ChevronRight, Compass } from 'lucide-react';
 import { Header } from '@/components/common/Header';
+import { ThemeSelectionModal } from '@/components/common/ThemeSelectionModal';
 import { useSessionStore } from '@/stores/sessionStore';
 import { KOFI_URL } from '@/components/monetization/SupportBanner';
 
@@ -13,6 +15,7 @@ export default function HomePage() {
   const router = useRouter();
   const setTheme = useSessionStore((state) => state.setTheme);
   const theme = useSessionStore((state) => state.theme) || 'bars';
+  const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
 
   const handleThemeSelect = (themeId: 'bars' | 'restaurants' | 'cafes' | 'kids') => {
     setTheme(themeId);
@@ -20,8 +23,7 @@ export default function HomePage() {
   };
 
   const handleSearchClick = () => {
-    setTheme('bars');
-    router.push('/bars?openModal=true');
+    setIsThemeModalOpen(true);
   };
 
   const themes = [
@@ -252,6 +254,11 @@ export default function HomePage() {
         </div>
       </footer>
 
+      {/* Theme Selection Modal */}
+      <ThemeSelectionModal
+        isOpen={isThemeModalOpen}
+        onClose={() => setIsThemeModalOpen(false)}
+      />
     </div>
   );
 }

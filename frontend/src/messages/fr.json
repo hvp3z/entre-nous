@@ -109,7 +109,11 @@
     "step3Title": "C'est parti !",
     "step3Desc": "Découvrez le lieu parfait.",
     "searchPlaceholder": "Où êtes-vous ?",
-    "exploreCategories": "Explorez par catégorie"
+    "exploreCategories": "Explorez par catégorie",
+    "themeSelection": {
+      "title": "Choisissez votre activité",
+      "subtitle": "Quel type de lieu recherchez-vous ?"
+    }
   },
   "legal": {
     "terms": "Conditions d'utilisation",
