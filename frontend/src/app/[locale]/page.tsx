@@ -110,18 +110,18 @@ export default function HomePage() {
       </section>
 
       {/* How it Works */}
-      <section className="px-4 py-12 sm:py-16 bg-white">
+      <section className="px-4 py-6 sm:py-12 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-display text-2xl sm:text-3xl font-semibold text-center text-[#1a1a1a] mb-12"
+            className="font-display text-2xl sm:text-3xl font-semibold text-center text-[#1a1a1a] mb-6 md:mb-12"
           >
             {t('home.howItWorks')}
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-2 md:gap-8">
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (
@@ -133,19 +133,19 @@ export default function HomePage() {
                   transition={{ delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="relative inline-flex mb-4">
-                    <div className="w-16 h-16 rounded-full bg-neutral-100 flex items-center justify-center">
-                      <Icon className="w-7 h-7 text-[#1a1a1a]" />
+                  <div className="relative inline-flex mb-2 md:mb-4">
+                    <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-neutral-100 flex items-center justify-center">
+                      <Icon className="w-5 h-5 md:w-7 md:h-7 text-[#1a1a1a]" />
                     </div>
-                    <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[#1a1a1a] 
-                                   text-white text-sm font-medium flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#1a1a1a] 
+                                   text-white text-xs md:text-sm font-medium flex items-center justify-center">
                       {index + 1}
                     </span>
                   </div>
-                  <h3 className="font-semibold text-[#1a1a1a] mb-2">
+                  <h3 className="font-semibold text-[#1a1a1a] text-xs md:text-base mb-1 md:mb-2">
                     {t(`home.${step.titleKey}`)}
                   </h3>
-                  <p className="text-[#525252] text-sm">
+                  <p className="text-[#525252] text-sm hidden md:block">
                     {t(`home.${step.descKey}`)}
                   </p>
                 </motion.div>
