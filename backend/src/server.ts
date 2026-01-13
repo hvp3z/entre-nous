@@ -29,6 +29,7 @@ const limiter = rateLimit({
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3002',
+  'https://lemiddle.app', // Production domain
   process.env.FRONTEND_URL
 ].filter(Boolean) as string[];
 
@@ -62,7 +63,7 @@ app.use(cors({
     // Check explicit allowed origins
     if (allowedOrigins.includes(origin)) {
       // #region agent log
-      console.log('[DEBUG-CORS] Explicit origin match, allowing');
+      console.log('[DEBUG-CORS] Explicit origin match, allowing:', origin);
       // #endregion
       return callback(null, true);
     }
