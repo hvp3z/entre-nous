@@ -31,7 +31,7 @@ export function BottomSheet({ isOpen, onClose, children }: BottomSheetProps) {
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="lg:hidden fixed inset-x-0 bottom-0 bg-white rounded-t-3xl z-50 
+            className="lg:hidden fixed inset-x-0 bottom-0 bg-white rounded-t-[32px] z-50 
                        overflow-hidden flex flex-col shadow-2xl safe-bottom"
             style={{ height: '90vh' }}
           >

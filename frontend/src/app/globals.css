@@ -11,8 +11,15 @@
   --editorial-black: #1a1a1a;
   --editorial-white: #fafafa;
   --editorial-gray: #525252;
-  --bg-gradient-start: #F9FAFB;
-  --bg-gradient-end: #F3F4F6;
+  --bg-gradient-start: #FFFBF7;
+  --bg-gradient-end: #FEF3E7;
+  --orange-start: #F97316;
+  --coral-end: #FB7185;
+  --coral-soft: #FB923C;
+  --cream-bg: #FFFBF7;
+  --cream-light: #FEF3E7;
+  --badge-bg: #FFF8F0;
+  --badge-border: #FFE4CC;
 }
 
 @layer base {
@@ -56,7 +63,7 @@
 @layer components {
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-4 py-3 
-           font-medium rounded-xl transition-all duration-200 
+           font-medium rounded-3xl transition-all duration-200 
            active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none
            min-h-[44px] min-w-[44px];
   }
@@ -77,27 +84,43 @@
   }
 
   .btn-bars {
-    @apply btn bg-bars-500 text-white hover:bg-bars-600 
-           shadow-lg shadow-bars-500/25;
+    @apply btn text-white shadow-lg;
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
+  }
+
+  .btn-bars:hover {
+    background: linear-gradient(135deg, #E55A0D 0%, #F43F5E 100%);
   }
 
   .btn-restaurants {
-    @apply btn bg-restaurants-500 text-white hover:bg-restaurants-600 
-           shadow-lg shadow-restaurants-500/25;
+    @apply btn text-white shadow-lg;
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
+  }
+
+  .btn-restaurants:hover {
+    background: linear-gradient(135deg, #E55A0D 0%, #F43F5E 100%);
   }
 
   .btn-cafes {
-    @apply btn bg-cafes-500 text-white hover:bg-cafes-600 
-           shadow-lg shadow-cafes-500/25;
+    @apply btn text-white shadow-lg;
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
+  }
+
+  .btn-cafes:hover {
+    background: linear-gradient(135deg, #E55A0D 0%, #F43F5E 100%);
   }
 
   .btn-kids {
-    @apply btn bg-kids-500 text-white hover:bg-kids-600 
-           shadow-lg shadow-kids-500/25;
+    @apply btn text-white shadow-lg;
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
+  }
+
+  .btn-kids:hover {
+    background: linear-gradient(135deg, #E55A0D 0%, #F43F5E 100%);
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-sm border border-neutral-100 
+    @apply bg-white rounded-3xl shadow-sm border border-neutral-100 
            overflow-hidden transition-shadow hover:shadow-md;
   }
 
@@ -130,21 +153,31 @@
     font-family: var(--font-satoshi);
   }
 
-  /* Theme-specific gradients - Editorial Terracotta */
+  /* Theme-specific gradients - Orange/Corail */
   .gradient-bars {
-    @apply bg-gradient-to-br from-bars-400 via-bars-500 to-bars-600;
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
   }
 
   .gradient-restaurants {
-    @apply bg-gradient-to-br from-restaurants-400 via-restaurants-500 to-restaurants-600;
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
   }
 
   .gradient-cafes {
-    @apply bg-gradient-to-br from-cafes-400 via-cafes-500 to-cafes-600;
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
   }
 
   .gradient-kids {
-    @apply bg-gradient-to-br from-kids-400 via-kids-500 to-kids-600;
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
+  }
+
+  /* Gradient orange/corail principal */
+  .gradient-orange-coral {
+    background: linear-gradient(135deg, var(--orange-start) 0%, var(--coral-end) 100%);
+  }
+
+  /* Gradient orange/rose pour boutons flottants */
+  .gradient-orange-rose {
+    background: linear-gradient(135deg, var(--orange-start) 0%, #FB7185 100%);
   }
 
   /* Skeleton loading */

@@ -309,14 +309,16 @@ export const useSessionStore = create<SessionState>()(
           selectedFilters: {
             ...state.selectedFilters,
             [theme]: {
-              ...state.selectedFilters[theme],
+              ...(state.selectedFilters[theme] || {}),
               [groupId]: optionIds,
             },
           },
         })),
       toggleFilter: (theme, groupId, optionId, multiSelect) =>
         set((state) => {
-          const currentFilters = state.selectedFilters[theme][groupId] || [];
+          // Defensive check: ensure theme filters exist (handles persisted state migration)
+          const themeFilters = state.selectedFilters[theme] || {};
+          const currentFilters = themeFilters[groupId] || [];
           let newFilters: string[];
 
           if (multiSelect) {
@@ -339,7 +341,7 @@ export const useSessionStore = create<SessionState>()(
             selectedFilters: {
               ...state.selectedFilters,
               [theme]: {
-                ...state.selectedFilters[theme],
+                ...themeFilters,
                 [groupId]: newFilters,
               },
             },
@@ -410,6 +412,19 @@ export const useSessionStore = create<SessionState>()(
         locations: state.locations,
         selectedFilters: state.selectedFilters,
       }),
+      // Merge persisted state with initial state to handle missing themes
+      merge: (persistedState, currentState) => {
+        const persisted = persistedState as Partial<SessionState> | undefined;
+        return {
+          ...currentState,
+          ...persisted,
+          // Ensure all themes exist in selectedFilters
+          selectedFilters: {
+            ...initialFilters,
+            ...(persisted?.selectedFilters || {}),
+          },
+        };
+      },
     }
   )
 );

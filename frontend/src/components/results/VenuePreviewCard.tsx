@@ -17,24 +17,24 @@ interface VenuePreviewCardProps {
 
 const themeConfig = {
   bars: {
-    accent: 'text-bars-500',
-    bg: 'bg-bars-50',
-    border: 'border-bars-200',
+    accent: 'text-orange-600',
+    bg: 'bg-orange-50',
+    border: 'border-orange-200',
   },
   restaurants: {
-    accent: 'text-restaurants-500',
-    bg: 'bg-restaurants-50',
-    border: 'border-restaurants-200',
+    accent: 'text-orange-600',
+    bg: 'bg-orange-50',
+    border: 'border-orange-200',
   },
   cafes: {
-    accent: 'text-cafes-500',
-    bg: 'bg-cafes-50',
-    border: 'border-cafes-200',
+    accent: 'text-orange-600',
+    bg: 'bg-orange-50',
+    border: 'border-orange-200',
   },
   kids: {
-    accent: 'text-kids-500',
-    bg: 'bg-kids-50',
-    border: 'border-kids-200',
+    accent: 'text-orange-600',
+    bg: 'bg-orange-50',
+    border: 'border-orange-200',
   },
 };
 
@@ -69,7 +69,7 @@ export function VenuePreviewCard({ result, theme, onTap, onDirections }: VenuePr
       style={{ bottom: 'max(5rem, env(safe-area-inset-bottom, 0px) + 4.5rem)' }}
       onClick={onTap}
     >
-      <div className="bg-white rounded-2xl shadow-xl border border-neutral-100 overflow-hidden">
+      <div className="bg-white rounded-3xl shadow-xl border border-neutral-100 overflow-hidden">
         <div className="flex items-stretch">
           {/* Photo */}
           <div className="relative w-24 h-24 flex-shrink-0 bg-neutral-200">

@@ -12,20 +12,20 @@ interface MapListToggleProps {
 
 const themeConfig = {
   bars: {
-    bgClass: 'bg-bars-500 hover:bg-bars-600',
-    shadowClass: 'shadow-bars-500/30',
+    gradient: 'gradient-orange-rose',
+    shadowClass: 'shadow-orange-500/30',
   },
   restaurants: {
-    bgClass: 'bg-restaurants-500 hover:bg-restaurants-600',
-    shadowClass: 'shadow-restaurants-500/30',
+    gradient: 'gradient-orange-rose',
+    shadowClass: 'shadow-orange-500/30',
   },
   cafes: {
-    bgClass: 'bg-cafes-500 hover:bg-cafes-600',
-    shadowClass: 'shadow-cafes-500/30',
+    gradient: 'gradient-orange-rose',
+    shadowClass: 'shadow-orange-500/30',
   },
   kids: {
-    bgClass: 'bg-kids-500 hover:bg-kids-600',
-    shadowClass: 'shadow-kids-500/30',
+    gradient: 'gradient-orange-rose',
+    shadowClass: 'shadow-orange-500/30',
   },
 };
 
@@ -58,9 +58,9 @@ export function MapListToggle({ theme }: MapListToggleProps) {
           <button
             onClick={handleToggle}
             className={clsx(
-              'flex items-center gap-2 px-5 py-3 rounded-full text-white font-medium',
+              'flex items-center gap-2 px-5 py-3 rounded-full text-white font-semibold',
               'shadow-lg transition-all duration-200 active:scale-95',
-              config.bgClass,
+              config.gradient,
               config.shadowClass
             )}
           >

@@ -64,7 +64,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F9FAFB] to-[#F3F4F6]">
+    <div className="min-h-screen bg-gradient-to-b from-[#FFFBF7] to-[#FEF3E7]">
       <Header />
 
       {/* Hero Section */}
@@ -171,9 +171,9 @@ export default function HomePage() {
                   <button
                     onClick={() => handleThemeSelect(theme.id)}
                     className={`card w-full p-6 text-left transition-all duration-300 
-                              ${theme.hoverBg} border ${theme.borderColor} group`}
+                              ${theme.hoverBg} border ${theme.borderColor} group rounded-3xl`}
                   >
-                    <div className={`w-14 h-14 rounded-2xl ${theme.gradient} 
+                    <div className={`w-14 h-14 rounded-3xl ${theme.gradient} 
                                     flex items-center justify-center mb-4
                                     group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="w-7 h-7 text-white" />
@@ -189,7 +189,7 @@ export default function HomePage() {
                       {t(`themes.${theme.id}.description`)}
                     </p>
                     
-                    <span className={`${theme.btnClass} w-full`}>
+                    <span className={`${theme.btnClass} w-full rounded-3xl`}>
                       {t(`themes.${theme.id}.cta`)}
                     </span>
                   </button>
@@ -201,14 +201,14 @@ export default function HomePage() {
       </section>
 
       {/* Support Section */}
-      <section className="px-4 py-12 sm:py-16 bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50">
+      <section className="px-4 py-12 sm:py-16 bg-gradient-to-br from-orange-50 via-orange-50/50 to-coral-50/50">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-2xl mx-auto text-center"
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-400 mb-6 shadow-lg shadow-amber-500/25">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-3xl gradient-orange-coral mb-6 shadow-lg shadow-orange-500/30">
             <Coffee className="w-8 h-8 text-white" />
           </div>
           
@@ -224,10 +224,10 @@ export default function HomePage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 
-                     bg-gradient-to-r from-amber-500 to-orange-500 
-                     hover:from-amber-400 hover:to-orange-400 
-                     text-white font-medium rounded-xl transition-all
-                     shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40
+                     gradient-orange-coral
+                     hover:opacity-90
+                     text-white font-semibold rounded-3xl transition-all
+                     shadow-lg shadow-orange-500/30 hover:shadow-orange-500/40
                      hover:scale-105"
           >
             <Heart className="w-5 h-5" />

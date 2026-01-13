@@ -12,7 +12,9 @@ import {
   Navigation, 
   Share2,
   Train,
-  MapPin 
+  MapPin,
+  Heart,
+  ArrowRight
 } from 'lucide-react';
 import clsx from 'clsx';
 import type { SearchResult, Location, Theme } from '@/stores/sessionStore';
@@ -93,16 +95,16 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
   return (
     <div className={clsx(
       'card overflow-hidden transition-all duration-300',
-      isHighlighted && 'ring-2 ring-offset-2 ring-amber-400 animate-pulse'
+      isHighlighted && 'ring-2 ring-offset-2 ring-orange-400 animate-pulse'
     )}>
       {/* Image */}
-      <div className="relative h-32 sm:h-40 bg-neutral-200 overflow-hidden">
+      <div className="relative h-48 sm:h-56 bg-neutral-200 overflow-hidden rounded-t-3xl">
         {hasValidPhoto ? (
           <Image
             src={imageSrc}
             alt={venue.name}
             fill
-            className="object-cover"
+            className="object-cover rounded-t-3xl"
             unoptimized // Google Places photos don't work well with Next.js optimization
             onError={() => setImageError(true)}
           />
@@ -111,14 +113,34 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
           <img
             src={imageSrc}
             alt={venue.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-t-3xl"
           />
         )}
+        
+        {/* Badge "#1 Le Middle Choice" en haut à gauche */}
         <div className="absolute top-3 left-3">
-          <span className={clsx('px-2.5 py-1 rounded-full text-sm font-medium', config.badge)}>
-            #{rank}
+          <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-white/95 backdrop-blur-sm border border-orange-100 text-orange-600 shadow-sm">
+            #{rank} Le Middle Choice
           </span>
         </div>
+
+        {/* Badge temps avec icône horloge en bas à gauche */}
+        <div className="absolute bottom-3 left-3">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-50/95 backdrop-blur-sm border border-orange-200 text-orange-700 shadow-sm">
+            <Clock className="w-3.5 h-3.5" />
+            <span className="text-xs font-medium">
+              ~{Math.round(averageTravelTime)} min {variance <= 3 && '(Équitable)'}
+            </span>
+          </div>
+        </div>
+
+        {/* Bouton cœur corail en bas à droite */}
+        <button
+          className="absolute bottom-3 right-3 p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors shadow-sm"
+          aria-label="Favoris"
+        >
+          <Heart className="w-5 h-5 text-coral-500 fill-coral-500" />
+        </button>
       </div>
 
       <div className="p-4">
@@ -142,21 +164,6 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
 
         {/* Quick Info */}
         <div className="flex flex-wrap items-center gap-2 mb-3">
-          {/* Average Travel Time */}
-          <div className={clsx('flex items-center gap-1 px-2 py-1 rounded-lg text-sm', config.bg)}>
-            <Clock className={clsx('w-4 h-4', config.accent)} />
-            <span className={config.accent}>
-              {t('results.avgTime', { time: Math.round(averageTravelTime) })}
-            </span>
-          </div>
-
-          {/* Variance */}
-          <div className="flex items-center gap-1 px-2 py-1 rounded-lg text-sm bg-neutral-100">
-            <span className="text-[#525252]">
-              {t('results.variance', { time: Math.round(variance) })}
-            </span>
-          </div>
-
           {/* Price Level */}
           {priceLevel && (
             <span className="text-sm text-[#525252]">{priceLevel}</span>
@@ -165,9 +172,10 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
           {/* Open Status */}
           {venue.openNow !== undefined && (
             <span className={clsx(
-              'text-sm font-medium',
+              'text-sm font-medium flex items-center gap-1',
               venue.openNow ? 'text-green-600' : 'text-red-600'
             )}>
+              <span className={clsx('w-2 h-2 rounded-full', venue.openNow ? 'bg-green-500' : 'bg-red-500')} />
               {venue.openNow ? t('results.openNow') : t('results.closed')}
             </span>
           )}
@@ -244,17 +252,17 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
             href={`https://www.google.com/maps/dir/?api=1&destination=${venue.coordinates.lat},${venue.coordinates.lng}&travelmode=transit`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary flex-1 text-sm"
+            className="flex-1 text-sm font-semibold text-white rounded-3xl px-4 py-3 flex items-center justify-center gap-2 transition-all duration-200 hover:shadow-lg active:scale-[0.98] min-h-[44px] gradient-orange-coral"
           >
-            <Navigation className="w-4 h-4" />
             {t('results.getDirections')}
+            <ArrowRight className="w-4 h-4" />
           </a>
           <button
             onClick={handleShare}
-            className="btn-secondary px-3"
+            className="px-3 py-3 rounded-full bg-white border border-neutral-200 hover:bg-neutral-50 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label={t('common.share')}
           >
-            <Share2 className="w-4 h-4" />
+            <Share2 className="w-4 h-4 text-[#525252]" />
           </button>
         </div>
         

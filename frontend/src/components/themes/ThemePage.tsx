@@ -115,11 +115,11 @@ export function ThemePage({ theme }: ThemePageProps) {
   const canSearch = locations.length >= 2 && !isSearching;
 
   return (
-    <div className="min-h-screen bg-[#fafafa] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#FFFBF7] to-[#FEF3E7] flex flex-col">
       <Header />
 
       {/* Theme Header */}
-      <div className={clsx('px-4 py-4 sm:py-6', config.bgColor)}>
+      <div className={clsx('px-4 py-4 sm:py-6 bg-orange-50/50')}>
         <div className="max-w-4xl mx-auto">
           <h1 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-[#1a1a1a] mb-1">
             {t(`themes.${theme}.title`)}
@@ -161,7 +161,7 @@ export function ThemePage({ theme }: ThemePageProps) {
               <button
                 onClick={handleSearch}
                 disabled={!canSearch}
-                className={clsx(config.btnClass, 'w-full')}
+                className={clsx(config.btnClass, 'w-full rounded-3xl')}
               >
                 {isSearching ? (
                   <>

@@ -18,40 +18,40 @@ interface FilterChipsProps {
 
 const themeStyles = {
   bars: {
-    activeBg: 'bg-bars-500',
+    activeBg: 'gradient-orange-coral',
     activeText: 'text-white',
     inactiveBg: 'bg-white',
     inactiveText: 'text-neutral-700',
-    border: 'border-bars-200',
-    activeBorder: 'border-bars-500',
-    groupLabel: 'text-bars-600',
+    border: 'border-orange-200',
+    activeBorder: 'border-transparent',
+    groupLabel: 'text-orange-600',
   },
   restaurants: {
-    activeBg: 'bg-restaurants-500',
+    activeBg: 'gradient-orange-coral',
     activeText: 'text-white',
     inactiveBg: 'bg-white',
     inactiveText: 'text-neutral-700',
-    border: 'border-restaurants-200',
-    activeBorder: 'border-restaurants-500',
-    groupLabel: 'text-restaurants-600',
+    border: 'border-orange-200',
+    activeBorder: 'border-transparent',
+    groupLabel: 'text-orange-600',
   },
   cafes: {
-    activeBg: 'bg-cafes-500',
+    activeBg: 'gradient-orange-coral',
     activeText: 'text-white',
     inactiveBg: 'bg-white',
     inactiveText: 'text-neutral-700',
-    border: 'border-cafes-200',
-    activeBorder: 'border-cafes-500',
-    groupLabel: 'text-cafes-600',
+    border: 'border-orange-200',
+    activeBorder: 'border-transparent',
+    groupLabel: 'text-orange-600',
   },
   kids: {
-    activeBg: 'bg-kids-500',
+    activeBg: 'gradient-orange-coral',
     activeText: 'text-white',
     inactiveBg: 'bg-white',
     inactiveText: 'text-neutral-700',
-    border: 'border-kids-200',
-    activeBorder: 'border-kids-500',
-    groupLabel: 'text-kids-600',
+    border: 'border-orange-200',
+    activeBorder: 'border-transparent',
+    groupLabel: 'text-orange-600',
   },
 };
 
@@ -148,7 +148,7 @@ function FilterGroupRow({ group, theme, selectedOptions, onToggle }: FilterGroup
                 'focus:outline-none focus:ring-2 focus:ring-offset-1',
                 isActive
                   ? [styles.activeBg, styles.activeText, styles.activeBorder, 'shadow-sm']
-                  : [styles.inactiveBg, styles.inactiveText, styles.border, 'hover:border-neutral-300']
+                  : [styles.inactiveBg, styles.inactiveText, styles.border, 'hover:border-orange-300']
               )}
               style={{
                 WebkitTapHighlightColor: 'transparent',
