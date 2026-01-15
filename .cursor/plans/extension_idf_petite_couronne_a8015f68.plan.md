@@ -4,38 +4,38 @@ overview: Étendre l'application à la petite couronne (Paris + 92, 93, 94) en e
 todos:
   - id: collect-tramway
     content: Collecter les données des stations Tramway T1-T8 (coordonnées, noms, correspondances)
-    status: pending
+    status: completed
   - id: collect-transilien
     content: Collecter les données Transilien petite couronne (L, J, H, N, P, U)
-    status: pending
+    status: completed
   - id: complete-rer
     content: Compléter les stations RER manquantes en petite couronne
-    status: pending
+    status: completed
   - id: add-colors
     content: Ajouter les couleurs officielles des nouvelles lignes
-    status: pending
+    status: completed
   - id: define-connections
     content: Définir les connexions et temps de trajet entre nouvelles stations
-    status: pending
+    status: completed
     dependencies:
       - collect-tramway
       - collect-transilien
       - complete-rer
   - id: adjust-radius
     content: Ajuster le rayon de recherche pour la banlieue (1km → 1.5-2km)
-    status: pending
+    status: completed
   - id: add-types
     content: Ajouter le type 'tramway' dans RouteSegment
-    status: pending
+    status: completed
   - id: test-scenarios
     content: Tester des scénarios de trajet petite couronne
-    status: pending
+    status: completed
     dependencies:
       - define-connections
       - adjust-radius
   - id: todo-1768336339642-nxlv2pk7b
     content: ""
-    status: pending
+    status: cancelled
 ---
 
 # Extension Le Middle à la Petite Couronne IDF

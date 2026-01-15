@@ -22,7 +22,23 @@ export const METRO_LINE_COLORS: Record<string, string> = {
   'RER B': '#4B92DB',
   'RER C': '#F3D311',
   'RER D': '#5E9B41',
-  'RER E': '#DE81D3'
+  'RER E': '#DE81D3',
+  // Tramway lines
+  'T1': '#006CB8',
+  'T2': '#CF5C9D',
+  'T3a': '#F39C12',
+  'T3b': '#009B77',
+  'T5': '#662483',
+  'T6': '#E4312B',
+  'T7': '#8D5E2A',
+  'T8': '#A0512D',
+  // Transilien lines
+  'L': '#7B4339',
+  'J': '#CEAE00',
+  'H': '#8D5E2A',
+  'N': '#00A88F',
+  'P': '#F3A4BA',
+  'U': '#A90050'
 };
 
 // Paris Metro and RER stations (representative subset for core functionality)
@@ -409,7 +425,244 @@ export const stations: Station[] = [
   { id: 'massy-palaiseau', name: 'Massy - Palaiseau', coordinates: { lat: 48.7250, lng: 2.2590 }, lines: ['RER B', 'RER C'], walkingTimeMinutes: 3 },
   { id: 'orly-airport', name: 'Aéroport d\'Orly', coordinates: { lat: 48.7270, lng: 2.3650 }, lines: ['RER B'], walkingTimeMinutes: 5 },
   { id: 'versailles-rive-gauche', name: 'Versailles - Château Rive Gauche', coordinates: { lat: 48.7980, lng: 2.1290 }, lines: ['RER C'], walkingTimeMinutes: 3 },
-  { id: 'versailles-chantiers', name: 'Versailles - Chantiers', coordinates: { lat: 48.7950, lng: 2.1350 }, lines: ['RER C'], walkingTimeMinutes: 3 }
+  { id: 'versailles-chantiers', name: 'Versailles - Chantiers', coordinates: { lat: 48.7950, lng: 2.1350 }, lines: ['RER C'], walkingTimeMinutes: 3 },
+
+  // ============================================
+  // TRAMWAY LINES - Petite Couronne
+  // ============================================
+
+  // Tramway T1: Saint-Denis - Asnières-Gennevilliers / Noisy-le-Sec
+  { id: 't1-asnieres-gennevilliers-courtilles', name: 'Asnières - Gennevilliers - Les Courtilles', coordinates: { lat: 48.9306, lng: 2.2840 }, lines: ['T1', '13'], walkingTimeMinutes: 2 },
+  { id: 't1-les-courtilles', name: 'Les Courtilles', coordinates: { lat: 48.9220, lng: 2.2855 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-cite-jardin', name: 'Cité Jardin', coordinates: { lat: 48.9180, lng: 2.2915 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-les-agnettes', name: 'Les Agnettes', coordinates: { lat: 48.9230, lng: 2.2870 }, lines: ['T1', '13'], walkingTimeMinutes: 2 },
+  { id: 't1-gabriel-peri', name: 'Gabriel Péri - Asnières-Gennevilliers', coordinates: { lat: 48.9175, lng: 2.2940 }, lines: ['T1', '13'], walkingTimeMinutes: 2 },
+  { id: 't1-gennevilliers', name: 'Gennevilliers', coordinates: { lat: 48.9280, lng: 2.3020 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-gresillons', name: 'Les Grésillons', coordinates: { lat: 48.9260, lng: 2.3140 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-saint-denis-gare', name: 'Saint-Denis - Gare', coordinates: { lat: 48.9340, lng: 2.3450 }, lines: ['T1', 'RER D'], walkingTimeMinutes: 3 },
+  { id: 't1-basilique-saint-denis', name: 'Basilique de Saint-Denis (T1)', coordinates: { lat: 48.9365, lng: 2.3590 }, lines: ['T1', '13'], walkingTimeMinutes: 2 },
+  { id: 't1-saint-denis-universite', name: 'Saint-Denis - Université (T1)', coordinates: { lat: 48.9460, lng: 2.3640 }, lines: ['T1', '13'], walkingTimeMinutes: 2 },
+  { id: 't1-marche-de-saint-denis', name: 'Marché de Saint-Denis', coordinates: { lat: 48.9355, lng: 2.3545 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-theatre-gerard-philipe', name: 'Théâtre Gérard Philipe', coordinates: { lat: 48.9335, lng: 2.3630 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-la-courneuve-8-mai-1945', name: 'La Courneuve - 8 Mai 1945 (T1)', coordinates: { lat: 48.9200, lng: 2.4100 }, lines: ['T1', '7'], walkingTimeMinutes: 2 },
+  { id: 't1-six-routes', name: 'Six Routes', coordinates: { lat: 48.9185, lng: 2.3915 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-escadrille-normandie-niemen', name: 'Escadrille Normandie-Niémen', coordinates: { lat: 48.9125, lng: 2.3835 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-drancy-avenir', name: 'Drancy - Avenir', coordinates: { lat: 48.9100, lng: 2.4215 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-hotel-de-ville-drancy', name: 'Hôtel de Ville de Drancy', coordinates: { lat: 48.9190, lng: 2.4485 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-bobigny-pablo-picasso-t1', name: 'Bobigny - Pablo Picasso (T1)', coordinates: { lat: 48.9065, lng: 2.4495 }, lines: ['T1', '5'], walkingTimeMinutes: 2 },
+  { id: 't1-pont-de-bondy', name: 'Pont de Bondy', coordinates: { lat: 48.9030, lng: 2.4650 }, lines: ['T1'], walkingTimeMinutes: 2 },
+  { id: 't1-noisy-le-sec', name: 'Noisy-le-Sec', coordinates: { lat: 48.8920, lng: 2.4610 }, lines: ['T1', 'RER E'], walkingTimeMinutes: 2 },
+
+  // Tramway T2: Pont de Bezons - Porte de Versailles
+  { id: 't2-pont-de-bezons', name: 'Pont de Bezons', coordinates: { lat: 48.9270, lng: 2.2125 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-jacqueline-auriol', name: 'Jacqueline Auriol', coordinates: { lat: 48.9235, lng: 2.2180 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-charlebourg', name: 'Charlebourg', coordinates: { lat: 48.9190, lng: 2.2240 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-les-fauvettes', name: 'Les Fauvettes', coordinates: { lat: 48.9145, lng: 2.2295 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-les-milons', name: 'Les Milons', coordinates: { lat: 48.9110, lng: 2.2335 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-suresnes-longchamp', name: 'Suresnes - Longchamp', coordinates: { lat: 48.8710, lng: 2.2195 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-belvédère', name: 'Belvédère', coordinates: { lat: 48.8685, lng: 2.2250 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-musee-de-sevres', name: 'Musée de Sèvres', coordinates: { lat: 48.8295, lng: 2.2240 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-brimborion', name: 'Brimborion', coordinates: { lat: 48.8255, lng: 2.2280 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-pont-de-sevres', name: 'Pont de Sèvres (T2)', coordinates: { lat: 48.8295, lng: 2.2310 }, lines: ['T2', '9'], walkingTimeMinutes: 2 },
+  { id: 't2-issy-val-de-seine', name: 'Issy - Val de Seine', coordinates: { lat: 48.8240, lng: 2.2605 }, lines: ['T2', 'RER C'], walkingTimeMinutes: 2 },
+  { id: 't2-les-moulineaux', name: 'Les Moulineaux', coordinates: { lat: 48.8270, lng: 2.2680 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-meudon-sur-seine', name: 'Meudon-sur-Seine', coordinates: { lat: 48.8205, lng: 2.2540 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-parc-de-saint-cloud', name: 'Parc de Saint-Cloud', coordinates: { lat: 48.8400, lng: 2.2145 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-puteaux', name: 'Puteaux', coordinates: { lat: 48.8830, lng: 2.2365 }, lines: ['T2', 'L'], walkingTimeMinutes: 2 },
+  { id: 't2-faubourg-arche', name: 'Faubourg de l\'Arche', coordinates: { lat: 48.8935, lng: 2.2375 }, lines: ['T2'], walkingTimeMinutes: 2 },
+  { id: 't2-la-defense', name: 'La Défense (T2)', coordinates: { lat: 48.8920, lng: 2.2380 }, lines: ['T2', '1', 'RER A'], walkingTimeMinutes: 3 },
+  { id: 't2-porte-de-versailles', name: 'Porte de Versailles (T2)', coordinates: { lat: 48.8320, lng: 2.2880 }, lines: ['T2', '12'], walkingTimeMinutes: 2 },
+
+  // Tramway T3a: Pont du Garigliano - Porte de Vincennes
+  { id: 't3a-pont-du-garigliano', name: 'Pont du Garigliano', coordinates: { lat: 48.8395, lng: 2.2710 }, lines: ['T3a', 'RER C'], walkingTimeMinutes: 2 },
+  { id: 't3a-balard', name: 'Balard (T3a)', coordinates: { lat: 48.8360, lng: 2.2780 }, lines: ['T3a', '8'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-de-versailles-t3', name: 'Porte de Versailles (T3a)', coordinates: { lat: 48.8320, lng: 2.2880 }, lines: ['T3a', 'T2', '12'], walkingTimeMinutes: 2 },
+  { id: 't3a-georges-brassens', name: 'Georges Brassens', coordinates: { lat: 48.8305, lng: 2.2985 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+  { id: 't3a-brancion', name: 'Brancion', coordinates: { lat: 48.8285, lng: 2.3055 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-de-vanves', name: 'Porte de Vanves (T3a)', coordinates: { lat: 48.8270, lng: 2.3055 }, lines: ['T3a', '13'], walkingTimeMinutes: 2 },
+  { id: 't3a-didot', name: 'Didot', coordinates: { lat: 48.8240, lng: 2.3150 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+  { id: 't3a-jean-moulin', name: 'Jean Moulin', coordinates: { lat: 48.8230, lng: 2.3210 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-orleans', name: 'Porte d\'Orléans (T3a)', coordinates: { lat: 48.8230, lng: 2.3250 }, lines: ['T3a', '4'], walkingTimeMinutes: 2 },
+  { id: 't3a-montsouris', name: 'Montsouris', coordinates: { lat: 48.8210, lng: 2.3380 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+  { id: 't3a-cite-universitaire', name: 'Cité Universitaire (T3a)', coordinates: { lat: 48.8220, lng: 2.3390 }, lines: ['T3a', 'RER B'], walkingTimeMinutes: 2 },
+  { id: 't3a-stade-charlety', name: 'Stade Charléty - Porte de Gentilly', coordinates: { lat: 48.8180, lng: 2.3465 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-ditalie', name: 'Porte d\'Italie (T3a)', coordinates: { lat: 48.8190, lng: 2.3595 }, lines: ['T3a', '7'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-de-choisy', name: 'Porte de Choisy (T3a)', coordinates: { lat: 48.8195, lng: 2.3650 }, lines: ['T3a', '7'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-divry', name: 'Porte d\'Ivry (T3a)', coordinates: { lat: 48.8210, lng: 2.3690 }, lines: ['T3a', '7'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-de-charenton', name: 'Porte de Charenton (T3a)', coordinates: { lat: 48.8330, lng: 2.4010 }, lines: ['T3a', '8'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-doree', name: 'Porte Dorée (T3a)', coordinates: { lat: 48.8350, lng: 2.4060 }, lines: ['T3a', '8'], walkingTimeMinutes: 2 },
+  { id: 't3a-porte-de-vincennes', name: 'Porte de Vincennes', coordinates: { lat: 48.8475, lng: 2.4110 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+  { id: 't3a-alexandra-david-neel', name: 'Alexandra David-Néel', coordinates: { lat: 48.8420, lng: 2.4050 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+  { id: 't3a-montempoivre', name: 'Montempoivre', coordinates: { lat: 48.8450, lng: 2.4085 }, lines: ['T3a'], walkingTimeMinutes: 2 },
+
+  // Tramway T3b: Porte de Vincennes - Porte d'Asnières
+  { id: 't3b-porte-de-vincennes-t3b', name: 'Porte de Vincennes (T3b)', coordinates: { lat: 48.8475, lng: 2.4110 }, lines: ['T3b', 'T3a'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-de-montreuil', name: 'Porte de Montreuil (T3b)', coordinates: { lat: 48.8535, lng: 2.4110 }, lines: ['T3b', '9'], walkingTimeMinutes: 2 },
+  { id: 't3b-marie-de-miribel', name: 'Marie de Miribel', coordinates: { lat: 48.8565, lng: 2.4095 }, lines: ['T3b'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-de-bagnolet', name: 'Porte de Bagnolet (T3b)', coordinates: { lat: 48.8635, lng: 2.4097 }, lines: ['T3b', '3'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-des-lilas-t3b', name: 'Porte des Lilas (T3b)', coordinates: { lat: 48.8770, lng: 2.4065 }, lines: ['T3b', '3bis', '11'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-de-pantin', name: 'Porte de Pantin (T3b)', coordinates: { lat: 48.8890, lng: 2.3920 }, lines: ['T3b', '5'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-villette', name: 'Porte de la Villette (T3b)', coordinates: { lat: 48.8970, lng: 2.3860 }, lines: ['T3b', '7'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-de-la-chapelle', name: 'Porte de la Chapelle', coordinates: { lat: 48.8980, lng: 2.3595 }, lines: ['T3b', '12'], walkingTimeMinutes: 2 },
+  { id: 't3b-rosa-parks', name: 'Rosa Parks', coordinates: { lat: 48.8965, lng: 2.3740 }, lines: ['T3b', 'RER E'], walkingTimeMinutes: 2 },
+  { id: 't3b-canal-saint-denis', name: 'Canal Saint-Denis', coordinates: { lat: 48.9010, lng: 2.3680 }, lines: ['T3b'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-daubervilliers', name: 'Porte d\'Aubervilliers', coordinates: { lat: 48.9045, lng: 2.3735 }, lines: ['T3b'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-de-clignancourt', name: 'Porte de Clignancourt (T3b)', coordinates: { lat: 48.8970, lng: 2.3440 }, lines: ['T3b', '4'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-de-saint-ouen', name: 'Porte de Saint-Ouen (T3b)', coordinates: { lat: 48.8970, lng: 2.3290 }, lines: ['T3b', '13'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-de-clichy-t3b', name: 'Porte de Clichy (T3b)', coordinates: { lat: 48.8940, lng: 2.3170 }, lines: ['T3b', '13', '14'], walkingTimeMinutes: 2 },
+  { id: 't3b-porte-asnieres', name: 'Porte d\'Asnières', coordinates: { lat: 48.8945, lng: 2.3035 }, lines: ['T3b'], walkingTimeMinutes: 2 },
+
+  // Tramway T5: Saint-Denis - Garges-Sarcelles (petite couronne stations)
+  { id: 't5-saint-denis-marche', name: 'Marché de Saint-Denis (T5)', coordinates: { lat: 48.9360, lng: 2.3555 }, lines: ['T5', 'T1'], walkingTimeMinutes: 2 },
+  { id: 't5-saint-denis-gare-t5', name: 'Gare de Saint-Denis (T5)', coordinates: { lat: 48.9345, lng: 2.3445 }, lines: ['T5', 'T1', 'RER D'], walkingTimeMinutes: 2 },
+  { id: 't5-pont-de-stains', name: 'Pont de Stains', coordinates: { lat: 48.9430, lng: 2.3645 }, lines: ['T5'], walkingTimeMinutes: 2 },
+  { id: 't5-pierrefitte-stains', name: 'Pierrefitte - Stains', coordinates: { lat: 48.9590, lng: 2.3710 }, lines: ['T5'], walkingTimeMinutes: 2 },
+
+  // Tramway T6: Châtillon-Montrouge - Viroflay (petite couronne)
+  { id: 't6-chatillon-montrouge-t6', name: 'Châtillon - Montrouge (T6)', coordinates: { lat: 48.8100, lng: 2.3015 }, lines: ['T6', '13'], walkingTimeMinutes: 2 },
+  { id: 't6-division-leclerc', name: 'Division Leclerc', coordinates: { lat: 48.8070, lng: 2.2970 }, lines: ['T6'], walkingTimeMinutes: 2 },
+  { id: 't6-hopital-beclere', name: 'Hôpital Béclère', coordinates: { lat: 48.7990, lng: 2.2850 }, lines: ['T6'], walkingTimeMinutes: 2 },
+  { id: 't6-parc-de-sceaux', name: 'Parc de Sceaux', coordinates: { lat: 48.7890, lng: 2.2790 }, lines: ['T6'], walkingTimeMinutes: 2 },
+  { id: 't6-georges-pompidou', name: 'Georges Pompidou', coordinates: { lat: 48.7910, lng: 2.2715 }, lines: ['T6'], walkingTimeMinutes: 2 },
+  { id: 't6-moulin-vert', name: 'Moulin Vert', coordinates: { lat: 48.7955, lng: 2.2640 }, lines: ['T6'], walkingTimeMinutes: 2 },
+  { id: 't6-robert-wagner', name: 'Robert Wagner', coordinates: { lat: 48.8020, lng: 2.2510 }, lines: ['T6'], walkingTimeMinutes: 2 },
+  { id: 't6-velizy-2', name: 'Vélizy 2', coordinates: { lat: 48.7840, lng: 2.2025 }, lines: ['T6'], walkingTimeMinutes: 2 },
+
+  // Tramway T7: Villejuif - Athis-Mons (petite couronne stations)
+  { id: 't7-villejuif-louis-aragon-t7', name: 'Villejuif - Louis Aragon (T7)', coordinates: { lat: 48.7870, lng: 2.3680 }, lines: ['T7', '7'], walkingTimeMinutes: 2 },
+  { id: 't7-domaine-cherioux', name: 'Domaine Chérioux', coordinates: { lat: 48.7815, lng: 2.3705 }, lines: ['T7'], walkingTimeMinutes: 2 },
+  { id: 't7-lamartine', name: 'Lamartine', coordinates: { lat: 48.7750, lng: 2.3745 }, lines: ['T7'], walkingTimeMinutes: 2 },
+  { id: 't7-auguste-perret', name: 'Auguste Perret', coordinates: { lat: 48.7695, lng: 2.3780 }, lines: ['T7'], walkingTimeMinutes: 2 },
+  { id: 't7-porte-thiais', name: 'Porte de Thiais', coordinates: { lat: 48.7640, lng: 2.3815 }, lines: ['T7'], walkingTimeMinutes: 2 },
+  { id: 't7-caroline-aigle', name: 'Caroline Aigle', coordinates: { lat: 48.7565, lng: 2.3800 }, lines: ['T7'], walkingTimeMinutes: 2 },
+  { id: 't7-rungis-la-fraternelle', name: 'Rungis - La Fraternelle', coordinates: { lat: 48.7510, lng: 2.3780 }, lines: ['T7'], walkingTimeMinutes: 2 },
+
+  // Tramway T8: Saint-Denis - Épinay / Villetaneuse (petite couronne)
+  { id: 't8-saint-denis-gare-t8', name: 'Gare de Saint-Denis (T8)', coordinates: { lat: 48.9345, lng: 2.3450 }, lines: ['T8', 'T1', 'RER D'], walkingTimeMinutes: 2 },
+  { id: 't8-delaunay-belleville', name: 'Delaunay - Belleville', coordinates: { lat: 48.9375, lng: 2.3385 }, lines: ['T8'], walkingTimeMinutes: 2 },
+  { id: 't8-saint-denis-porte-de-paris', name: 'Saint-Denis - Porte de Paris (T8)', coordinates: { lat: 48.9300, lng: 2.3555 }, lines: ['T8', '13'], walkingTimeMinutes: 2 },
+  { id: 't8-cosmonautes', name: 'Cosmonautes', coordinates: { lat: 48.9425, lng: 2.3350 }, lines: ['T8'], walkingTimeMinutes: 2 },
+  { id: 't8-village', name: 'Village', coordinates: { lat: 48.9470, lng: 2.3295 }, lines: ['T8'], walkingTimeMinutes: 2 },
+  { id: 't8-epinay-villetaneuse', name: 'Épinay - Villetaneuse', coordinates: { lat: 48.9575, lng: 2.3280 }, lines: ['T8', 'RER D'], walkingTimeMinutes: 2 },
+
+  // ============================================
+  // TRANSILIEN LINES - Petite Couronne
+  // ============================================
+
+  // Transilien L: Saint-Lazare - La Défense - Versailles (via 92)
+  { id: 'trans-l-saint-lazare', name: 'Saint-Lazare (Transilien)', coordinates: { lat: 48.8760, lng: 2.3260 }, lines: ['L', 'J', '3', '9', '12', '13', '14'], walkingTimeMinutes: 4 },
+  { id: 'trans-l-pont-cardinet', name: 'Pont Cardinet (L)', coordinates: { lat: 48.8880, lng: 2.3170 }, lines: ['L', '14'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-clichy-levallois', name: 'Clichy - Levallois', coordinates: { lat: 48.8975, lng: 2.2990 }, lines: ['L'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-asnieres-sur-seine', name: 'Asnières-sur-Seine', coordinates: { lat: 48.9060, lng: 2.2850 }, lines: ['L', 'J'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-becon-les-bruyeres', name: 'Bécon-les-Bruyères', coordinates: { lat: 48.9040, lng: 2.2685 }, lines: ['L'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-courbevoie', name: 'Courbevoie', coordinates: { lat: 48.8970, lng: 2.2565 }, lines: ['L'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-la-defense-l', name: 'La Défense (Transilien L)', coordinates: { lat: 48.8920, lng: 2.2380 }, lines: ['L', 'U', '1', 'RER A', 'T2'], walkingTimeMinutes: 3 },
+  { id: 'trans-l-puteaux-l', name: 'Puteaux (L)', coordinates: { lat: 48.8830, lng: 2.2365 }, lines: ['L', 'T2'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-suresnes-mont-valerien', name: 'Suresnes - Mont Valérien', coordinates: { lat: 48.8705, lng: 2.2245 }, lines: ['L'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-val-dor', name: 'Val d\'Or', coordinates: { lat: 48.8580, lng: 2.2185 }, lines: ['L'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-saint-cloud', name: 'Saint-Cloud', coordinates: { lat: 48.8450, lng: 2.2080 }, lines: ['L', 'U'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-garches-marnes', name: 'Garches - Marnes-la-Coquette', coordinates: { lat: 48.8445, lng: 2.1845 }, lines: ['L'], walkingTimeMinutes: 2 },
+  { id: 'trans-l-vaucresson', name: 'Vaucresson', coordinates: { lat: 48.8365, lng: 2.1585 }, lines: ['L'], walkingTimeMinutes: 2 },
+
+  // Transilien J: Saint-Lazare - Ermont (via 95 mais petite couronne uniquement)
+  { id: 'trans-j-la-garenne-colombes', name: 'La Garenne-Colombes', coordinates: { lat: 48.9055, lng: 2.2430 }, lines: ['J'], walkingTimeMinutes: 2 },
+  { id: 'trans-j-colombes', name: 'Colombes', coordinates: { lat: 48.9190, lng: 2.2515 }, lines: ['J'], walkingTimeMinutes: 2 },
+  { id: 'trans-j-le-stade', name: 'Le Stade', coordinates: { lat: 48.9255, lng: 2.2680 }, lines: ['J'], walkingTimeMinutes: 2 },
+  { id: 'trans-j-bois-colombes', name: 'Bois-Colombes', coordinates: { lat: 48.9150, lng: 2.2755 }, lines: ['J'], walkingTimeMinutes: 2 },
+  { id: 'trans-j-gennevilliers-j', name: 'Gennevilliers (J)', coordinates: { lat: 48.9320, lng: 2.3010 }, lines: ['J'], walkingTimeMinutes: 2 },
+  { id: 'trans-j-epinay-sur-seine', name: 'Épinay-sur-Seine', coordinates: { lat: 48.9525, lng: 2.3145 }, lines: ['J'], walkingTimeMinutes: 2 },
+
+  // Transilien H: Gare du Nord - Pontoise (petite couronne stations)
+  { id: 'trans-h-gare-du-nord', name: 'Gare du Nord (Transilien)', coordinates: { lat: 48.8800, lng: 2.3550 }, lines: ['H', '4', '5', 'RER B', 'RER D', 'RER E'], walkingTimeMinutes: 4 },
+  { id: 'trans-h-saint-denis-h', name: 'Saint-Denis (H)', coordinates: { lat: 48.9340, lng: 2.3450 }, lines: ['H', 'T1', 'T8', 'RER D'], walkingTimeMinutes: 2 },
+  { id: 'trans-h-epinay-villetaneuse-h', name: 'Épinay - Villetaneuse (H)', coordinates: { lat: 48.9580, lng: 2.3270 }, lines: ['H', 'T8'], walkingTimeMinutes: 2 },
+  { id: 'trans-h-deuil-montmagny', name: 'Deuil - Montmagny', coordinates: { lat: 48.9710, lng: 2.3300 }, lines: ['H'], walkingTimeMinutes: 2 },
+
+  // Transilien N: Montparnasse - Rambouillet/Dreux (petite couronne via 92)
+  { id: 'trans-n-montparnasse', name: 'Montparnasse (Transilien)', coordinates: { lat: 48.8420, lng: 2.3210 }, lines: ['N', '4', '6', '12', '13'], walkingTimeMinutes: 4 },
+  { id: 'trans-n-vanves-malakoff', name: 'Vanves - Malakoff', coordinates: { lat: 48.8190, lng: 2.2955 }, lines: ['N'], walkingTimeMinutes: 2 },
+  { id: 'trans-n-clamart', name: 'Clamart', coordinates: { lat: 48.8105, lng: 2.2700 }, lines: ['N'], walkingTimeMinutes: 2 },
+  { id: 'trans-n-meudon', name: 'Meudon', coordinates: { lat: 48.8145, lng: 2.2435 }, lines: ['N'], walkingTimeMinutes: 2 },
+  { id: 'trans-n-bellevue', name: 'Bellevue', coordinates: { lat: 48.8200, lng: 2.2305 }, lines: ['N'], walkingTimeMinutes: 2 },
+  { id: 'trans-n-sevres-rive-gauche', name: 'Sèvres - Rive Gauche', coordinates: { lat: 48.8240, lng: 2.2135 }, lines: ['N'], walkingTimeMinutes: 2 },
+  { id: 'trans-n-chaville-rive-gauche', name: 'Chaville - Rive Gauche', coordinates: { lat: 48.8095, lng: 2.1895 }, lines: ['N'], walkingTimeMinutes: 2 },
+
+  // Transilien P: Gare de l'Est - Meaux (petite couronne via 93)
+  { id: 'trans-p-gare-de-lest', name: 'Gare de l\'Est (Transilien)', coordinates: { lat: 48.8770, lng: 2.3590 }, lines: ['P', '4', '5', '7'], walkingTimeMinutes: 3 },
+  { id: 'trans-p-pantin', name: 'Pantin', coordinates: { lat: 48.8965, lng: 2.4040 }, lines: ['P', 'RER E'], walkingTimeMinutes: 2 },
+  { id: 'trans-p-noisy-le-sec-p', name: 'Noisy-le-Sec (P)', coordinates: { lat: 48.8920, lng: 2.4610 }, lines: ['P', 'T1', 'RER E'], walkingTimeMinutes: 2 },
+  { id: 'trans-p-bondy', name: 'Bondy', coordinates: { lat: 48.8935, lng: 2.4835 }, lines: ['P', 'RER E'], walkingTimeMinutes: 2 },
+  { id: 'trans-p-le-raincy-villemomble', name: 'Le Raincy - Villemomble - Montfermeil', coordinates: { lat: 48.8830, lng: 2.5200 }, lines: ['P'], walkingTimeMinutes: 2 },
+
+  // Transilien U: La Défense - La Verrière (via 92)
+  { id: 'trans-u-la-defense-u', name: 'La Défense (U)', coordinates: { lat: 48.8920, lng: 2.2380 }, lines: ['U', 'L', '1', 'RER A', 'T2'], walkingTimeMinutes: 3 },
+  { id: 'trans-u-saint-cloud-u', name: 'Saint-Cloud (U)', coordinates: { lat: 48.8450, lng: 2.2080 }, lines: ['U', 'L'], walkingTimeMinutes: 2 },
+  { id: 'trans-u-sevres-ville-davray', name: 'Sèvres - Ville d\'Avray', coordinates: { lat: 48.8245, lng: 2.1895 }, lines: ['U'], walkingTimeMinutes: 2 },
+  { id: 'trans-u-chaville-velizy', name: 'Chaville - Vélizy', coordinates: { lat: 48.8035, lng: 2.1785 }, lines: ['U'], walkingTimeMinutes: 2 },
+  { id: 'trans-u-viroflay-rive-gauche', name: 'Viroflay - Rive Gauche', coordinates: { lat: 48.7970, lng: 2.1685 }, lines: ['U', 'N'], walkingTimeMinutes: 2 },
+
+  // ============================================
+  // RER - Stations complémentaires Petite Couronne
+  // ============================================
+
+  // RER A - Stations manquantes (92, 93, 94)
+  { id: 'rer-a-nanterre-ville', name: 'Nanterre - Ville', coordinates: { lat: 48.8920, lng: 2.2050 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-nanterre-universite', name: 'Nanterre - Université', coordinates: { lat: 48.9010, lng: 2.2145 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-chatou-croissy', name: 'Chatou - Croissy', coordinates: { lat: 48.8880, lng: 2.1615 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-fontenay-sous-bois', name: 'Fontenay-sous-Bois', coordinates: { lat: 48.8520, lng: 2.4705 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-nogent-sur-marne', name: 'Nogent-sur-Marne', coordinates: { lat: 48.8365, lng: 2.4835 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-joinville-le-pont', name: 'Joinville-le-Pont', coordinates: { lat: 48.8220, lng: 2.4695 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-saint-maur-creteil', name: 'Saint-Maur - Créteil', coordinates: { lat: 48.8065, lng: 2.4705 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-le-parc-saint-maur', name: 'Le Parc de Saint-Maur', coordinates: { lat: 48.7985, lng: 2.4890 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-champigny', name: 'Champigny', coordinates: { lat: 48.8175, lng: 2.5155 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+  { id: 'rer-a-neuilly-plaisance', name: 'Neuilly-Plaisance', coordinates: { lat: 48.8625, lng: 2.5095 }, lines: ['RER A'], walkingTimeMinutes: 2 },
+
+  // RER B - Stations manquantes (92, 93, 94)
+  { id: 'rer-b-laplace', name: 'Laplace', coordinates: { lat: 48.8140, lng: 2.3355 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-arcueil-cachan', name: 'Arcueil - Cachan', coordinates: { lat: 48.7980, lng: 2.3325 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-bagneux', name: 'Bagneux', coordinates: { lat: 48.7915, lng: 2.3220 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-fontenay-aux-roses', name: 'Fontenay-aux-Roses', coordinates: { lat: 48.7885, lng: 2.2920 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-sceaux', name: 'Sceaux', coordinates: { lat: 48.7790, lng: 2.2930 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-robinson', name: 'Robinson', coordinates: { lat: 48.7805, lng: 2.2805 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-parc-de-sceaux', name: 'Parc de Sceaux', coordinates: { lat: 48.7725, lng: 2.3025 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-la-croix-de-berny', name: 'La Croix de Berny', coordinates: { lat: 48.7655, lng: 2.3125 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-drancy', name: 'Drancy', coordinates: { lat: 48.9300, lng: 2.4550 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-blanc-mesnil', name: 'Le Blanc-Mesnil', coordinates: { lat: 48.9415, lng: 2.4725 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-sevran-beaudottes', name: 'Sevran - Beaudottes', coordinates: { lat: 48.9480, lng: 2.5245 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+  { id: 'rer-b-villepinte', name: 'Villepinte', coordinates: { lat: 48.9580, lng: 2.5365 }, lines: ['RER B'], walkingTimeMinutes: 2 },
+
+  // RER C - Stations manquantes (92, 94)
+  { id: 'rer-c-ivry-sur-seine', name: 'Ivry-sur-Seine', coordinates: { lat: 48.8110, lng: 2.3850 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-vitry-sur-seine', name: 'Vitry-sur-Seine', coordinates: { lat: 48.7870, lng: 2.3905 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-les-ardoines', name: 'Les Ardoines', coordinates: { lat: 48.7815, lng: 2.4065 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-choisy-le-roi', name: 'Choisy-le-Roi', coordinates: { lat: 48.7645, lng: 2.4115 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-pont-de-rungis', name: 'Pont de Rungis - Aéroport d\'Orly', coordinates: { lat: 48.7510, lng: 2.3690 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-issy', name: 'Issy', coordinates: { lat: 48.8240, lng: 2.2605 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-meudon-val-fleury', name: 'Meudon - Val Fleury', coordinates: { lat: 48.8080, lng: 2.2405 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-chaville-velizy-c', name: 'Chaville - Vélizy (RER C)', coordinates: { lat: 48.7975, lng: 2.1905 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-viroflay-rive-droite', name: 'Viroflay - Rive Droite', coordinates: { lat: 48.8005, lng: 2.1735 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-gennevilliers-c', name: 'Gennevilliers', coordinates: { lat: 48.9335, lng: 2.3125 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+  { id: 'rer-c-epinay-sur-seine-c', name: 'Épinay-sur-Seine (RER C)', coordinates: { lat: 48.9545, lng: 2.3175 }, lines: ['RER C'], walkingTimeMinutes: 2 },
+
+  // RER D - Stations manquantes (93, 94)
+  { id: 'rer-d-pierrefitte-stains-d', name: 'Pierrefitte - Stains (D)', coordinates: { lat: 48.9625, lng: 2.3735 }, lines: ['RER D'], walkingTimeMinutes: 2 },
+  { id: 'rer-d-villiers-le-bel', name: 'Villiers-le-Bel - Gonesse - Arnouville', coordinates: { lat: 48.9860, lng: 2.4055 }, lines: ['RER D'], walkingTimeMinutes: 2 },
+  { id: 'rer-d-creteil-pompadour', name: 'Créteil - Pompadour', coordinates: { lat: 48.7695, lng: 2.4295 }, lines: ['RER D'], walkingTimeMinutes: 2 },
+  { id: 'rer-d-sucy-bonneuil', name: 'Sucy - Bonneuil', coordinates: { lat: 48.7690, lng: 2.5075 }, lines: ['RER D'], walkingTimeMinutes: 2 },
+  { id: 'rer-d-villeneuve-saint-georges', name: 'Villeneuve-Saint-Georges', coordinates: { lat: 48.7335, lng: 2.4505 }, lines: ['RER D'], walkingTimeMinutes: 2 },
+  { id: 'rer-d-maisons-alfort-alfortville', name: 'Maisons-Alfort - Alfortville', coordinates: { lat: 48.8055, lng: 2.4245 }, lines: ['RER D'], walkingTimeMinutes: 2 },
+  { id: 'rer-d-le-vert-de-maisons', name: 'Le Vert de Maisons', coordinates: { lat: 48.7920, lng: 2.4355 }, lines: ['RER D'], walkingTimeMinutes: 2 },
+
+  // RER E - Stations manquantes (93)
+  { id: 'rer-e-rosa-parks', name: 'Rosa Parks (RER E)', coordinates: { lat: 48.8965, lng: 2.3740 }, lines: ['RER E', 'T3b'], walkingTimeMinutes: 2 },
+  { id: 'rer-e-magenta', name: 'Magenta', coordinates: { lat: 48.8810, lng: 2.3580 }, lines: ['RER E'], walkingTimeMinutes: 2 },
+  { id: 'rer-e-haussmann-saint-lazare', name: 'Haussmann - Saint-Lazare', coordinates: { lat: 48.8750, lng: 2.3280 }, lines: ['RER E', '3', '9'], walkingTimeMinutes: 3 },
+  { id: 'rer-e-pantin-e', name: 'Pantin (RER E)', coordinates: { lat: 48.8970, lng: 2.4040 }, lines: ['RER E', 'P'], walkingTimeMinutes: 2 },
+  { id: 'rer-e-noisy-le-sec-e', name: 'Noisy-le-Sec (RER E)', coordinates: { lat: 48.8920, lng: 2.4610 }, lines: ['RER E', 'T1', 'P'], walkingTimeMinutes: 2 },
+  { id: 'rer-e-bondy-e', name: 'Bondy (RER E)', coordinates: { lat: 48.8940, lng: 2.4840 }, lines: ['RER E', 'P'], walkingTimeMinutes: 2 },
+  { id: 'rer-e-rosny-bois-perrier', name: 'Rosny - Bois Perrier', coordinates: { lat: 48.8730, lng: 2.4825 }, lines: ['RER E'], walkingTimeMinutes: 2 },
+  { id: 'rer-e-rosny-sous-bois', name: 'Rosny-sous-Bois', coordinates: { lat: 48.8735, lng: 2.4950 }, lines: ['RER E'], walkingTimeMinutes: 2 },
+  { id: 'rer-e-chelles-gournay', name: 'Chelles - Gournay', coordinates: { lat: 48.8780, lng: 2.5870 }, lines: ['RER E'], walkingTimeMinutes: 2 }
 ];
 
 // Station index for quick lookup
@@ -877,6 +1130,289 @@ export const lineConnections: LineConnection[] = [
   { from: 'plaisance', to: 'porte-de-vanves', line: '13', duration: 2 },
   { from: 'porte-de-vanves', to: 'malakoff-plateau-vanves', line: '13', duration: 2 },
   { from: 'malakoff-plateau-vanves', to: 'malakoff-rue-etienne-dolet', line: '13', duration: 2 },
-  { from: 'malakoff-rue-etienne-dolet', to: 'chatillon-montrouge', line: '13', duration: 2 }
+  { from: 'malakoff-rue-etienne-dolet', to: 'chatillon-montrouge', line: '13', duration: 2 },
+
+  // ============================================
+  // TRAMWAY CONNECTIONS
+  // ============================================
+
+  // T1: Saint-Denis - Asnières-Gennevilliers / Noisy-le-Sec
+  { from: 't1-asnieres-gennevilliers-courtilles', to: 't1-les-courtilles', line: 'T1', duration: 2 },
+  { from: 't1-les-courtilles', to: 't1-cite-jardin', line: 'T1', duration: 2 },
+  { from: 't1-cite-jardin', to: 't1-les-agnettes', line: 'T1', duration: 2 },
+  { from: 't1-les-agnettes', to: 't1-gabriel-peri', line: 'T1', duration: 2 },
+  { from: 't1-gabriel-peri', to: 't1-gennevilliers', line: 'T1', duration: 3 },
+  { from: 't1-gennevilliers', to: 't1-gresillons', line: 'T1', duration: 2 },
+  { from: 't1-gresillons', to: 't1-saint-denis-gare', line: 'T1', duration: 3 },
+  { from: 't1-saint-denis-gare', to: 't1-marche-de-saint-denis', line: 'T1', duration: 2 },
+  { from: 't1-marche-de-saint-denis', to: 't1-basilique-saint-denis', line: 'T1', duration: 2 },
+  { from: 't1-basilique-saint-denis', to: 't1-theatre-gerard-philipe', line: 'T1', duration: 2 },
+  { from: 't1-theatre-gerard-philipe', to: 't1-saint-denis-universite', line: 'T1', duration: 3 },
+  { from: 't1-saint-denis-gare', to: 't1-six-routes', line: 'T1', duration: 3 },
+  { from: 't1-six-routes', to: 't1-escadrille-normandie-niemen', line: 'T1', duration: 2 },
+  { from: 't1-escadrille-normandie-niemen', to: 't1-la-courneuve-8-mai-1945', line: 'T1', duration: 3 },
+  { from: 't1-la-courneuve-8-mai-1945', to: 't1-drancy-avenir', line: 'T1', duration: 3 },
+  { from: 't1-drancy-avenir', to: 't1-hotel-de-ville-drancy', line: 'T1', duration: 2 },
+  { from: 't1-hotel-de-ville-drancy', to: 't1-bobigny-pablo-picasso-t1', line: 'T1', duration: 3 },
+  { from: 't1-bobigny-pablo-picasso-t1', to: 't1-pont-de-bondy', line: 'T1', duration: 2 },
+  { from: 't1-pont-de-bondy', to: 't1-noisy-le-sec', line: 'T1', duration: 3 },
+
+  // T2: Pont de Bezons - Porte de Versailles
+  { from: 't2-pont-de-bezons', to: 't2-jacqueline-auriol', line: 'T2', duration: 2 },
+  { from: 't2-jacqueline-auriol', to: 't2-charlebourg', line: 'T2', duration: 2 },
+  { from: 't2-charlebourg', to: 't2-les-fauvettes', line: 'T2', duration: 2 },
+  { from: 't2-les-fauvettes', to: 't2-les-milons', line: 'T2', duration: 2 },
+  { from: 't2-les-milons', to: 't2-faubourg-arche', line: 'T2', duration: 3 },
+  { from: 't2-faubourg-arche', to: 't2-la-defense', line: 'T2', duration: 2 },
+  { from: 't2-la-defense', to: 't2-puteaux', line: 'T2', duration: 2 },
+  { from: 't2-puteaux', to: 't2-suresnes-longchamp', line: 'T2', duration: 3 },
+  { from: 't2-suresnes-longchamp', to: 't2-belvédère', line: 'T2', duration: 2 },
+  { from: 't2-belvédère', to: 't2-parc-de-saint-cloud', line: 'T2', duration: 3 },
+  { from: 't2-parc-de-saint-cloud', to: 't2-musee-de-sevres', line: 'T2', duration: 3 },
+  { from: 't2-musee-de-sevres', to: 't2-brimborion', line: 'T2', duration: 2 },
+  { from: 't2-brimborion', to: 't2-pont-de-sevres', line: 'T2', duration: 2 },
+  { from: 't2-pont-de-sevres', to: 't2-issy-val-de-seine', line: 'T2', duration: 3 },
+  { from: 't2-issy-val-de-seine', to: 't2-les-moulineaux', line: 'T2', duration: 2 },
+  { from: 't2-les-moulineaux', to: 't2-meudon-sur-seine', line: 'T2', duration: 2 },
+  { from: 't2-meudon-sur-seine', to: 't2-porte-de-versailles', line: 'T2', duration: 4 },
+
+  // T3a: Pont du Garigliano - Porte de Vincennes
+  { from: 't3a-pont-du-garigliano', to: 't3a-balard', line: 'T3a', duration: 2 },
+  { from: 't3a-balard', to: 't3a-porte-de-versailles-t3', line: 'T3a', duration: 3 },
+  { from: 't3a-porte-de-versailles-t3', to: 't3a-georges-brassens', line: 'T3a', duration: 2 },
+  { from: 't3a-georges-brassens', to: 't3a-brancion', line: 'T3a', duration: 2 },
+  { from: 't3a-brancion', to: 't3a-porte-de-vanves', line: 'T3a', duration: 2 },
+  { from: 't3a-porte-de-vanves', to: 't3a-didot', line: 'T3a', duration: 2 },
+  { from: 't3a-didot', to: 't3a-jean-moulin', line: 'T3a', duration: 2 },
+  { from: 't3a-jean-moulin', to: 't3a-porte-orleans', line: 'T3a', duration: 2 },
+  { from: 't3a-porte-orleans', to: 't3a-montsouris', line: 'T3a', duration: 2 },
+  { from: 't3a-montsouris', to: 't3a-cite-universitaire', line: 'T3a', duration: 2 },
+  { from: 't3a-cite-universitaire', to: 't3a-stade-charlety', line: 'T3a', duration: 2 },
+  { from: 't3a-stade-charlety', to: 't3a-porte-ditalie', line: 'T3a', duration: 2 },
+  { from: 't3a-porte-ditalie', to: 't3a-porte-de-choisy', line: 'T3a', duration: 2 },
+  { from: 't3a-porte-de-choisy', to: 't3a-porte-divry', line: 'T3a', duration: 2 },
+  { from: 't3a-porte-divry', to: 't3a-porte-de-charenton', line: 'T3a', duration: 3 },
+  { from: 't3a-porte-de-charenton', to: 't3a-porte-doree', line: 'T3a', duration: 2 },
+  { from: 't3a-porte-doree', to: 't3a-alexandra-david-neel', line: 'T3a', duration: 2 },
+  { from: 't3a-alexandra-david-neel', to: 't3a-montempoivre', line: 'T3a', duration: 2 },
+  { from: 't3a-montempoivre', to: 't3a-porte-de-vincennes', line: 'T3a', duration: 2 },
+
+  // T3b: Porte de Vincennes - Porte d'Asnières
+  { from: 't3b-porte-de-vincennes-t3b', to: 't3b-porte-de-montreuil', line: 'T3b', duration: 2 },
+  { from: 't3b-porte-de-montreuil', to: 't3b-marie-de-miribel', line: 'T3b', duration: 2 },
+  { from: 't3b-marie-de-miribel', to: 't3b-porte-de-bagnolet', line: 'T3b', duration: 2 },
+  { from: 't3b-porte-de-bagnolet', to: 't3b-porte-des-lilas-t3b', line: 'T3b', duration: 3 },
+  { from: 't3b-porte-des-lilas-t3b', to: 't3b-porte-de-pantin', line: 'T3b', duration: 3 },
+  { from: 't3b-porte-de-pantin', to: 't3b-porte-villette', line: 'T3b', duration: 2 },
+  { from: 't3b-porte-villette', to: 't3b-canal-saint-denis', line: 'T3b', duration: 2 },
+  { from: 't3b-canal-saint-denis', to: 't3b-porte-daubervilliers', line: 'T3b', duration: 2 },
+  { from: 't3b-porte-daubervilliers', to: 't3b-rosa-parks', line: 'T3b', duration: 2 },
+  { from: 't3b-rosa-parks', to: 't3b-porte-de-la-chapelle', line: 'T3b', duration: 3 },
+  { from: 't3b-porte-de-la-chapelle', to: 't3b-porte-de-clignancourt', line: 'T3b', duration: 2 },
+  { from: 't3b-porte-de-clignancourt', to: 't3b-porte-de-saint-ouen', line: 'T3b', duration: 3 },
+  { from: 't3b-porte-de-saint-ouen', to: 't3b-porte-de-clichy-t3b', line: 'T3b', duration: 3 },
+  { from: 't3b-porte-de-clichy-t3b', to: 't3b-porte-asnieres', line: 'T3b', duration: 2 },
+
+  // T5: Saint-Denis - Garges-Sarcelles (petite couronne)
+  { from: 't5-saint-denis-marche', to: 't5-saint-denis-gare-t5', line: 'T5', duration: 2 },
+  { from: 't5-saint-denis-gare-t5', to: 't5-pont-de-stains', line: 'T5', duration: 3 },
+  { from: 't5-pont-de-stains', to: 't5-pierrefitte-stains', line: 'T5', duration: 3 },
+
+  // T6: Châtillon-Montrouge - Viroflay (petite couronne)
+  { from: 't6-chatillon-montrouge-t6', to: 't6-division-leclerc', line: 'T6', duration: 2 },
+  { from: 't6-division-leclerc', to: 't6-hopital-beclere', line: 'T6', duration: 2 },
+  { from: 't6-hopital-beclere', to: 't6-parc-de-sceaux', line: 'T6', duration: 3 },
+  { from: 't6-parc-de-sceaux', to: 't6-georges-pompidou', line: 'T6', duration: 2 },
+  { from: 't6-georges-pompidou', to: 't6-moulin-vert', line: 'T6', duration: 2 },
+  { from: 't6-moulin-vert', to: 't6-robert-wagner', line: 'T6', duration: 2 },
+  { from: 't6-robert-wagner', to: 't6-velizy-2', line: 'T6', duration: 4 },
+
+  // T7: Villejuif - Athis-Mons (petite couronne)
+  { from: 't7-villejuif-louis-aragon-t7', to: 't7-domaine-cherioux', line: 'T7', duration: 2 },
+  { from: 't7-domaine-cherioux', to: 't7-lamartine', line: 'T7', duration: 2 },
+  { from: 't7-lamartine', to: 't7-auguste-perret', line: 'T7', duration: 2 },
+  { from: 't7-auguste-perret', to: 't7-porte-thiais', line: 'T7', duration: 2 },
+  { from: 't7-porte-thiais', to: 't7-caroline-aigle', line: 'T7', duration: 2 },
+  { from: 't7-caroline-aigle', to: 't7-rungis-la-fraternelle', line: 'T7', duration: 2 },
+
+  // T8: Saint-Denis - Épinay / Villetaneuse
+  { from: 't8-saint-denis-gare-t8', to: 't8-delaunay-belleville', line: 'T8', duration: 2 },
+  { from: 't8-delaunay-belleville', to: 't8-cosmonautes', line: 'T8', duration: 2 },
+  { from: 't8-cosmonautes', to: 't8-village', line: 'T8', duration: 2 },
+  { from: 't8-village', to: 't8-epinay-villetaneuse', line: 'T8', duration: 3 },
+  { from: 't8-saint-denis-gare-t8', to: 't8-saint-denis-porte-de-paris', line: 'T8', duration: 2 },
+
+  // ============================================
+  // TRANSILIEN CONNECTIONS
+  // ============================================
+
+  // Transilien L
+  { from: 'trans-l-saint-lazare', to: 'trans-l-pont-cardinet', line: 'L', duration: 3 },
+  { from: 'trans-l-pont-cardinet', to: 'trans-l-clichy-levallois', line: 'L', duration: 3 },
+  { from: 'trans-l-clichy-levallois', to: 'trans-l-asnieres-sur-seine', line: 'L', duration: 3 },
+  { from: 'trans-l-asnieres-sur-seine', to: 'trans-l-becon-les-bruyeres', line: 'L', duration: 3 },
+  { from: 'trans-l-becon-les-bruyeres', to: 'trans-l-courbevoie', line: 'L', duration: 3 },
+  { from: 'trans-l-courbevoie', to: 'trans-l-la-defense-l', line: 'L', duration: 3 },
+  { from: 'trans-l-la-defense-l', to: 'trans-l-puteaux-l', line: 'L', duration: 2 },
+  { from: 'trans-l-puteaux-l', to: 'trans-l-suresnes-mont-valerien', line: 'L', duration: 3 },
+  { from: 'trans-l-suresnes-mont-valerien', to: 'trans-l-val-dor', line: 'L', duration: 3 },
+  { from: 'trans-l-val-dor', to: 'trans-l-saint-cloud', line: 'L', duration: 3 },
+  { from: 'trans-l-saint-cloud', to: 'trans-l-garches-marnes', line: 'L', duration: 4 },
+  { from: 'trans-l-garches-marnes', to: 'trans-l-vaucresson', line: 'L', duration: 3 },
+
+  // Transilien J
+  { from: 'trans-l-saint-lazare', to: 'trans-l-asnieres-sur-seine', line: 'J', duration: 6 },
+  { from: 'trans-l-asnieres-sur-seine', to: 'trans-j-bois-colombes', line: 'J', duration: 3 },
+  { from: 'trans-j-bois-colombes', to: 'trans-j-colombes', line: 'J', duration: 2 },
+  { from: 'trans-j-colombes', to: 'trans-j-le-stade', line: 'J', duration: 2 },
+  { from: 'trans-j-le-stade', to: 'trans-j-la-garenne-colombes', line: 'J', duration: 2 },
+  { from: 'trans-l-asnieres-sur-seine', to: 'trans-j-gennevilliers-j', line: 'J', duration: 3 },
+  { from: 'trans-j-gennevilliers-j', to: 'trans-j-epinay-sur-seine', line: 'J', duration: 4 },
+
+  // Transilien H
+  { from: 'trans-h-gare-du-nord', to: 'trans-h-saint-denis-h', line: 'H', duration: 6 },
+  { from: 'trans-h-saint-denis-h', to: 'trans-h-epinay-villetaneuse-h', line: 'H', duration: 4 },
+  { from: 'trans-h-epinay-villetaneuse-h', to: 'trans-h-deuil-montmagny', line: 'H', duration: 4 },
+
+  // Transilien N
+  { from: 'trans-n-montparnasse', to: 'trans-n-vanves-malakoff', line: 'N', duration: 5 },
+  { from: 'trans-n-vanves-malakoff', to: 'trans-n-clamart', line: 'N', duration: 3 },
+  { from: 'trans-n-clamart', to: 'trans-n-meudon', line: 'N', duration: 3 },
+  { from: 'trans-n-meudon', to: 'trans-n-bellevue', line: 'N', duration: 2 },
+  { from: 'trans-n-bellevue', to: 'trans-n-sevres-rive-gauche', line: 'N', duration: 2 },
+  { from: 'trans-n-sevres-rive-gauche', to: 'trans-n-chaville-rive-gauche', line: 'N', duration: 3 },
+
+  // Transilien P
+  { from: 'trans-p-gare-de-lest', to: 'trans-p-pantin', line: 'P', duration: 5 },
+  { from: 'trans-p-pantin', to: 'trans-p-noisy-le-sec-p', line: 'P', duration: 4 },
+  { from: 'trans-p-noisy-le-sec-p', to: 'trans-p-bondy', line: 'P', duration: 4 },
+  { from: 'trans-p-bondy', to: 'trans-p-le-raincy-villemomble', line: 'P', duration: 5 },
+
+  // Transilien U
+  { from: 'trans-u-la-defense-u', to: 'trans-u-saint-cloud-u', line: 'U', duration: 8 },
+  { from: 'trans-u-saint-cloud-u', to: 'trans-u-sevres-ville-davray', line: 'U', duration: 4 },
+  { from: 'trans-u-sevres-ville-davray', to: 'trans-u-chaville-velizy', line: 'U', duration: 3 },
+  { from: 'trans-u-chaville-velizy', to: 'trans-u-viroflay-rive-gauche', line: 'U', duration: 3 },
+
+  // ============================================
+  // RER CONNECTIONS - Compléments Petite Couronne
+  // ============================================
+
+  // RER A compléments
+  { from: 'la-defense', to: 'rer-a-nanterre-prefecture', line: 'RER A', duration: 4 },
+  { from: 'rer-a-nanterre-prefecture', to: 'rer-a-nanterre-universite', line: 'RER A', duration: 3 },
+  { from: 'rer-a-nanterre-universite', to: 'rer-a-nanterre-ville', line: 'RER A', duration: 3 },
+  { from: 'rer-a-nanterre-ville', to: 'rer-a-chatou-croissy', line: 'RER A', duration: 5 },
+  { from: 'rer-a-chatou-croissy', to: 'rueil-malmaison', line: 'RER A', duration: 4 },
+  { from: 'nation', to: 'vincennes', line: 'RER A', duration: 4 },
+  { from: 'vincennes', to: 'rer-a-fontenay-sous-bois', line: 'RER A', duration: 4 },
+  { from: 'rer-a-fontenay-sous-bois', to: 'val-de-fontenay', line: 'RER A', duration: 3 },
+  { from: 'val-de-fontenay', to: 'rer-a-neuilly-plaisance', line: 'RER A', duration: 3 },
+  { from: 'rer-a-neuilly-plaisance', to: 'noisy-le-grand', line: 'RER A', duration: 4 },
+  { from: 'vincennes', to: 'rer-a-nogent-sur-marne', line: 'RER A', duration: 4 },
+  { from: 'rer-a-nogent-sur-marne', to: 'rer-a-joinville-le-pont', line: 'RER A', duration: 3 },
+  { from: 'rer-a-joinville-le-pont', to: 'rer-a-saint-maur-creteil', line: 'RER A', duration: 3 },
+  { from: 'rer-a-saint-maur-creteil', to: 'rer-a-le-parc-saint-maur', line: 'RER A', duration: 3 },
+  { from: 'rer-a-le-parc-saint-maur', to: 'rer-a-champigny', line: 'RER A', duration: 4 },
+  { from: 'rer-a-champigny', to: 'boissy-saint-leger', line: 'RER A', duration: 8 },
+
+  // RER B compléments
+  { from: 'cite-universitaire', to: 'rer-b-laplace', line: 'RER B', duration: 2 },
+  { from: 'rer-b-laplace', to: 'rer-b-arcueil-cachan', line: 'RER B', duration: 3 },
+  { from: 'rer-b-arcueil-cachan', to: 'rer-b-bagneux', line: 'RER B', duration: 2 },
+  { from: 'rer-b-bagneux', to: 'bourg-la-reine', line: 'RER B', duration: 3 },
+  { from: 'bourg-la-reine', to: 'rer-b-sceaux', line: 'RER B', duration: 2 },
+  { from: 'rer-b-sceaux', to: 'rer-b-fontenay-aux-roses', line: 'RER B', duration: 3 },
+  { from: 'rer-b-fontenay-aux-roses', to: 'rer-b-robinson', line: 'RER B', duration: 2 },
+  { from: 'bourg-la-reine', to: 'rer-b-parc-de-sceaux', line: 'RER B', duration: 2 },
+  { from: 'rer-b-parc-de-sceaux', to: 'rer-b-la-croix-de-berny', line: 'RER B', duration: 2 },
+  { from: 'rer-b-la-croix-de-berny', to: 'antony', line: 'RER B', duration: 3 },
+  { from: 'le-bourget', to: 'rer-b-drancy', line: 'RER B', duration: 3 },
+  { from: 'rer-b-drancy', to: 'rer-b-blanc-mesnil', line: 'RER B', duration: 3 },
+  { from: 'rer-b-blanc-mesnil', to: 'aulnay-sous-bois', line: 'RER B', duration: 3 },
+  { from: 'aulnay-sous-bois', to: 'rer-b-sevran-beaudottes', line: 'RER B', duration: 4 },
+  { from: 'rer-b-sevran-beaudottes', to: 'rer-b-villepinte', line: 'RER B', duration: 3 },
+  { from: 'rer-b-villepinte', to: 'parc-expositions', line: 'RER B', duration: 3 },
+
+  // RER C compléments
+  { from: 'bibliotheque', to: 'rer-c-ivry-sur-seine', line: 'RER C', duration: 4 },
+  { from: 'rer-c-ivry-sur-seine', to: 'rer-c-vitry-sur-seine', line: 'RER C', duration: 4 },
+  { from: 'rer-c-vitry-sur-seine', to: 'rer-c-les-ardoines', line: 'RER C', duration: 3 },
+  { from: 'rer-c-les-ardoines', to: 'rer-c-choisy-le-roi', line: 'RER C', duration: 4 },
+  { from: 'rer-c-choisy-le-roi', to: 'rer-c-pont-de-rungis', line: 'RER C', duration: 5 },
+  { from: 't2-issy-val-de-seine', to: 'rer-c-issy', line: 'RER C', duration: 2 },
+  { from: 'rer-c-issy', to: 'rer-c-meudon-val-fleury', line: 'RER C', duration: 4 },
+  { from: 'rer-c-meudon-val-fleury', to: 'rer-c-chaville-velizy-c', line: 'RER C', duration: 3 },
+  { from: 'rer-c-chaville-velizy-c', to: 'rer-c-viroflay-rive-droite', line: 'RER C', duration: 3 },
+  { from: 'porte-de-clichy', to: 'rer-c-gennevilliers-c', line: 'RER C', duration: 5 },
+  { from: 'rer-c-gennevilliers-c', to: 'rer-c-epinay-sur-seine-c', line: 'RER C', duration: 5 },
+
+  // RER D compléments
+  { from: 'stade-de-france', to: 't1-saint-denis-gare', line: 'RER D', duration: 4 },
+  { from: 't1-saint-denis-gare', to: 'rer-d-pierrefitte-stains-d', line: 'RER D', duration: 5 },
+  { from: 'rer-d-pierrefitte-stains-d', to: 'rer-d-villiers-le-bel', line: 'RER D', duration: 5 },
+  { from: 'gare-de-lyon', to: 'rer-d-maisons-alfort-alfortville', line: 'RER D', duration: 6 },
+  { from: 'rer-d-maisons-alfort-alfortville', to: 'rer-d-le-vert-de-maisons', line: 'RER D', duration: 3 },
+  { from: 'rer-d-le-vert-de-maisons', to: 'rer-d-creteil-pompadour', line: 'RER D', duration: 3 },
+  { from: 'rer-d-creteil-pompadour', to: 'rer-d-sucy-bonneuil', line: 'RER D', duration: 5 },
+  { from: 'rer-d-sucy-bonneuil', to: 'rer-d-villeneuve-saint-georges', line: 'RER D', duration: 6 },
+
+  // RER E compléments
+  { from: 'gare-du-nord', to: 'rer-e-magenta', line: 'RER E', duration: 3 },
+  { from: 'rer-e-magenta', to: 'rer-e-haussmann-saint-lazare', line: 'RER E', duration: 4 },
+  { from: 'rer-e-magenta', to: 'rer-e-rosa-parks', line: 'RER E', duration: 4 },
+  { from: 'rer-e-rosa-parks', to: 'rer-e-pantin-e', line: 'RER E', duration: 3 },
+  { from: 'rer-e-pantin-e', to: 'rer-e-noisy-le-sec-e', line: 'RER E', duration: 4 },
+  { from: 'rer-e-noisy-le-sec-e', to: 'rer-e-bondy-e', line: 'RER E', duration: 4 },
+  { from: 'rer-e-bondy-e', to: 'val-de-fontenay', line: 'RER E', duration: 5 },
+  { from: 'val-de-fontenay', to: 'rer-e-rosny-bois-perrier', line: 'RER E', duration: 3 },
+  { from: 'rer-e-rosny-bois-perrier', to: 'rer-e-rosny-sous-bois', line: 'RER E', duration: 2 },
+  { from: 'rer-e-rosny-sous-bois', to: 'rer-e-chelles-gournay', line: 'RER E', duration: 8 },
+
+  // ============================================
+  // INTERCHANGE CONNECTIONS (Tramway ↔ Metro/RER)
+  // ============================================
+
+  // T1 ↔ Metro/RER
+  { from: 't1-la-courneuve-8-mai-1945', to: 'la-courneuve', line: 'interchange', duration: 3 },
+  { from: 't1-bobigny-pablo-picasso-t1', to: 'bobigny-pablo-picasso', line: 'interchange', duration: 3 },
+  { from: 't1-noisy-le-sec', to: 'rer-e-noisy-le-sec-e', line: 'interchange', duration: 3 },
+
+  // T2 ↔ Metro/RER
+  { from: 't2-la-defense', to: 'la-defense', line: 'interchange', duration: 4 },
+  { from: 't2-pont-de-sevres', to: 'pont-de-sevres', line: 'interchange', duration: 3 },
+  { from: 't2-porte-de-versailles', to: 'porte-de-versailles', line: 'interchange', duration: 3 },
+
+  // T3a ↔ Metro
+  { from: 't3a-balard', to: 'balard', line: 'interchange', duration: 3 },
+  { from: 't3a-porte-de-vanves', to: 'porte-de-vanves', line: 'interchange', duration: 3 },
+  { from: 't3a-porte-orleans', to: 'porte-orleans', line: 'interchange', duration: 3 },
+  { from: 't3a-cite-universitaire', to: 'cite-universitaire', line: 'interchange', duration: 3 },
+  { from: 't3a-porte-ditalie', to: 'porte-italie', line: 'interchange', duration: 3 },
+  { from: 't3a-porte-de-charenton', to: 'porte-charenton', line: 'interchange', duration: 3 },
+  { from: 't3a-porte-doree', to: 'porte-doree', line: 'interchange', duration: 3 },
+
+  // T3b ↔ Metro
+  { from: 't3b-porte-de-montreuil', to: 'porte-montreuil', line: 'interchange', duration: 3 },
+  { from: 't3b-porte-de-bagnolet', to: 'porte-de-bagnolet', line: 'interchange', duration: 3 },
+  { from: 't3b-porte-des-lilas-t3b', to: 'porte-des-lilas', line: 'interchange', duration: 3 },
+  { from: 't3b-porte-de-pantin', to: 'porte-pantin', line: 'interchange', duration: 3 },
+  { from: 't3b-porte-villette', to: 'porte-villette', line: 'interchange', duration: 3 },
+  { from: 't3b-porte-de-clignancourt', to: 'porte-clignancourt', line: 'interchange', duration: 3 },
+  { from: 't3b-porte-de-saint-ouen', to: 'porte-saint-ouen', line: 'interchange', duration: 3 },
+  { from: 't3b-porte-de-clichy-t3b', to: 'porte-de-clichy', line: 'interchange', duration: 3 },
+
+  // T6 ↔ Metro
+  { from: 't6-chatillon-montrouge-t6', to: 'chatillon-montrouge', line: 'interchange', duration: 3 },
+
+  // T7 ↔ Metro
+  { from: 't7-villejuif-louis-aragon-t7', to: 'villejuif-louis-aragon', line: 'interchange', duration: 3 },
+
+  // Transilien ↔ Metro/RER
+  { from: 'trans-l-la-defense-l', to: 'la-defense', line: 'interchange', duration: 4 },
+  { from: 'trans-h-gare-du-nord', to: 'gare-du-nord', line: 'interchange', duration: 3 },
+  { from: 'trans-p-gare-de-lest', to: 'gare-de-lest', line: 'interchange', duration: 3 },
+  { from: 'trans-n-montparnasse', to: 'montparnasse', line: 'interchange', duration: 3 },
+  { from: 'trans-l-saint-lazare', to: 'saint-lazare', line: 'interchange', duration: 3 }
 ];
 

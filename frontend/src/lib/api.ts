@@ -198,7 +198,7 @@ export async function getVenueDetails(
 
 // Directions API
 export interface RouteSegment {
-  type: 'walk' | 'metro' | 'rer' | 'transilien';
+  type: 'walk' | 'metro' | 'rer' | 'transilien' | 'tramway';
   line?: string;
   from: string;
   to: string;

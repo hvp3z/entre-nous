@@ -282,7 +282,7 @@ export interface TravelTime {
 }
 
 export interface RouteSegment {
-  type: 'walk' | 'metro' | 'rer' | 'transilien';
+  type: 'walk' | 'metro' | 'rer' | 'transilien' | 'tramway';
   line?: string;
   from: string;
   to: string;
@@ -314,7 +314,7 @@ export interface TransitEdge {
   toStationId: string;
   line: string;
   durationMinutes: number;
-  type: 'metro' | 'rer' | 'transilien' | 'interchange';
+  type: 'metro' | 'rer' | 'transilien' | 'tramway' | 'interchange';
 }
 
 // Session types
