@@ -135,13 +135,6 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
           </div>
         </div>
 
-        {/* Bouton cœur corail en bas à droite */}
-        <button
-          className="absolute bottom-3 right-3 p-2 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-colors shadow-sm"
-          aria-label="Favoris"
-        >
-          <Heart className="w-5 h-5 text-coral-500 fill-coral-500" />
-        </button>
       </div>
 
       <div className="p-4">
