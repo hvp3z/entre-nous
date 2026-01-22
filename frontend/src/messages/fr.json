@@ -193,7 +193,11 @@
       "korean": "Coréen",
       "japanese": "Japonais",
       "turkish": "Turc / Libanais",
-      "african": "Africain"
+      "african": "Africain",
+      "dietary": "Régime alimentaire",
+      "vegetarian": "Végétarien",
+      "brunch": "Brunch",
+      "glutenFree": "Sans gluten"
     },
     "cafes": {
       "category": "Type de café",

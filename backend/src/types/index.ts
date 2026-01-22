@@ -135,6 +135,17 @@ export const RESTAURANTS_FILTERS: ThemeFiltersConfig = {
       ],
     },
     {
+      id: 'restaurants-dietary',
+      type: 'category',
+      labelKey: 'filters.restaurants.dietary',
+      multiSelect: true,
+      options: [
+        { id: 'vegetarian', labelKey: 'filters.restaurants.vegetarian', keywords: ['vegetarian', 'végétarien', 'vegan', 'végétalien', 'plant-based'] },
+        { id: 'brunch', labelKey: 'filters.restaurants.brunch', keywords: ['brunch', 'breakfast', 'petit-déjeuner', 'sunday brunch'] },
+        { id: 'gluten-free', labelKey: 'filters.restaurants.glutenFree', keywords: ['gluten free', 'sans gluten', 'gluten-free', 'celiac friendly'] },
+      ],
+    },
+    {
       id: 'restaurants-price',
       type: 'price',
       labelKey: 'filters.price.title',
