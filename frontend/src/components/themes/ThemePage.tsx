@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, AlertCircle, SearchX } from 'lucide-react';
@@ -84,6 +84,15 @@ export function ThemePage({ theme, openModal = false }: ThemePageProps) {
       setIsLocationModalOpen(true);
     }
   }, [openModal]);
+
+  // Scroll to top when a new location is added (mobile UX improvement)
+  const prevLocationsCount = useRef(locations.length);
+  useEffect(() => {
+    if (locations.length > prevLocationsCount.current) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    prevLocationsCount.current = locations.length;
+  }, [locations.length]);
 
   const handleSearch = useCallback(async () => {
     if (locations.length < 2) return;

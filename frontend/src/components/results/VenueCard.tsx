@@ -13,7 +13,6 @@ import {
   Share2,
   Train,
   MapPin,
-  Heart,
   ArrowRight
 } from 'lucide-react';
 import clsx from 'clsx';
