@@ -218,7 +218,6 @@ export class TransitService {
 }
 
 // Find nearest stations to a coordinate
-// Search radius extended to 1.5km for better coverage in petite couronne
 export function findNearestStations(coordinates: Coordinates, count: number = 3): Station[] {
   const stationsWithDistance = stations.map(station => ({
     station,
@@ -229,7 +228,7 @@ export function findNearestStations(coordinates: Coordinates, count: number = 3)
 
   return stationsWithDistance
     .slice(0, count)
-    .filter(s => s.distance < 1500) // Within 1.5km (extended for petite couronne)
+    .filter(s => s.distance < 1000) // Within 1km
     .map(s => ({
       ...s.station,
       walkingTimeMinutes: Math.ceil(s.distance / 80) // ~80m per minute walking
