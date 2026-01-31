@@ -253,13 +253,8 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="relative bg-white rounded-3xl p-6 shadow-sm border border-neutral-100 hover:shadow-md transition-shadow"
+                  className="bg-white rounded-3xl p-6 shadow-sm border border-neutral-100 hover:shadow-md transition-shadow"
                 >
-                  {/* Step number badge */}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-coral-500 text-white text-sm font-semibold flex items-center justify-center shadow-lg">
-                    {index + 1}
-                  </div>
-                  
                   {/* Icon */}
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-coral-500 flex items-center justify-center mb-4">
                     <StepIcon className="w-7 h-7 text-white" />

@@ -90,9 +90,18 @@ router.get('/autocomplete', async (req, res) => {
       return { feature, score };
     });
     
-    // Sort by score (highest first), then take top results
+    // Sort by score (highest first), deduplicate by osm_id, then take top results
+    const seenOsmIds = new Set<number>();
     const sortedFeatures = featuresWithScore
       .sort((a, b) => b.score - a.score)
+      .filter(({ feature }) => {
+        const osmId = feature.properties.osm_id;
+        if (seenOsmIds.has(osmId)) {
+          return false; // Skip duplicate osm_id
+        }
+        seenOsmIds.add(osmId);
+        return true;
+      })
       .slice(0, 8) // Return up to 8 results
       .map(({ feature }) => feature);
     

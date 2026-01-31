@@ -46,14 +46,14 @@ const NETWORK_LINES = [
   { from: 'e', to: 'w' },
 ];
 
-// Editorial palette - cream/terracotta tones
+// Peach/coral palette - matching site theme
 const PALETTE = {
-  line: 'rgba(180, 140, 100, 0.4)',     // Warm brown
-  lineHighlight: 'rgba(180, 140, 100, 0.8)',
-  point: '#b87333',                      // Cognac
-  pointGlow: 'rgba(184, 115, 51, 0.4)',
+  line: 'rgba(249, 115, 22, 0.4)',       // Orange-500 with alpha
+  lineHighlight: 'rgba(249, 115, 22, 0.8)',
+  point: '#F97316',                       // Orange-500
+  pointGlow: 'rgba(249, 115, 22, 0.4)',
   center: '#fafafa',
-  centerRing: 'rgba(184, 115, 51, 0.6)',
+  centerRing: 'rgba(251, 113, 133, 0.6)', // Coral-500
 };
 
 export function SearchLoadingOverlay({ isVisible }: SearchLoadingOverlayProps) {
@@ -93,7 +93,7 @@ export function SearchLoadingOverlay({ isVisible }: SearchLoadingOverlayProps) {
           <div 
             className="absolute inset-0 opacity-30"
             style={{
-              background: 'radial-gradient(circle at 50% 50%, rgba(184, 115, 51, 0.15) 0%, transparent 60%)',
+              background: 'radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.15) 0%, transparent 60%)',
             }}
           />
 

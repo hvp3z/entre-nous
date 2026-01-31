@@ -33,10 +33,10 @@ const createIcon = (color: string, isVenue = false) => {
 };
 
 const themeColors = {
-  bars: '#b87333',      // cognac
-  restaurants: '#c2703a', // terracotta
-  cafes: '#8B5C2A',     // café/brown
-  kids: '#a65d3f',      // brique
+  bars: '#F97316',       // Orange-500
+  restaurants: '#F97316', // Orange-500
+  cafes: '#F97316',      // Orange-500
+  kids: '#FB7185',       // Coral-500 (slightly different for kids)
 };
 
 // Component to handle map click events (close preview when clicking on map)

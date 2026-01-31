@@ -107,14 +107,11 @@ export function ThemeSelectionModal({ isOpen, onClose }: ThemeSelectionModalProp
             {/* Content */}
             <div className="flex-1 overflow-y-auto px-4 py-4">
               <div className="space-y-3">
-                {themes.map((themeItem, index) => {
+                {themes.map((themeItem) => {
                   const Icon = themeItem.icon;
                   return (
-                    <motion.button
+                    <button
                       key={themeItem.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
                       onClick={() => handleThemeSelect(themeItem.id)}
                       className={clsx(
                         'w-full flex items-center gap-4 px-6 py-4',
@@ -137,7 +134,7 @@ export function ThemeSelectionModal({ isOpen, onClose }: ThemeSelectionModalProp
                       <span className="flex-1 font-semibold text-[#1a1a1a] text-lg">
                         {t(`themes.${themeItem.id}.title`)}
                       </span>
-                    </motion.button>
+                    </button>
                   );
                 })}
               </div>

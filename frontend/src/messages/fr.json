@@ -59,7 +59,9 @@
     "nearestStation": "Station la plus proche: {station}",
     "metroStation": "Station de métro · Lignes {lines}",
     "locationError": "Impossible de récupérer votre position",
-    "searchError": "Erreur lors de la recherche"
+    "searchError": "Erreur lors de la recherche",
+    "noResults": "Aucune adresse trouvée",
+    "typeToSearch": "Continuez à taper pour rechercher..."
   },
   "search": {
     "searching": "Recherche des lieux équidistants...",

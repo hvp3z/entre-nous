@@ -59,7 +59,9 @@
     "nearestStation": "Nearest station: {station}",
     "metroStation": "Metro station · Lines {lines}",
     "locationError": "Could not get your location",
-    "searchError": "Search error"
+    "searchError": "Search error",
+    "noResults": "No addresses found",
+    "typeToSearch": "Keep typing to search..."
   },
   "search": {
     "searching": "Searching for equidistant places...",

@@ -74,6 +74,27 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
     }
   }, [suggestions]);
 
+  // Lock body scroll when modal is open (prevents background scroll bleed)
+  useEffect(() => {
+    if (isOpen) {
+      // Save current scroll position and lock body
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      
+      return () => {
+        // Restore scroll position on close
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isOpen]);
+
   // Search for suggestions (hybrid: stations first when they match, then addresses)
   const searchSuggestions = useCallback(async (query: string) => {
     if (query.length < 2) {
@@ -231,8 +252,8 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
             className="fixed inset-x-0 bottom-0 lg:inset-auto lg:top-1/2 lg:left-1/2 
                        lg:-translate-x-1/2 lg:-translate-y-1/2 lg:w-full lg:max-w-md
                        bg-white rounded-t-3xl lg:rounded-2xl z-50 
-                       overflow-hidden flex flex-col shadow-2xl"
-            style={{ maxHeight: '85vh' }}
+                       overflow-hidden flex flex-col shadow-2xl
+                       h-[80vh] lg:h-auto lg:max-h-[85vh]"
           >
             {/* Header */}
             <div className="flex-shrink-0 px-4 pt-4 pb-3 border-b border-neutral-100">
@@ -273,30 +294,32 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
             </div>
 
             {/* Content */}
-            <div ref={contentRef} className="flex-1 overflow-y-auto">
-              {/* Geolocation Button */}
-              <button
-                onClick={handleUseCurrentLocation}
-                disabled={isGeolocating}
-                className={clsx(
-                  'w-full flex items-center gap-4 px-4 py-4',
-                  'text-left transition-colors',
-                  'hover:bg-neutral-50 disabled:opacity-50',
-                  'border-b border-neutral-100'
-                )}
-              >
-                <div className={clsx('w-10 h-10 rounded-full flex items-center justify-center', config.accentBg)}>
-                  {isGeolocating ? (
-                    <Loader2 className="w-5 h-5 text-white animate-spin" />
-                  ) : (
-                    <Navigation className="w-5 h-5 text-white" />
+            <div ref={contentRef} className="flex-1 overflow-y-auto overscroll-contain">
+              {/* Geolocation Button - at top when input is empty */}
+              {!inputValue && (
+                <button
+                  onClick={handleUseCurrentLocation}
+                  disabled={isGeolocating}
+                  className={clsx(
+                    'w-full flex items-center gap-4 px-4 py-4',
+                    'text-left transition-colors',
+                    'hover:bg-neutral-50 disabled:opacity-50',
+                    'border-b border-neutral-100'
                   )}
-                </div>
-                <div>
-                  <p className="font-medium text-[#1a1a1a]">{t('location.useCurrentLocation')}</p>
-                  <p className="text-sm text-neutral-500">GPS</p>
-                </div>
-              </button>
+                >
+                  <div className={clsx('w-10 h-10 rounded-full flex items-center justify-center', config.accentBg)}>
+                    {isGeolocating ? (
+                      <Loader2 className="w-5 h-5 text-white animate-spin" />
+                    ) : (
+                      <Navigation className="w-5 h-5 text-white" />
+                    )}
+                  </div>
+                  <div>
+                    <p className="font-medium text-[#1a1a1a]">{t('location.useCurrentLocation')}</p>
+                    <p className="text-sm text-neutral-500">GPS</p>
+                  </div>
+                </button>
+              )}
 
               {/* Suggestions */}
               {suggestions.length > 0 && (
@@ -312,7 +335,7 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
                         key={suggestion.placeId}
                         onClick={() => handleSelectSuggestion(suggestion)}
                         className="w-full flex items-start gap-4 px-4 py-4 text-left 
-                                 hover:bg-neutral-50 transition-colors border-b border-neutral-100 last:border-0"
+                                 hover:bg-neutral-50 transition-colors border-b border-neutral-100"
                       >
                         {isStation ? (
                           <div 
@@ -354,6 +377,32 @@ export function LocationSearchModal({ isOpen, onClose, theme }: LocationSearchMo
                     );
                   })}
                 </div>
+              )}
+
+              {/* Geolocation Button - at bottom when user is typing */}
+              {inputValue && (
+                <button
+                  onClick={handleUseCurrentLocation}
+                  disabled={isGeolocating}
+                  className={clsx(
+                    'w-full flex items-center gap-4 px-4 py-4',
+                    'text-left transition-colors',
+                    'hover:bg-neutral-50 disabled:opacity-50',
+                    'border-b border-neutral-100'
+                  )}
+                >
+                  <div className={clsx('w-10 h-10 rounded-full flex items-center justify-center', config.accentBg)}>
+                    {isGeolocating ? (
+                      <Loader2 className="w-5 h-5 text-white animate-spin" />
+                    ) : (
+                      <Navigation className="w-5 h-5 text-white" />
+                    )}
+                  </div>
+                  <div>
+                    <p className="font-medium text-[#1a1a1a]">{t('location.useCurrentLocation')}</p>
+                    <p className="text-sm text-neutral-500">GPS</p>
+                  </div>
+                </button>
               )}
 
               {/* Empty state */}

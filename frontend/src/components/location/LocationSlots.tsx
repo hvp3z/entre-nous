@@ -66,12 +66,19 @@ export function LocationSlots({ theme }: LocationSlotsProps) {
   const sessionTokenRef = useRef<string>(uuidv4());
   const debounceRef = useRef<NodeJS.Timeout>();
 
-  // Focus input when slot becomes active
+  // Focus input when slot becomes active (with preventScroll to avoid jumping)
   useEffect(() => {
     if (activeSlot !== null && inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current.focus({ preventScroll: true });
     }
   }, [activeSlot]);
+
+  // Keep input focused after suggestions change
+  useEffect(() => {
+    if (activeSlot !== null && inputRef.current && document.activeElement !== inputRef.current) {
+      inputRef.current.focus({ preventScroll: true });
+    }
+  }, [suggestions, activeSlot]);
 
   // Search for suggestions
   const searchSuggestions = useCallback(async (query: string) => {
@@ -281,21 +288,23 @@ export function LocationSlots({ theme }: LocationSlotsProps) {
                 </button>
               </div>
 
-              {/* Geolocation option */}
-              <button
-                onClick={handleUseCurrentLocation}
-                disabled={isGeolocating}
-                className="w-full flex items-center gap-3 px-3 py-2.5 mb-2 rounded-lg border 
-                         border-neutral-200 bg-white text-[#525252] hover:border-neutral-300
-                         transition-colors disabled:opacity-50 text-sm"
-              >
-                {isGeolocating ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Navigation className="w-4 h-4" />
-                )}
-                <span>{t('location.useCurrentLocation')}</span>
-              </button>
+              {/* Geolocation option - only show when not typing */}
+              {inputValue.length === 0 && (
+                <button
+                  onClick={handleUseCurrentLocation}
+                  disabled={isGeolocating}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 mb-2 rounded-lg border 
+                           border-neutral-200 bg-white text-[#525252] hover:border-neutral-300
+                           transition-colors disabled:opacity-50 text-sm"
+                >
+                  {isGeolocating ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Navigation className="w-4 h-4" />
+                  )}
+                  <span>{t('location.useCurrentLocation')}</span>
+                </button>
+              )}
 
               {/* Search input */}
               <div className="relative">
@@ -306,6 +315,13 @@ export function LocationSlots({ theme }: LocationSlotsProps) {
                   value={inputValue}
                   onChange={(e) => handleInputChange(e.target.value)}
                   onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+                  onBlur={(e) => {
+                    // Don't lose focus if clicking on suggestions
+                    if (suggestionRef.current?.contains(e.relatedTarget as Node)) {
+                      e.preventDefault();
+                      inputRef.current?.focus({ preventScroll: true });
+                    }
+                  }}
                   placeholder={t('location.placeholder')}
                   className={clsx(
                     'w-full pl-10 pr-10 py-2.5 rounded-lg border border-neutral-200 bg-white',
@@ -318,34 +334,70 @@ export function LocationSlots({ theme }: LocationSlotsProps) {
                 )}
               </div>
 
-              {/* Suggestions */}
-              <AnimatePresence>
-                {showSuggestions && suggestions.length > 0 && (
-                  <motion.div
-                    ref={suggestionRef}
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    className="mt-2 bg-white rounded-lg shadow-lg border border-neutral-200 
-                               overflow-hidden max-h-48 overflow-y-auto"
-                  >
-                    {suggestions.map((suggestion) => (
-                      <button
-                        key={suggestion.placeId}
-                        onClick={() => handleSelectSuggestion(suggestion)}
-                        className="w-full flex items-start gap-2 px-3 py-2 text-left hover:bg-neutral-50 
-                                 transition-colors border-b border-neutral-100 last:border-0"
+              {/* Suggestions - fixed height container to prevent layout shift when typing */}
+              {inputValue.length > 0 && (
+                <div className="h-48 mt-2">
+                  <AnimatePresence mode="wait">
+                    {showSuggestions && suggestions.length > 0 ? (
+                      <motion.div
+                        key="suggestions"
+                        ref={suggestionRef}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                        className="bg-white rounded-lg shadow-lg border border-neutral-200 
+                                   overflow-hidden h-48 overflow-y-auto"
                       >
-                        <MapPin className="w-4 h-4 text-neutral-400 flex-shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-medium text-[#1a1a1a]">{suggestion.mainText}</p>
-                          <p className="text-xs text-[#525252]">{suggestion.secondaryText}</p>
-                        </div>
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                        {suggestions.map((suggestion) => (
+                          <button
+                            key={suggestion.placeId}
+                            onClick={() => handleSelectSuggestion(suggestion)}
+                            className="w-full flex items-start gap-2 px-3 py-2 text-left hover:bg-neutral-50 
+                                     transition-colors border-b border-neutral-100 last:border-0"
+                          >
+                            <MapPin className="w-4 h-4 text-neutral-400 flex-shrink-0 mt-0.5" />
+                            <div>
+                              <p className="text-sm font-medium text-[#1a1a1a]">{suggestion.mainText}</p>
+                              <p className="text-xs text-[#525252]">{suggestion.secondaryText}</p>
+                            </div>
+                          </button>
+                        ))}
+                      </motion.div>
+                    ) : isLoading ? (
+                      <motion.div
+                        key="loading"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="h-48 flex items-center justify-center"
+                      >
+                        <Loader2 className="w-6 h-6 text-neutral-400 animate-spin" />
+                      </motion.div>
+                    ) : inputValue.length >= 2 ? (
+                      <motion.div
+                        key="no-results"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="h-48 flex items-center justify-center text-sm text-neutral-500"
+                      >
+                        {t('location.noResults')}
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="hint"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="h-48 flex items-center justify-center text-sm text-neutral-400"
+                      >
+                        {t('location.typeToSearch')}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
 
               {/* Error */}
               {error && (

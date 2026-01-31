@@ -69,17 +69,19 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
   const imageSrc = hasValidPhoto ? venue.photos[0] : fallbackImages[theme];
 
   const handleShare = async () => {
+    // Generate venue detail page URL for sharing
+    const venueUrl = `${window.location.origin}/venue/${venue.placeId}`;
     const shareData = {
       title: venue.name,
       text: `Let's meet at ${venue.name}! Average travel time: ${Math.round(averageTravelTime)} min`,
-      url: window.location.href,
+      url: venueUrl,
     };
 
     try {
       if (navigator.share) {
         await navigator.share(shareData);
       } else {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(venueUrl);
         // Could show a toast here
       }
     } catch (err) {
