@@ -2,11 +2,11 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { MapPin, Navigation, Plus, Loader2, X, Train, Check } from 'lucide-react';
+import { MapPin, Navigation, Plus, Loader2, X, Train, Check, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { useSessionStore, type Theme } from '@/stores/sessionStore';
-import { searchLocations, geocodePlace, reverseGeocode, type AutocompleteResult } from '@/lib/api';
+import { searchLocations, geocodePlace, reverseGeocode, isInPetiteCouronne, type AutocompleteResult } from '@/lib/api';
 import { v4 as uuidv4 } from 'uuid';
 
 interface LocationSlotsProps {
@@ -233,42 +233,61 @@ export function LocationSlots({ theme }: LocationSlotsProps) {
         >
           {slot.isFilled ? (
             // Filled slot - show location
-            <div className="card p-3">
-              <div className="flex items-start gap-3">
+            (() => {
+              const isOutOfZone = !isInPetiteCouronne(
+                slot.location!.coordinates.lat,
+                slot.location!.coordinates.lng
+              );
+              return (
                 <div className={clsx(
-                  'w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-medium text-white',
-                  config.badge
+                  "card p-3",
+                  isOutOfZone && "border-amber-300 bg-amber-50/50"
                 )}>
-                  <Check className="w-4 h-4" />
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <p className="font-medium text-[#1a1a1a] truncate">
-                    {slot.location!.address}
-                  </p>
-                  
-                  {slot.location!.nearestStations.length > 0 && (
-                    <div className="flex items-center gap-1.5 mt-1">
-                      <Train className="w-3.5 h-3.5 text-neutral-400" />
-                      <p className="text-xs text-[#525252]">
-                        {t('location.nearestStation', { 
-                          station: slot.location!.nearestStations[0].name 
-                        })}
-                      </p>
+                  <div className="flex items-start gap-3">
+                    <div className={clsx(
+                      'w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-medium text-white',
+                      isOutOfZone ? 'bg-amber-500' : config.badge
+                    )}>
+                      {isOutOfZone ? (
+                        <AlertTriangle className="w-4 h-4" />
+                      ) : (
+                        <Check className="w-4 h-4" />
+                      )}
                     </div>
-                  )}
-                </div>
 
-                <button
-                  onClick={() => removeLocation(slot.location!.id)}
-                  className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-600 
-                           hover:bg-neutral-100 transition-colors"
-                  aria-label={t('location.remove')}
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-[#1a1a1a] truncate">
+                        {slot.location!.address}
+                      </p>
+                      
+                      {isOutOfZone ? (
+                        <p className="text-xs text-amber-700 mt-1">
+                          {t('location.outOfZoneWarningShort')}
+                        </p>
+                      ) : slot.location!.nearestStations.length > 0 && (
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <Train className="w-3.5 h-3.5 text-neutral-400" />
+                          <p className="text-xs text-[#525252]">
+                            {t('location.nearestStation', { 
+                              station: slot.location!.nearestStations[0].name 
+                            })}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    <button
+                      onClick={() => removeLocation(slot.location!.id)}
+                      className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-600 
+                               hover:bg-neutral-100 transition-colors"
+                      aria-label={t('location.remove')}
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })()
           ) : activeSlot === slot.index ? (
             // Active input slot
             <div className={clsx(

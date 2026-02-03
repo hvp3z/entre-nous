@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, AlertCircle, SearchX } from 'lucide-react';
+import { Search, AlertCircle, SearchX, Info } from 'lucide-react';
 import clsx from 'clsx';
 import { Header } from '@/components/common/Header';
 import { LocationInput } from '@/components/location/LocationInput';
@@ -164,6 +164,10 @@ export function ThemePage({ theme, openModal = false }: ThemePageProps) {
               <p className="text-sm text-[#525252]">
                 {t('location.subtitle')}
               </p>
+              <div className="flex items-center gap-1.5 mt-2 text-xs text-neutral-500">
+                <Info className="w-3.5 h-3.5 flex-shrink-0" />
+                <span>{t('location.coverageInfoShort')}</span>
+              </div>
             </div>
 
             <LocationList />

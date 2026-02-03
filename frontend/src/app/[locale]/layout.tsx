@@ -13,13 +13,21 @@ export function generateStaticParams() {
 }
 
 export const metadata = {
-  title: 'Le Middle - Paris Meeting Point Finder',
-  description: 'Find the perfect meeting spot in Paris that is equidistant for everyone',
+  title: 'Le Middle - Point de rencontre Paris & petite couronne',
+  description: 'Trouvez le lieu parfait pour vous retrouver en transport en commun. Paris et petite couronne (75, 92, 93, 94) - Île-de-France. Find the perfect equidistant meeting spot in Paris and inner suburbs.',
   manifest: '/site.webmanifest',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
     title: 'Le Middle',
+  },
+  keywords: ['Paris', 'petite couronne', 'point de rencontre', 'meeting point', 'équidistant', 'transport en commun', 'métro', 'Île-de-France'],
+  openGraph: {
+    title: 'Le Middle - Point de rencontre Paris & petite couronne',
+    description: 'Trouvez le lieu parfait pour vous retrouver en transport en commun à Paris et petite couronne.',
+    locale: 'fr_FR',
+    alternateLocale: 'en_US',
+    type: 'website',
   },
 };
 

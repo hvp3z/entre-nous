@@ -61,7 +61,11 @@
     "locationError": "Could not get your location",
     "searchError": "Search error",
     "noResults": "No addresses found",
-    "typeToSearch": "Keep typing to search..."
+    "typeToSearch": "Keep typing to search...",
+    "coverageInfo": "Coverage area: Paris (75) + inner suburbs (92, 93, 94)",
+    "coverageInfoShort": "Paris & inner suburbs",
+    "outOfZoneWarning": "This address is outside the coverage area. The app only works in Paris and inner suburbs (75, 92, 93, 94).",
+    "outOfZoneWarningShort": "Address outside coverage area"
   },
   "search": {
     "searching": "Searching for equidistant places...",
@@ -102,7 +106,7 @@
   },
   "home": {
     "hero": "Meet up simply.",
-    "heroSub": "Find the ideal meeting point.",
+    "heroSub": "Find the ideal meeting point in Paris and inner suburbs.",
     "howItWorks": "How it works",
     "step1Title": "Enter your starting points",
     "step1Desc": "Indicate everyone's addresses.",
@@ -120,8 +124,19 @@
   "legal": {
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
+    "coverage": "Coverage Area",
     "lastUpdated": "Last updated: {date}",
     "contact": "Contact",
+    "coverageContent": {
+      "title": "Coverage Area",
+      "intro": "Le Middle works in Paris and the inner suburbs (petite couronne).",
+      "departments": "Covered departments",
+      "paris": "Paris (75)",
+      "hautsDeSeine": "Hauts-de-Seine (92)",
+      "seineSaintDenis": "Seine-Saint-Denis (93)",
+      "valDeMarne": "Val-de-Marne (94)",
+      "note": "Addresses outside this area may not return optimal results."
+    },
     "termsContent": {
       "title": "Terms of Service",
       "intro": "By using Le Middle, you agree to these terms.",

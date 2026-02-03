@@ -1,5 +1,26 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
+// Approximate bounding box for Paris + petite couronne (75, 92, 93, 94)
+const PETITE_COURONNE_BOUNDS = {
+  minLat: 48.72,  // Southern limit (Val-de-Marne)
+  maxLat: 48.99,  // Northern limit (Seine-Saint-Denis)
+  minLng: 2.15,   // Western limit (Hauts-de-Seine)
+  maxLng: 2.60    // Eastern limit (Seine-Saint-Denis)
+};
+
+/**
+ * Check if coordinates are within the petite couronne coverage area
+ * (Paris 75 + Hauts-de-Seine 92 + Seine-Saint-Denis 93 + Val-de-Marne 94)
+ */
+export function isInPetiteCouronne(lat: number, lng: number): boolean {
+  return (
+    lat >= PETITE_COURONNE_BOUNDS.minLat &&
+    lat <= PETITE_COURONNE_BOUNDS.maxLat &&
+    lng >= PETITE_COURONNE_BOUNDS.minLng &&
+    lng <= PETITE_COURONNE_BOUNDS.maxLng
+  );
+}
+
 interface ApiResponse<T> {
   success: boolean;
   data?: T;

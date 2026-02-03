@@ -61,7 +61,11 @@
     "locationError": "Impossible de récupérer votre position",
     "searchError": "Erreur lors de la recherche",
     "noResults": "Aucune adresse trouvée",
-    "typeToSearch": "Continuez à taper pour rechercher..."
+    "typeToSearch": "Continuez à taper pour rechercher...",
+    "coverageInfo": "Zone couverte : Paris (75) + petite couronne (92, 93, 94)",
+    "coverageInfoShort": "Paris & petite couronne",
+    "outOfZoneWarning": "Cette adresse est hors zone. L'application fonctionne uniquement sur Paris et petite couronne (75, 92, 93, 94).",
+    "outOfZoneWarningShort": "Adresse hors zone de couverture"
   },
   "search": {
     "searching": "Recherche des lieux équidistants...",
@@ -102,7 +106,7 @@
   },
   "home": {
     "hero": "Retrouvez-vous simplement.",
-    "heroSub": "Trouvez le point de rencontre idéal.",
+    "heroSub": "Trouvez le point de rencontre idéal à Paris.",
     "howItWorks": "Comment ça marche",
     "step1Title": "Renseignez vos départs",
     "step1Desc": "Indiquez les adresses de chacun.",
@@ -120,8 +124,19 @@
   "legal": {
     "terms": "Conditions d'utilisation",
     "privacy": "Politique de confidentialité",
+    "coverage": "Zone de couverture",
     "lastUpdated": "Dernière mise à jour : {date}",
     "contact": "Contact",
+    "coverageContent": {
+      "title": "Zone de couverture",
+      "intro": "Le Middle fonctionne sur Paris et la petite couronne.",
+      "departments": "Départements couverts",
+      "paris": "Paris (75)",
+      "hautsDeSeine": "Hauts-de-Seine (92)",
+      "seineSaintDenis": "Seine-Saint-Denis (93)",
+      "valDeMarne": "Val-de-Marne (94)",
+      "note": "Les adresses en dehors de cette zone peuvent ne pas retourner de résultats optimaux."
+    },
     "termsContent": {
       "title": "Conditions Générales d'Utilisation",
       "intro": "En utilisant Le Middle, vous acceptez les présentes conditions.",
