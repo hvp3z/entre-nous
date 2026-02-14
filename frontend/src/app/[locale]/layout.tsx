@@ -1,35 +1,84 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales } from '@/i18n/request';
+import { Metadata } from 'next';
+import { locales, Locale } from '@/i18n/request';
 import { PWAInstall } from '@/components/common/PWAInstall';
 import { OfflineIndicator } from '@/components/common/OfflineIndicator';
 import { Analytics } from '@/components/common/Analytics';
 import { Footer } from '@/components/common/Footer';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildWebApplicationJsonLd } from '@/components/seo/jsonLdBuilders';
 import '../globals.css';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://le-middle.fr';
+
+const ogLocaleMap: Record<Locale, string> = {
+  fr: 'fr_FR',
+  en: 'en_US',
+};
+
+const appDescriptions: Record<Locale, string> = {
+  fr: 'Trouvez le lieu parfait pour vous retrouver en transport en commun à Paris et petite couronne (75, 92, 93, 94).',
+  en: 'Find the perfect equidistant meeting spot by public transit in Paris and inner suburbs (75, 92, 93, 94).',
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata = {
-  title: 'Le Middle - Point de rencontre Paris & petite couronne',
-  description: 'Trouvez le lieu parfait pour vous retrouver en transport en commun. Paris et petite couronne (75, 92, 93, 94) - Île-de-France. Find the perfect equidistant meeting spot in Paris and inner suburbs.',
-  manifest: '/site.webmanifest',
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'Le Middle',
-  },
-  keywords: ['Paris', 'petite couronne', 'point de rencontre', 'meeting point', 'équidistant', 'transport en commun', 'métro', 'Île-de-France'],
-  openGraph: {
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const validLocale = locales.includes(locale as Locale) ? (locale as Locale) : 'fr';
+  const canonicalUrl = `${SITE_URL}/${validLocale}`;
+
+  const alternateLanguages: Record<string, string> = {};
+  for (const l of locales) {
+    alternateLanguages[l] = `${SITE_URL}/${l}`;
+  }
+  alternateLanguages['x-default'] = `${SITE_URL}/fr`;
+
+  return {
+    metadataBase: new URL(SITE_URL),
     title: 'Le Middle - Point de rencontre Paris & petite couronne',
-    description: 'Trouvez le lieu parfait pour vous retrouver en transport en commun à Paris et petite couronne.',
-    locale: 'fr_FR',
-    alternateLocale: 'en_US',
-    type: 'website',
-  },
-};
+    description:
+      'Trouvez le lieu parfait pour vous retrouver en transport en commun. Paris et petite couronne (75, 92, 93, 94) - Île-de-France. Find the perfect equidistant meeting spot in Paris and inner suburbs.',
+    manifest: '/site.webmanifest',
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'default',
+      title: 'Le Middle',
+    },
+    keywords: [
+      'Paris',
+      'petite couronne',
+      'point de rencontre',
+      'meeting point',
+      'équidistant',
+      'transport en commun',
+      'métro',
+      'Île-de-France',
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: alternateLanguages,
+    },
+    openGraph: {
+      title: 'Le Middle - Point de rencontre Paris & petite couronne',
+      description:
+        'Trouvez le lieu parfait pour vous retrouver en transport en commun à Paris et petite couronne.',
+      url: canonicalUrl,
+      locale: ogLocaleMap[validLocale],
+      alternateLocale: locales
+        .filter((l) => l !== validLocale)
+        .map((l) => ogLocaleMap[l]),
+      type: 'website',
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,
@@ -42,7 +91,13 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const validLocale = locale as Locale;
   const messages = await getMessages();
+  const webAppJsonLd = buildWebApplicationJsonLd(
+    SITE_URL,
+    validLocale,
+    appDescriptions[validLocale]
+  );
 
   return (
     <html lang={locale}>
@@ -57,6 +112,7 @@ export default async function LocaleLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="Le Middle" />
         <link rel="manifest" href="/site.webmanifest" />
+        <JsonLd data={webAppJsonLd} />
       </head>
       <body className="min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>

@@ -24,6 +24,8 @@ import clsx from 'clsx';
 import { getVenueDetails, type VenueDetails } from '@/lib/api';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { Header } from '@/components/common/Header';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { buildVenueJsonLd } from '@/components/seo/jsonLdBuilders';
 
 export default function VenueDetailPage() {
   const params = useParams();
@@ -120,6 +122,7 @@ export default function VenueDetailPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#FFFBF7] to-[#FEF3E7]">
+      <JsonLd data={buildVenueJsonLd(venue)} />
       <Header />
       
       <main className="flex-1">
