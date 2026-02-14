@@ -57,6 +57,13 @@ const fallbackImages: Record<Theme, string> = {
   kids: '/images/fallback-kids.png',
 };
 
+const themeLabels: Record<Theme, string> = {
+  restaurants: 'restaurant',
+  bars: 'bar',
+  cafes: 'café',
+  kids: 'lieu pour enfants',
+};
+
 export function VenueCard({ result, locations, theme, rank, isHighlighted = false }: VenueCardProps) {
   const t = useTranslations();
   const config = themeConfig[theme];
@@ -100,24 +107,15 @@ export function VenueCard({ result, locations, theme, rank, isHighlighted = fals
     )}>
       {/* Image */}
       <div className="relative h-48 sm:h-56 bg-neutral-200 overflow-hidden rounded-t-3xl">
-        {hasValidPhoto ? (
-          <Image
-            src={imageSrc}
-            alt={venue.name}
-            fill
-            className="object-cover rounded-t-3xl"
-            unoptimized // Google Places photos don't work well with Next.js optimization
-            onError={() => setImageError(true)}
-          />
-        ) : (
-          <Image
-            src={imageSrc}
-            alt={venue.name}
-            fill
-            className="object-cover rounded-t-3xl"
-            onError={() => setImageError(true)}
-          />
-        )}
+        <Image
+          src={imageSrc}
+          alt={`Photo de ${venue.name} - ${themeLabels[theme]} à Paris`}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover rounded-t-3xl"
+          loading="lazy"
+          onError={() => setImageError(true)}
+        />
         
         {/* Badge "#1 Le Middle Choice" en haut à gauche */}
         <div className="absolute top-3 left-3">

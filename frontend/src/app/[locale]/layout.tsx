@@ -112,6 +112,23 @@ export default async function LocaleLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="Le Middle" />
         <link rel="manifest" href="/site.webmanifest" />
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+        <link rel="preconnect" href="https://lh3.googleusercontent.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
+        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
+          <>
+            <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href="https://plausible.io" />
+          </>
+        )}
+        {process.env.NEXT_PUBLIC_UMAMI_URL && (
+          <>
+            <link rel="preconnect" href={process.env.NEXT_PUBLIC_UMAMI_URL} crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_UMAMI_URL} />
+          </>
+        )}
         <JsonLd data={webAppJsonLd} />
       </head>
       <body className="min-h-screen flex flex-col">

@@ -132,11 +132,12 @@ export default function VenueDetailPage() {
             <>
               <Image
                 src={venue.photos[currentPhotoIndex]}
-                alt={venue.name}
+                alt={`Photo ${currentPhotoIndex + 1} de ${venue.name} à Paris`}
                 fill
+                sizes="100vw"
                 className="object-cover"
-                unoptimized
-                priority
+                priority={currentPhotoIndex === 0}
+                loading={currentPhotoIndex === 0 ? 'eager' : 'lazy'}
               />
               
               {/* Photo navigation */}

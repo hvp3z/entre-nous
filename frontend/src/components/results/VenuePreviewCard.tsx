@@ -73,24 +73,15 @@ export function VenuePreviewCard({ result, theme, onTap, onDirections }: VenuePr
         <div className="flex items-stretch">
           {/* Photo */}
           <div className="relative w-24 h-24 flex-shrink-0 bg-neutral-200">
-            {hasValidPhoto ? (
-              <Image
-                src={imageSrc}
-                alt={venue.name}
-                fill
-                className="object-cover"
-                unoptimized
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <Image
-                src={imageSrc}
-                alt={venue.name}
-                fill
-                className="object-cover"
-                onError={() => setImageError(true)}
-              />
-            )}
+            <Image
+              src={imageSrc}
+              alt={`Photo de ${venue.name}`}
+              fill
+              sizes="96px"
+              className="object-cover"
+              loading="lazy"
+              onError={() => setImageError(true)}
+            />
           </div>
 
           {/* Content */}
