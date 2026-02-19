@@ -200,7 +200,7 @@ function parseOpeningHours(hours: string[]): object[] | undefined {
           closes,
         };
       })
-      .filter(Boolean);
+      .filter((spec): spec is NonNullable<typeof spec> => spec !== null);
 
     return specs.length > 0 ? specs : undefined;
   } catch {
