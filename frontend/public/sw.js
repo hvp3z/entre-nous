@@ -1,6 +1,5 @@
-const CACHE_NAME = 'entre-nous-v1';
+const CACHE_NAME = 'le-middle-v2';
 const STATIC_ASSETS = [
-  '/',
   '/manifest.json',
   '/grid.svg',
 ];
@@ -43,6 +42,18 @@ self.addEventListener('fetch', (event) => {
   // Skip external requests
   if (url.origin !== location.origin) return;
 
+  // Skip navigation requests (HTML pages) - let them go to network for proper i18n routing
+  // This prevents caching redirects and ensures locale detection works correctly
+  if (request.mode === 'navigate') return;
+
+  // Only cache static assets (images, fonts, scripts, styles)
+  const isStaticAsset = 
+    url.pathname.startsWith('/_next/static/') ||
+    url.pathname.startsWith('/images/') ||
+    url.pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|webp|woff|woff2|ico)$/);
+
+  if (!isStaticAsset) return;
+
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {
@@ -70,10 +81,7 @@ self.addEventListener('fetch', (event) => {
         }
         return response;
       }).catch(() => {
-        // Offline fallback for navigation requests
-        if (request.mode === 'navigate') {
-          return caches.match('/');
-        }
+        // Return offline response for static assets only
         return new Response('Offline', { status: 503 });
       });
     })
