@@ -2,6 +2,8 @@ const createNextIntlPlugin = require('next-intl/plugin');
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enable gzip/brotli compression (Vercel handles this automatically, useful for local dev)
@@ -60,9 +62,9 @@ const nextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io https://*.umami.is",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "img-src 'self' data: blob: https://maps.googleapis.com https://lh3.googleusercontent.com https://*.tile.openstreetmap.org",
+              "img-src 'self' data: blob: https://maps.googleapis.com https://lh3.googleusercontent.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org",
               "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://maps.googleapis.com https://plausible.io https://*.umami.is",
+              `connect-src 'self' ${apiUrl} https://maps.googleapis.com https://plausible.io https://*.umami.is https://tile.openstreetmap.org https://*.tile.openstreetmap.org`,
               "frame-src 'self' https://www.google.com https://maps.google.com",
               "worker-src 'self'",
               "manifest-src 'self'",
