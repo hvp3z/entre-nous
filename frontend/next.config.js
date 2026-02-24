@@ -62,7 +62,7 @@ const nextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io https://*.umami.is",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "img-src 'self' data: blob: https://maps.googleapis.com https://lh3.googleusercontent.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org",
+              "img-src 'self' data: blob: https://maps.googleapis.com https://lh3.googleusercontent.com https://*.basemaps.cartocdn.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org",
               "font-src 'self' https://fonts.gstatic.com",
               `connect-src 'self' ${apiUrl} https://maps.googleapis.com https://plausible.io https://*.umami.is https://tile.openstreetmap.org https://*.tile.openstreetmap.org`,
               "frame-src 'self' https://www.google.com https://maps.google.com",
