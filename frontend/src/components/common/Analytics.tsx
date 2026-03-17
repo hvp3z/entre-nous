@@ -1,19 +1,48 @@
 'use client';
 
 import Script from 'next/script';
+import { useState, useEffect } from 'react';
 
 /**
- * RGPD-friendly Analytics component
- * Supports Plausible (recommended) and Umami
- * Both are privacy-focused and don't require cookie consent
+ * Analytics component
+ * Supports Google Analytics 4, Plausible and Umami.
+ * GA4 is gated behind explicit user consent (RGPD).
  */
 export function Analytics() {
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
   const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
   const umamiUrl = process.env.NEXT_PUBLIC_UMAMI_URL;
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
+  const [gaConsent, setGaConsent] = useState(false);
+
+  useEffect(() => {
+    const check = () => setGaConsent(localStorage.getItem('ga_consent') === 'accepted');
+    check();
+    window.addEventListener('ga-consent-updated', check);
+    return () => window.removeEventListener('ga-consent-updated', check);
+  }, []);
 
   return (
     <>
+      {/* Google Analytics 4 - only loaded after explicit consent */}
+      {gaMeasurementId && gaConsent && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaMeasurementId}');
+            `}
+          </Script>
+        </>
+      )}
+
       {/* Plausible Analytics - https://plausible.io */}
       {plausibleDomain && (
         <Script
@@ -38,16 +67,23 @@ export function Analytics() {
 }
 
 /**
- * Track custom events (works with both Plausible and Umami)
+ * Track custom events (works with GA4, Plausible and Umami)
  */
 export function trackEvent(eventName: string, props?: Record<string, string | number | boolean>) {
+  if (typeof window === 'undefined') return;
+
+  // Google Analytics 4 - only if consent was given
+  if (localStorage.getItem('ga_consent') === 'accepted' && (window as any).gtag) {
+    (window as any).gtag('event', eventName, props);
+  }
+
   // Plausible
-  if (typeof window !== 'undefined' && (window as any).plausible) {
+  if ((window as any).plausible) {
     (window as any).plausible(eventName, { props });
   }
 
   // Umami
-  if (typeof window !== 'undefined' && (window as any).umami) {
+  if ((window as any).umami) {
     (window as any).umami.track(eventName, props);
   }
 }
