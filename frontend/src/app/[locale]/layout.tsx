@@ -117,6 +117,14 @@ export default async function LocaleLayout({
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="preconnect" href="https://lh3.googleusercontent.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <>
+            <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+            <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+            <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+          </>
+        )}
         {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
           <>
             <link rel="preconnect" href="https://plausible.io" crossOrigin="anonymous" />

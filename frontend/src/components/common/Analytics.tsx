@@ -3,17 +3,35 @@
 import Script from 'next/script';
 
 /**
- * RGPD-friendly Analytics component
- * Supports Plausible (recommended) and Umami
- * Both are privacy-focused and don't require cookie consent
+ * Analytics component
+ * Supports Google Analytics 4, Plausible and Umami
  */
 export function Analytics() {
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
   const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
   const umamiUrl = process.env.NEXT_PUBLIC_UMAMI_URL;
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
   return (
     <>
+      {/* Google Analytics 4 */}
+      {gaMeasurementId && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaMeasurementId}');
+            `}
+          </Script>
+        </>
+      )}
+
       {/* Plausible Analytics - https://plausible.io */}
       {plausibleDomain && (
         <Script
