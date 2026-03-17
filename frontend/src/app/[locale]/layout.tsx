@@ -6,6 +6,7 @@ import { locales, Locale } from '@/i18n/request';
 import { PWAInstall } from '@/components/common/PWAInstall';
 import { OfflineIndicator } from '@/components/common/OfflineIndicator';
 import { Analytics } from '@/components/common/Analytics';
+import { CookieBanner } from '@/components/common/CookieBanner';
 import { Footer } from '@/components/common/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { buildWebApplicationJsonLd } from '@/components/seo/jsonLdBuilders';
@@ -149,6 +150,7 @@ export default async function LocaleLayout({
           <PWAInstall />
         </NextIntlClientProvider>
         <Analytics />
+        <CookieBanner />
       </body>
     </html>
   );
